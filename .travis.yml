@@ -1,6 +1,6 @@
+sudo: required
+
 language: java
 
-
-before_install:
-  - docker ps -a
-  - docker pull alpine
+services:
+  - docker
