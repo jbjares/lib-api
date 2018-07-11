@@ -1,0 +1,9 @@
+version: "3.6"
+
+services:
+
+  notifications:
+    image: lukaszimmermann/flask-docker-registry-notifications
+    hostname: notifications
+    ports:
+      - 5000

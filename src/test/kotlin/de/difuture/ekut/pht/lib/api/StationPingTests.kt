@@ -7,17 +7,17 @@ import org.junit.Test
 
 class StationPingTests {
 
-    private lateinit var events: List<StationPing>
+    private lateinit var pings: List<StationPing>
 
     @Before
     fun before() {
 
-        this.events = EnhancedRandom.randomListOf(20, StationPing::class.java)
+        this.pings = EnhancedRandom.randomListOf(30, StationPing::class.java)
     }
 
     @Test
     fun testSerialization() {
 
-        allEqualAfterSerialization(this.events, StationPing::class.java)
+        allEqualAfterSerialization(this.pings, StationPing::class.java)
     }
 }

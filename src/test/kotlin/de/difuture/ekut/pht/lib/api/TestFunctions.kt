@@ -7,7 +7,6 @@ fun <T> equalAfterSerialization(
         item: T, mapper: ObjectMapper, clazz : Class<T>) {
 
     val serialized = mapper.writeValueAsString(item)
-    println(serialized)
     val item2 = mapper.readValue(serialized, clazz)
 
     Assert.assertEquals(item, item2)

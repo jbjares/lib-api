@@ -12,7 +12,7 @@ class DockerRegistryEventTests {
     @Before
     fun before() {
 
-        this.events = EnhancedRandom.randomListOf(20, DockerRegistryEvent::class.java)
+        this.events = EnhancedRandom.randomListOf(30, DockerRegistryEvent::class.java)
     }
 
     @Test

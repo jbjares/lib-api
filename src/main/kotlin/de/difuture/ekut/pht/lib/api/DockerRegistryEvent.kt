@@ -15,9 +15,11 @@ import java.util.*
 data class DockerRegistryEvent(
 
         @JsonProperty("id") val id : UUID,
+        @JsonProperty("timestamp") val timestamp : String,
         @JsonProperty("action") val action : Action,
         @JsonProperty("target") val target : Target,
         @JsonProperty("request") val request : Request,
+        @JsonProperty("actor") val actor : Actor,
         @JsonProperty("source") val source : Source) {
 
     enum class Action {
@@ -34,6 +36,7 @@ data class DockerRegistryEvent(
             @JsonProperty("mediaType") val mediaType : String,
             @JsonProperty("size") val size : Int,
             @JsonProperty("digest") val digest : String,
+            @JsonProperty("length") val length : Int,
             @JsonProperty("repository") val repository : String,
             @JsonProperty("url") val url : URL,
             @JsonProperty("tag") val tag : String? // NOTE: Must be nullable
@@ -50,5 +53,9 @@ data class DockerRegistryEvent(
     data class Source(
             @JsonProperty("addr") val addr : String,
             @JsonProperty("instanceID") val instanceID : String
+    )
+
+    data class Actor(
+            @JsonProperty("name") val name : String?
     )
 }
