@@ -1,1 +1,6 @@
 language: java
+
+
+before_install:
+  - docker ps -a
+  - docker pull alpine
