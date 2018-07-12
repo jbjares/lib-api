@@ -40,7 +40,7 @@ class DockerRegistryIntegrationTests {
         private const val TRAIN_PRINT_HELLO_WORLD = "test_print_hello_world"
     }
 
-    private lateinit var registryClient : DockerRegistryClient
+    private lateinit var registryClient : DefaultDockerRegistryClient
 
     @Before
     fun before() {
@@ -50,7 +50,7 @@ class DockerRegistryIntegrationTests {
                 .container("registry")
                 .port(5000)
                 .inFormat("http://\$HOST:\$EXTERNAL_PORT/"))
-        this.registryClient = DockerRegistryClient(uri)
+        this.registryClient = DefaultDockerRegistryClient(uri)
     }
 
     @Test
