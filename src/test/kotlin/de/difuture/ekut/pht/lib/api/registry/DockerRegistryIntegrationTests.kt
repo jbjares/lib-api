@@ -1,18 +1,22 @@
-package de.difuture.ekut.pht.lib.api
+package de.difuture.ekut.pht.lib.api.registry
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.module.kotlin.readValue
 import com.palantir.docker.compose.DockerComposeRule
 import com.palantir.docker.compose.ImmutableDockerComposeRule
+import de.difuture.ekut.pht.lib.api.train.TRAIN_TAG_INIT
 import org.apache.http.HttpStatus
 import org.junit.ClassRule
 import org.junit.Test
 import org.apache.http.client.methods.HttpGet
 import org.apache.http.impl.client.HttpClientBuilder
 import org.junit.Assert
+import org.junit.Before
+import java.net.URI
 
 
-class DockerRegistryEventIntegrationTests {
+class DockerRegistryIntegrationTests {
 
     private data class Group(
 
@@ -30,6 +34,23 @@ class DockerRegistryEventIntegrationTests {
                 .pullOnStartup(true)
                 .file("src/test/resources/docker-compose.yml")
                 .build()
+
+        // Trains to be tested
+        private const val TRAIN_HOSTNAME = "test_hostname"
+        private const val TRAIN_PRINT_HELLO_WORLD = "test_print_hello_world"
+    }
+
+    private lateinit var registryClient : DockerRegistryClient
+
+    @Before
+    fun before() {
+
+        val uri = URI.create(
+                rule.containers()
+                .container("registry")
+                .port(5000)
+                .inFormat("http://\$HOST:\$EXTERNAL_PORT/"))
+        this.registryClient = DockerRegistryClient(uri)
     }
 
     @Test
@@ -38,7 +59,7 @@ class DockerRegistryEventIntegrationTests {
         // URL
         val url = rule.containers()
                 .container("notifications")
-                .port(5000)
+                .port(6000)
                 .inFormat("http://\$HOST:\$EXTERNAL_PORT/")
 
         // Get groups
@@ -50,8 +71,7 @@ class DockerRegistryEventIntegrationTests {
         // Deserialize groups
         val mapper = ObjectMapper()
         val groups : List<Group> = mapper.readValue(
-                        httpResponse.entity.content,
-                        mapper.typeFactory.constructCollectionType(List::class.java, Group::class.java))
+                        httpResponse.entity.content)
 
         // Test all groups and all items
         for (group in groups) {
@@ -61,7 +81,7 @@ class DockerRegistryEventIntegrationTests {
                 val name = "${group.action}_${group.repository}_${group.tag}_$item.json"
                 val itemResponse = HttpClientBuilder.create().build().execute(HttpGet("$url/$name"))
                 Assert.assertEquals(itemResponse.statusLine.statusCode, HttpStatus.SC_OK)
-                val events = mapper.readValue(itemResponse.entity.content, DockerRegistryEvents::class.java)
+                val events : DockerRegistryEvents = mapper.readValue(itemResponse.entity.content)
 
                 // Test that each event envelope only contains one event
                 Assert.assertEquals(1, events.events.size)
@@ -74,5 +94,24 @@ class DockerRegistryEventIntegrationTests {
                 Assert.assertEquals(group.repository, event.target.repository)
             }
         }
+    }
+
+
+    @Test
+    fun client_list_trains() {
+
+        val repos = this.registryClient.listRepositories().repositories
+        Assert.assertTrue(TRAIN_HOSTNAME in repos && TRAIN_PRINT_HELLO_WORLD in repos)
+    }
+
+    @Test
+    fun client_list_tags() {
+
+        val tagsHostname = this.registryClient.listTags(TRAIN_HOSTNAME)
+        val tagsPrintHelloWorld = this.registryClient.listTags(TRAIN_PRINT_HELLO_WORLD)
+        Assert.assertEquals(TRAIN_HOSTNAME, tagsHostname.name)
+        Assert.assertEquals(TRAIN_PRINT_HELLO_WORLD, tagsPrintHelloWorld.name)
+        Assert.assertTrue(TRAIN_TAG_INIT in tagsHostname.tags)
+        Assert.assertTrue(TRAIN_TAG_INIT in tagsPrintHelloWorld.tags)
     }
 }

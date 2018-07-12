@@ -2,8 +2,16 @@ version: "3.0"
 
 services:
 
+
+  # Service that can be used to query Docker Registry notifications
   notifications:
-    image: lukaszimmermann/flask-docker-registry-notifications
+    image: lukaszimmermann/flask-docker-registry-notifications:latest
     hostname: notifications
+    ports:
+      - 6000
+
+  registry:
+    image:  lukaszimmermann/pht-test-train-registry:latest
+    hostname: registry
     ports:
       - 5000
