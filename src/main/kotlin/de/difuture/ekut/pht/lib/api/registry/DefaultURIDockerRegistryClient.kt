@@ -6,9 +6,9 @@ import org.apache.http.client.methods.HttpGet
 import org.apache.http.impl.client.HttpClientBuilder
 import java.net.URI
 
-class DefaultDockerRegistryClient(val uri : URI) : DockerRegistryClient {
+class DefaultURIDockerRegistryClient(override val uri : URI) : URIDockerRegistryClient {
 
-    // Actions
+    // Catalog URI
     private val catalog = uri.resolve("v2/_catalog")
 
     // Client

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.palantir.docker.compose.DockerComposeRule
 import com.palantir.docker.compose.ImmutableDockerComposeRule
+import com.sun.xml.internal.ws.policy.AssertionSet
 import de.difuture.ekut.pht.lib.api.train.TRAIN_TAG_INIT
 import org.apache.http.HttpStatus
 import org.junit.ClassRule
@@ -40,7 +41,11 @@ class DockerRegistryIntegrationTests {
         private const val TRAIN_PRINT_HELLO_WORLD = "test_print_hello_world"
     }
 
-    private lateinit var registryClient : DefaultDockerRegistryClient
+    // The single Registry Client
+    private lateinit var client : URIDockerRegistryClient
+
+    // The federated Registry Client
+    private lateinit var federatedClient : FederatedDockerRegistryClient<URI>
 
     @Before
     fun before() {
@@ -50,7 +55,9 @@ class DockerRegistryIntegrationTests {
                 .container("registry")
                 .port(5000)
                 .inFormat("http://\$HOST:\$EXTERNAL_PORT/"))
-        this.registryClient = DefaultDockerRegistryClient(uri)
+        this.client = DefaultURIDockerRegistryClient(uri)
+
+        this.federatedClient = federatedClient(this.client)
     }
 
     @Test
@@ -100,18 +107,31 @@ class DockerRegistryIntegrationTests {
     @Test
     fun client_list_trains() {
 
-        val repos = this.registryClient.listRepositories().repositories
+        val repos = this.client.listRepositories().repositories
         Assert.assertTrue(TRAIN_HOSTNAME in repos && TRAIN_PRINT_HELLO_WORLD in repos)
     }
 
     @Test
     fun client_list_tags() {
 
-        val tagsHostname = this.registryClient.listTags(TRAIN_HOSTNAME)
-        val tagsPrintHelloWorld = this.registryClient.listTags(TRAIN_PRINT_HELLO_WORLD)
+        val tagsHostname = this.client.listTags(TRAIN_HOSTNAME)
+        val tagsPrintHelloWorld = this.client.listTags(TRAIN_PRINT_HELLO_WORLD)
         Assert.assertEquals(TRAIN_HOSTNAME, tagsHostname.name)
         Assert.assertEquals(TRAIN_PRINT_HELLO_WORLD, tagsPrintHelloWorld.name)
         Assert.assertTrue(TRAIN_TAG_INIT in tagsHostname.tags)
         Assert.assertTrue(TRAIN_TAG_INIT in tagsPrintHelloWorld.tags)
+    }
+
+
+    @Test
+    fun federated_client_listAllRepositories() {
+
+        val resp = this.federatedClient.listAllRepositories()
+
+        // URI of the single client must be a key in the returned map
+        Assert.assertTrue(this.client.uri in resp)
+        Assert.assertEquals(1, resp.size)
+        val resp2 = this.federatedClient.getClientByIdentifier(this.client.uri)?.listRepositories() ?: Assert.fail()
+        Assert.assertEquals(resp2, resp[this.client.uri])
     }
 }
