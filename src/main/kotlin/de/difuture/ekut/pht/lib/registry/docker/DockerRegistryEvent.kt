@@ -1,4 +1,4 @@
-package de.difuture.ekut.pht.lib.registry
+package de.difuture.ekut.pht.lib.registry.docker
 
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -14,7 +14,7 @@ import java.util.*
  */
 data class DockerRegistryEvent(
 
-        @JsonProperty("id") val id : UUID,
+        @JsonProperty("value") val id : UUID,
         @JsonProperty("timestamp") val timestamp : String,
         @JsonProperty("action") val action : Action,
         @JsonProperty("target") val target : Target,
@@ -43,7 +43,7 @@ data class DockerRegistryEvent(
     )
 
     data class Request(
-            @JsonProperty("id") val id : String,
+            @JsonProperty("value") val id : String,
             @JsonProperty("addr") val addr : String,
             @JsonProperty("host") val host : URI,
             @JsonProperty("method") val method : String,

@@ -7,8 +7,10 @@ import com.palantir.docker.compose.DockerComposeRule
 import com.palantir.docker.compose.ImmutableDockerComposeRule
 import de.difuture.ekut.pht.lib.core.GetHttpClient
 import de.difuture.ekut.pht.lib.core.HttpResponse
+import de.difuture.ekut.pht.lib.registry.docker.DefaultDockerRegistryClient
+import de.difuture.ekut.pht.lib.registry.docker.DockerRegistryClient
+import de.difuture.ekut.pht.lib.registry.docker.DockerRegistryEvents
 import de.difuture.ekut.pht.lib.train.TRAIN_TAG_INIT
-import org.apache.http.HttpEntity
 import org.apache.http.HttpStatus
 import org.apache.http.client.methods.CloseableHttpResponse
 import org.junit.ClassRule

@@ -1,4 +1,4 @@
-package de.difuture.ekut.pht.lib.registry
+package de.difuture.ekut.pht.lib.registry.docker
 
 
 interface DockerRegistryClient {
