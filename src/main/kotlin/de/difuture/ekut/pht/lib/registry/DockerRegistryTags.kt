@@ -1,4 +1,4 @@
-package de.difuture.ekut.pht.lib.api.registry
+package de.difuture.ekut.pht.lib.registry
 
 import com.fasterxml.jackson.annotation.JsonProperty
 

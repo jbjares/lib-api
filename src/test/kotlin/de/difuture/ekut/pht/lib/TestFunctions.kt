@@ -1,4 +1,4 @@
-package de.difuture.ekut.pht.lib.api
+package de.difuture.ekut.pht.lib
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.junit.Assert
@@ -15,5 +15,5 @@ fun <T> equalAfterSerialization(
 fun <T> allEqualAfterSerialization(items : Iterable<T>, clazz : Class<T>) {
 
     val mapper = ObjectMapper()
-    items.forEach {  equalAfterSerialization(it, mapper, clazz)}
+    items.forEach { equalAfterSerialization(it, mapper, clazz) }
 }

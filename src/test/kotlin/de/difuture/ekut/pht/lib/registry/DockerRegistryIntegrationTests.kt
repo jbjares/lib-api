@@ -1,19 +1,23 @@
-package de.difuture.ekut.pht.lib.api.registry
+package de.difuture.ekut.pht.lib.registry
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.palantir.docker.compose.DockerComposeRule
 import com.palantir.docker.compose.ImmutableDockerComposeRule
-import com.sun.xml.internal.ws.policy.AssertionSet
-import de.difuture.ekut.pht.lib.api.train.TRAIN_TAG_INIT
+import de.difuture.ekut.pht.lib.core.GetHttpClient
+import de.difuture.ekut.pht.lib.core.HttpResponse
+import de.difuture.ekut.pht.lib.train.TRAIN_TAG_INIT
+import org.apache.http.HttpEntity
 import org.apache.http.HttpStatus
+import org.apache.http.client.methods.CloseableHttpResponse
 import org.junit.ClassRule
 import org.junit.Test
 import org.apache.http.client.methods.HttpGet
 import org.apache.http.impl.client.HttpClientBuilder
 import org.junit.Assert
 import org.junit.Before
+import java.io.InputStream
 import java.net.URI
 
 
@@ -26,6 +30,22 @@ class DockerRegistryIntegrationTests {
         @JsonProperty("tag") val tag : String,
         @JsonProperty("items") val items: List<Int>
     )
+
+    private class TestHttpResponse(response : CloseableHttpResponse) : HttpResponse {
+
+        override val content: InputStream = response.entity.content
+
+        override fun close() {
+            this.content.close()
+        }
+    }
+
+    private class TestHttpClient : GetHttpClient {
+
+        private val client = HttpClientBuilder.create().build()
+
+        override fun get(uri: URI): HttpResponse = TestHttpResponse(client.execute(HttpGet(uri)))
+    }
 
     companion object {
 
@@ -42,10 +62,8 @@ class DockerRegistryIntegrationTests {
     }
 
     // The single Registry Client
-    private lateinit var client : URIDockerRegistryClient
+    private lateinit var client : DockerRegistryClient
 
-    // The federated Registry Client
-    private lateinit var federatedClient : FederatedDockerRegistryClient<URI>
 
     @Before
     fun before() {
@@ -55,9 +73,8 @@ class DockerRegistryIntegrationTests {
                 .container("registry")
                 .port(5000)
                 .inFormat("http://\$HOST:\$EXTERNAL_PORT/"))
-        this.client = DefaultURIDockerRegistryClient(uri)
 
-        this.federatedClient = federatedClient(this.client)
+        this.client = DefaultDockerRegistryClient(uri, TestHttpClient())
     }
 
     @Test
@@ -120,18 +137,5 @@ class DockerRegistryIntegrationTests {
         Assert.assertEquals(TRAIN_PRINT_HELLO_WORLD, tagsPrintHelloWorld.name)
         Assert.assertTrue(TRAIN_TAG_INIT in tagsHostname.tags)
         Assert.assertTrue(TRAIN_TAG_INIT in tagsPrintHelloWorld.tags)
-    }
-
-
-    @Test
-    fun federated_client_listAllRepositories() {
-
-        val resp = this.federatedClient.listAllRepositories()
-
-        // URI of the single client must be a key in the returned map
-        Assert.assertTrue(this.client.uri in resp)
-        Assert.assertEquals(1, resp.size)
-        val resp2 = this.federatedClient.getClientByIdentifier(this.client.uri)?.listRepositories() ?: Assert.fail()
-        Assert.assertEquals(resp2, resp[this.client.uri])
     }
 }

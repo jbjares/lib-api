@@ -1,4 +1,4 @@
-package de.difuture.ekut.pht.lib.api.station
+package de.difuture.ekut.pht.lib.station
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import java.net.URI

@@ -1,6 +1,6 @@
-package de.difuture.ekut.pht.lib.api.station
+package de.difuture.ekut.pht.lib.station
 
-import de.difuture.ekut.pht.lib.api.allEqualAfterSerialization
+import de.difuture.ekut.pht.lib.allEqualAfterSerialization
 import io.github.benas.randombeans.api.EnhancedRandom
 import org.junit.Before
 import org.junit.Test
