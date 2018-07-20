@@ -2,7 +2,7 @@ package de.difuture.ekut.pht.lib.registry.docker
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
-import de.difuture.ekut.pht.lib.core.GetHttpClient
+import de.difuture.ekut.pht.lib.http.GetHttpClient
 import java.net.URI
 
 class DefaultDockerRegistryClient(

@@ -4,7 +4,7 @@ import org.junit.Assert
 import org.junit.Test
 
 
-class DockerRegistryEventTests {
+class TrainIdTest {
 
     @Test
     fun testValidIds() {

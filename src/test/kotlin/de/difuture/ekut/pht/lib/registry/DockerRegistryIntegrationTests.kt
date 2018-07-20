@@ -5,8 +5,8 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.palantir.docker.compose.DockerComposeRule
 import com.palantir.docker.compose.ImmutableDockerComposeRule
-import de.difuture.ekut.pht.lib.core.GetHttpClient
-import de.difuture.ekut.pht.lib.core.HttpResponse
+import de.difuture.ekut.pht.lib.http.GetHttpClient
+import de.difuture.ekut.pht.lib.http.HttpResponse
 import de.difuture.ekut.pht.lib.registry.docker.DefaultDockerRegistryClient
 import de.difuture.ekut.pht.lib.registry.docker.DockerRegistryClient
 import de.difuture.ekut.pht.lib.registry.docker.DockerRegistryEvents

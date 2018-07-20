@@ -1,4 +1,4 @@
-package de.difuture.ekut.pht.lib.core
+package de.difuture.ekut.pht.lib.http
 
 import java.net.URI
 

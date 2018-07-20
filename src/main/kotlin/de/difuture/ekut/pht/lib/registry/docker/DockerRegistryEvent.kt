@@ -14,7 +14,7 @@ import java.util.*
  */
 data class DockerRegistryEvent(
 
-        @JsonProperty("value") val id : UUID,
+        @JsonProperty("id") val id : UUID,
         @JsonProperty("timestamp") val timestamp : String,
         @JsonProperty("action") val action : Action,
         @JsonProperty("target") val target : Target,
@@ -43,7 +43,7 @@ data class DockerRegistryEvent(
     )
 
     data class Request(
-            @JsonProperty("value") val id : String,
+            @JsonProperty("id") val id : String,
             @JsonProperty("addr") val addr : String,
             @JsonProperty("host") val host : URI,
             @JsonProperty("method") val method : String,

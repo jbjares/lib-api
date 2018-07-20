@@ -1,5 +1,6 @@
 package de.difuture.ekut.pht.lib.id
 
+
 data class DepartureId(
 
         val value : String
