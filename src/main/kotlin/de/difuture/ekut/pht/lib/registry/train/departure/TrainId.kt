@@ -8,7 +8,7 @@ data class TrainId (
     companion object {
 
         // The regex that we allow for potential values of the trainId
-        val regex = Regex("[a-zA-Z0-9]+")
+        val regex = Regex("[a-zA-Z0-9_]+")
     }
 
     init {

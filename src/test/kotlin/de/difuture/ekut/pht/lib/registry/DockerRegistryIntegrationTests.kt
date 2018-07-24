@@ -7,8 +7,8 @@ import com.palantir.docker.compose.DockerComposeRule
 import com.palantir.docker.compose.ImmutableDockerComposeRule
 import de.difuture.ekut.pht.lib.http.GetHttpClient
 import de.difuture.ekut.pht.lib.http.HttpResponse
-import de.difuture.ekut.pht.lib.registry.docker.DefaultDockerRegistryClient
 import de.difuture.ekut.pht.lib.registry.docker.DockerRegistryClient
+import de.difuture.ekut.pht.lib.registry.docker.IDockerRegistryClient
 import de.difuture.ekut.pht.lib.registry.docker.DockerRegistryEvents
 import de.difuture.ekut.pht.lib.registry.train.TRAIN_TAG_INIT
 import org.apache.http.HttpStatus
@@ -64,7 +64,7 @@ class DockerRegistryIntegrationTests {
     }
 
     // The single Registry Client
-    private lateinit var client : DockerRegistryClient
+    private lateinit var clientI : IDockerRegistryClient
 
 
     @Before
@@ -76,7 +76,7 @@ class DockerRegistryIntegrationTests {
                 .port(5000)
                 .inFormat("http://\$HOST:\$EXTERNAL_PORT/"))
 
-        this.client = DefaultDockerRegistryClient(uri, TestHttpClient())
+        this.clientI = DockerRegistryClient(uri, TestHttpClient())
     }
 
     @Test
@@ -126,15 +126,15 @@ class DockerRegistryIntegrationTests {
     @Test
     fun client_list_trains() {
 
-        val repos = this.client.listRepositories().repositories
+        val repos = this.clientI.listRepositories().repositories
         Assert.assertTrue(TRAIN_HOSTNAME in repos && TRAIN_PRINT_HELLO_WORLD in repos)
     }
 
     @Test
     fun client_list_tags() {
 
-        val tagsHostname = this.client.listTags(TRAIN_HOSTNAME)
-        val tagsPrintHelloWorld = this.client.listTags(TRAIN_PRINT_HELLO_WORLD)
+        val tagsHostname = this.clientI.listTags(TRAIN_HOSTNAME)
+        val tagsPrintHelloWorld = this.clientI.listTags(TRAIN_PRINT_HELLO_WORLD)
         Assert.assertEquals(TRAIN_HOSTNAME, tagsHostname.name)
         Assert.assertEquals(TRAIN_PRINT_HELLO_WORLD, tagsPrintHelloWorld.name)
         Assert.assertTrue(TRAIN_TAG_INIT in tagsHostname.tags)
