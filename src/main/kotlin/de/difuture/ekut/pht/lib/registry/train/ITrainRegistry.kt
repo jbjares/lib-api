@@ -3,7 +3,7 @@ package de.difuture.ekut.pht.lib.registry.train
 import de.difuture.ekut.pht.lib.registry.train.departure.TrainDeparture
 import de.difuture.ekut.pht.lib.registry.train.departure.tag.TrainTag
 
-interface TrainRegistry {
+interface ITrainRegistry {
 
     /**
      * Lists all train departures with a certain Tag
