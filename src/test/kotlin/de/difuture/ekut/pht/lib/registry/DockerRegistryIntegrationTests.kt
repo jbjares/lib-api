@@ -10,7 +10,7 @@ import de.difuture.ekut.pht.lib.http.HttpResponse
 import de.difuture.ekut.pht.lib.registry.docker.DefaultDockerRegistryClient
 import de.difuture.ekut.pht.lib.registry.docker.DockerRegistryClient
 import de.difuture.ekut.pht.lib.registry.docker.DockerRegistryEvents
-import de.difuture.ekut.pht.lib.train.TRAIN_TAG_INIT
+import de.difuture.ekut.pht.lib.registry.train.TRAIN_TAG_INIT
 import org.apache.http.HttpStatus
 import org.apache.http.client.methods.CloseableHttpResponse
 import org.junit.ClassRule

@@ -1,4 +1,4 @@
-package de.difuture.ekut.pht.lib.id
+package de.difuture.ekut.pht.lib.registry.train.departure
 
 data class TrainId (
 

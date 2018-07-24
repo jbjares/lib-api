@@ -37,5 +37,5 @@ interface IDockerClient {
      * Commits container and returns ID of newly created image
      *
      */
-    fun commit(containerId: String) : String
+    fun commitContainer(containerId: String, repo : String, tag : String) : String
 }
