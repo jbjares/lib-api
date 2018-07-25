@@ -26,7 +26,7 @@ dependencies {
     compile group: 'com.fasterxml.jackson.module', name: 'jackson-module-kotlin', version: '2.9.6'
     testCompile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.6'
     testCompile group: 'io.github.benas', name: 'random-beans', version: '3.7.0'
-    testCompile 'com.palantir.docker.compose:docker-compose-rule-junit4:0.34.0'
+    testCompile 'org.testcontainers:testcontainers:1.8.1'
 }
 
 // Publish locally

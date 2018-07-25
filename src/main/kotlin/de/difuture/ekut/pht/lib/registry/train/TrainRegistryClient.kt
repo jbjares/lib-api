@@ -1,7 +1,7 @@
 package de.difuture.ekut.pht.lib.registry.train
 
 import de.difuture.ekut.pht.lib.registry.docker.IDockerRegistryClient
-import de.difuture.ekut.pht.lib.registry.train.departure.ITrainDeparture
+import de.difuture.ekut.pht.lib.registry.train.departure.AbstractTrainDeparture
 import de.difuture.ekut.pht.lib.registry.train.departure.tag.TrainTag
 
 
@@ -13,24 +13,16 @@ import de.difuture.ekut.pht.lib.registry.train.departure.tag.TrainTag
 class TrainRegistryClient(private val dockerRegistryClient: IDockerRegistryClient) : ITrainRegistryClient {
 
 
-
-    private data class TrainDeparture(
-
+    private class TrainDeparture(
             trainId: String,
             trainTag: String,
-            private val client : ITrainRegistryClient
-
-    ) : ITrainDeparture {
-
+            client : ITrainRegistryClient
+    ) : AbstractTrainDeparture(trainId, trainTag, client)
 
 
-    }
-
-
-        override fun listTrainDepartures(tag: TrainTag): List<ITrainDeparture> =
-
+    override fun listTrainDepartures(): List<AbstractTrainDeparture> =
             dockerRegistryClient
                     .listRepositories()
-                    .flatMap { repo ->  dockerRegistryClient.listTags(repo).map { TrainDeparture(repo, it) } }
+                    .flatMap { repo ->  dockerRegistryClient.listTags(repo).map { TrainDeparture(repo, it, this) } }
 
 }

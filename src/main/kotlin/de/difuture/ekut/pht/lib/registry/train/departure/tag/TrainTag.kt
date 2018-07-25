@@ -9,10 +9,10 @@ interface TrainTag {
     companion object {
 
         fun of(value : String) : TrainTag =
-                try {
-                    SpecialTrainTag.valueOf(value)
-                } catch (e : IllegalArgumentException) {
 
+                if (SpecialTrainTag.isMember(value)) {
+                    SpecialTrainTag.valueOf(value)
+                } else {
                     GenericTrainTag(value)
                 }
     }

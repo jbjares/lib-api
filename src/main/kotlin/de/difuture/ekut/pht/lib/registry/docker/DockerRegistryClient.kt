@@ -10,7 +10,7 @@ class DockerRegistryClient(
         private val client : GetHttpClient) : IDockerRegistryClient {
 
     // Catalog URI
-    private val catalog = uri.resolve("v2/_catalog")
+    private val catalog = uri.resolve("/v2/_catalog")
 
     private inline fun <reified T : Any> readGetResponse(uri : URI) : T {
 

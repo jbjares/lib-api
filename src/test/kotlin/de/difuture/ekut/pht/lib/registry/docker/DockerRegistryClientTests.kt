@@ -1,30 +1,22 @@
-package de.difuture.ekut.pht.lib.registry
+package de.difuture.ekut.pht.lib.registry.docker
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
-import com.palantir.docker.compose.DockerComposeRule
-import com.palantir.docker.compose.ImmutableDockerComposeRule
-import de.difuture.ekut.pht.lib.http.GetHttpClient
-import de.difuture.ekut.pht.lib.http.HttpResponse
-import de.difuture.ekut.pht.lib.registry.docker.DockerRegistryClient
-import de.difuture.ekut.pht.lib.registry.docker.IDockerRegistryClient
-import de.difuture.ekut.pht.lib.registry.docker.DockerRegistryEvents
-import de.difuture.ekut.pht.lib.registry.train.TRAIN_TAG_INIT
+import de.difuture.ekut.pht.lib.SingleExposedPortContainer
+import de.difuture.ekut.pht.lib.http.TestHttpClient
 import org.apache.http.HttpStatus
-import org.apache.http.client.methods.CloseableHttpResponse
 import org.junit.ClassRule
 import org.junit.Test
 import org.apache.http.client.methods.HttpGet
 import org.apache.http.impl.client.HttpClientBuilder
 import org.junit.Assert
 import org.junit.Before
-import java.io.InputStream
-import java.net.URI
 
 
-class DockerRegistryIntegrationTests {
+class DockerRegistryClientTests {
 
+    /////////////////////////  Used for Notifications communication  //////////////////////////////////////////
     private data class Group(
 
         @JsonProperty("action") val action : String,
@@ -33,60 +25,43 @@ class DockerRegistryIntegrationTests {
         @JsonProperty("items") val items: List<Int>
     )
 
-    private class TestHttpResponse(response : CloseableHttpResponse) : HttpResponse {
 
-        override val content: InputStream = response.entity.content
 
-        override fun close() {
-            this.content.close()
-        }
-    }
-
-    private class TestHttpClient : GetHttpClient {
-
-        private val client = HttpClientBuilder.create().build()
-
-        override fun get(uri: URI): HttpResponse = TestHttpResponse(client.execute(HttpGet(uri)))
-    }
-
+    /////////////////////////  Companion  //////////////////////////////////////////////////////////////
     companion object {
-
-        // Set up the JUnit rule for firing up the test services
-        @ClassRule @JvmField
-        val rule : ImmutableDockerComposeRule = DockerComposeRule.builder()
-                .pullOnStartup(true)
-                .file("src/test/resources/docker-compose.yml")
-                .build()
 
         // Trains to be tested
         private const val TRAIN_HOSTNAME = "test_hostname"
         private const val TRAIN_PRINT_HELLO_WORLD = "test_print_hello_world"
+
+        // Container that is used for fetching Docker Registry Notifications
+        @ClassRule @JvmField
+        val REGISTRY : SingleExposedPortContainer =
+                SingleExposedPortContainer(
+                        5000,
+                        "lukaszimmermann/pht-test-train-registry:latest")
+
+        @ClassRule @JvmField
+        val NOTIFICATIONS: SingleExposedPortContainer =
+                SingleExposedPortContainer(
+                        6000,
+                        "lukaszimmermann/pht-test-train-registry-notifications:latest")
     }
-
-    // The single Registry Client
-    private lateinit var clientI : IDockerRegistryClient
-
+    /////////////////////////  The registry client  /////////////////////////////////////////////////////////////
+    private lateinit var client : IDockerRegistryClient
 
     @Before
     fun before() {
 
-        val uri = URI.create(
-                rule.containers()
-                .container("registry")
-                .port(5000)
-                .inFormat("http://\$HOST:\$EXTERNAL_PORT/"))
-
-        this.clientI = DockerRegistryClient(uri, TestHttpClient())
+        // The Docker Registry Client that should be tested
+        this.client = DockerRegistryClient(REGISTRY.getExternalURI(), TestHttpClient())
     }
 
+    /////////////////////////  Tests  /////////////////////////////////////////////////////////////////////
     @Test
     fun notifications() {
 
-        // URL
-        val url = rule.containers()
-                .container("notifications")
-                .port(6000)
-                .inFormat("http://\$HOST:\$EXTERNAL_PORT/")
+        val url  = NOTIFICATIONS.getExternalURI()
 
         // Get groups
         val httpResponse = HttpClientBuilder.create().build().execute(HttpGet("$url/groups"))
@@ -126,18 +101,19 @@ class DockerRegistryIntegrationTests {
     @Test
     fun client_list_trains() {
 
-        val repos = this.clientI.listRepositories().repositories
-        Assert.assertTrue(TRAIN_HOSTNAME in repos && TRAIN_PRINT_HELLO_WORLD in repos)
+        val repos = this.client.listRepositories().repositories
+        //Assert.assertTrue(TRAIN_HOSTNAME in repos && TRAIN_PRINT_HELLO_WORLD in repos)
     }
 
     @Test
     fun client_list_tags() {
 
-        val tagsHostname = this.clientI.listTags(TRAIN_HOSTNAME)
-        val tagsPrintHelloWorld = this.clientI.listTags(TRAIN_PRINT_HELLO_WORLD)
+        val init = "init"
+        val tagsHostname = this.client.listTags(TRAIN_HOSTNAME)
+        val tagsPrintHelloWorld = this.client.listTags(TRAIN_PRINT_HELLO_WORLD)
         Assert.assertEquals(TRAIN_HOSTNAME, tagsHostname.name)
         Assert.assertEquals(TRAIN_PRINT_HELLO_WORLD, tagsPrintHelloWorld.name)
-        Assert.assertTrue(TRAIN_TAG_INIT in tagsHostname.tags)
-        Assert.assertTrue(TRAIN_TAG_INIT in tagsPrintHelloWorld.tags)
+        Assert.assertTrue(init in tagsHostname.tags)
+        Assert.assertTrue(init in tagsPrintHelloWorld.tags)
     }
 }
