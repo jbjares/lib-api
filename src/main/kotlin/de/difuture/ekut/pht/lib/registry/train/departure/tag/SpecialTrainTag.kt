@@ -10,6 +10,7 @@ enum class SpecialTrainTag: TrainTag {
     companion object {
         private val names = SpecialTrainTag.values().map { it.toString() }.toSet()
 
-        fun isMember(value : String) = value in names
+        // Case insensitive
+        fun isMember(value : String) = value.toUpperCase() in names
     }
 }

@@ -25,4 +25,7 @@ class TrainRegistryClient(private val dockerRegistryClient: IDockerRegistryClien
                     .listRepositories()
                     .flatMap { repo ->  dockerRegistryClient.listTags(repo).map { TrainDeparture(repo, it, this) } }
 
+    override fun listTrainDepartures(tag: TrainTag): List<AbstractTrainDeparture> =
+        this.listTrainDepartures().filter { it.trainTag == tag }
+
 }

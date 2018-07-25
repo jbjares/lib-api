@@ -3,6 +3,8 @@ package de.difuture.ekut.pht.lib.registry.docker
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import de.difuture.ekut.pht.lib.http.GetHttpClient
+import de.difuture.ekut.pht.lib.registry.docker.data.DockerRegistryRepositories
+import de.difuture.ekut.pht.lib.registry.docker.data.DockerRegistryTags
 import java.net.URI
 
 class DockerRegistryClient(

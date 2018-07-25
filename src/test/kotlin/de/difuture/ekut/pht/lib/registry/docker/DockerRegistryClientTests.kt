@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import de.difuture.ekut.pht.lib.SingleExposedPortContainer
 import de.difuture.ekut.pht.lib.http.TestHttpClient
+import de.difuture.ekut.pht.lib.registry.docker.data.DockerRegistryEvents
 import org.apache.http.HttpStatus
 import org.junit.ClassRule
 import org.junit.Test

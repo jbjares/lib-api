@@ -11,7 +11,7 @@ interface TrainTag {
         fun of(value : String) : TrainTag =
 
                 if (SpecialTrainTag.isMember(value)) {
-                    SpecialTrainTag.valueOf(value)
+                    SpecialTrainTag.valueOf(value.toUpperCase())
                 } else {
                     GenericTrainTag(value)
                 }

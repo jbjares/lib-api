@@ -1,4 +1,4 @@
-package de.difuture.ekut.pht.lib.registry.docker
+package de.difuture.ekut.pht.lib.registry.docker.data
 
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
