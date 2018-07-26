@@ -4,7 +4,7 @@ package de.difuture.ekut.pht.lib.runtime
  *
  * @author Lukas Zimmermann
  */
-interface IDockerClient {
+interface IDockerClient : RuntimeClient {
 
     /**
      * Runs Image and returns container ID

@@ -29,7 +29,7 @@ class TrainRegistryClientTests {
     }
 
     /////////////////////////  The registry client  /////////////////////////////////////////////////////////////
-    private lateinit var client : ITrainRegistryClient
+    private lateinit var client : TrainRegistryClient
 
     @Before
     fun before() {
