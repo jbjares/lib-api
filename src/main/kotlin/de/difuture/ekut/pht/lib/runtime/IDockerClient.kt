@@ -1,5 +1,7 @@
 package de.difuture.ekut.pht.lib.runtime
 
+import java.net.URI
+
 /**
  *
  * @author Lukas Zimmermann
@@ -10,7 +12,7 @@ interface IDockerClient : RuntimeClient {
      * Runs Image and returns container ID
      *
      */
-    fun run(imageId : String) : String
+    fun run(imageId : String, commands : List<String>) : String?
 
 
     /**
@@ -21,21 +23,15 @@ interface IDockerClient : RuntimeClient {
 
 
     /**
-     * Pulls repository and reports whether successful
-     *
+     *  Pulls the repository and returns the
+     *  image ID if available, otherwise null
      */
-    fun pull(repository: String) : Boolean
+    fun pull(registryURI : URI, repository: String, tag: String) : String?
 
 
     /**
-     * Pushes repository and reports whether successful
-     */
-    fun push(repository: String) : Boolean
-
-
-    /**
-     * Commits container and returns ID of newly created image
+     * Returns the log of the running container
      *
      */
-    fun commitContainer(containerId: String, repo : String, tag : String) : String
+    fun log(containerId: String) : String?
 }

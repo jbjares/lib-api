@@ -38,6 +38,9 @@ class TrainRegistryClientTests {
         this.client = TrainRegistryClient(dockerRegistryClient)
     }
 
+    /////////////////////////  The actual test  //////////////////////////////////////////////////////////////////
+
+
     @Test
     fun test_list_train_departures() {
 

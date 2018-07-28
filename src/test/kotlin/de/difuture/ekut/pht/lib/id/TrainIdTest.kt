@@ -11,11 +11,11 @@ class TrainIdTest {
     fun testValidIds() {
 
         val id1 = TrainId("abcd")
-        Assert.assertEquals("abcd", id1.value)
+        Assert.assertEquals("abcd", id1.stringRepresentation)
 
 
         val id2 = TrainId("q0123")
-        Assert.assertEquals("q0123", id2.value)
+        Assert.assertEquals("q0123", id2.stringRepresentation)
     }
 
     @Test(expected = IllegalArgumentException::class)

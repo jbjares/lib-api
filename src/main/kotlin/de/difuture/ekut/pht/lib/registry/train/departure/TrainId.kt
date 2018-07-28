@@ -1,9 +1,11 @@
 package de.difuture.ekut.pht.lib.registry.train.departure
 
-data class TrainId (
+import de.difuture.ekut.pht.lib.common.StringRepresentable
 
-        val value : String
-) {
+data class TrainId  (
+
+        override val stringRepresentation : String
+): StringRepresentable {
 
     companion object {
 
@@ -14,7 +16,7 @@ data class TrainId (
     init {
 
         // Validate that the TrainId satisfies the requirement for the string
-        require(regex.matches(this.value)) {
+        require(regex.matches(this.stringRepresentation)) {
 
             "String for generating the TrainId does not match the required regular expression."
         }

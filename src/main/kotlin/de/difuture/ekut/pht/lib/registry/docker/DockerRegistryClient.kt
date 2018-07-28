@@ -8,7 +8,7 @@ import de.difuture.ekut.pht.lib.registry.docker.data.DockerRegistryTags
 import java.net.URI
 
 class DockerRegistryClient(
-        private val uri : URI,
+        override val uri : URI,
         private val client : GetHttpClient) : IDockerRegistryClient {
 
     // Catalog URI

@@ -1,8 +1,10 @@
 package de.difuture.ekut.pht.lib.registry.train.departure.tag
 
-interface TrainTag {
+import de.difuture.ekut.pht.lib.common.StringRepresentable
 
-    val stringRepresentation : String
+interface TrainTag : StringRepresentable {
+
+    override val stringRepresentation : String
 
     private data class GenericTrainTag(override val stringRepresentation: String) : TrainTag
 
