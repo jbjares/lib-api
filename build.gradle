@@ -4,9 +4,6 @@ plugins {
 }
 repositories {
     mavenCentral()
-    maven {
-        url 'https://dl.bintray.com/palantir/releases' // docker-compose-rule is published on bintray
-    }
 }
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"

@@ -103,7 +103,7 @@ class DockerRegistryClientTests {
     fun client_list_trains() {
 
         val repos = this.client.listRepositories().repositories
-        //Assert.assertTrue(TRAIN_HOSTNAME in repos && TRAIN_PRINT_HELLO_WORLD in repos)
+        Assert.assertTrue(TRAIN_HOSTNAME in repos && TRAIN_PRINT_HELLO_WORLD in repos)
     }
 
     @Test
