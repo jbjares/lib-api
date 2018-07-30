@@ -42,6 +42,14 @@ data class DockerRepositoryName(
             }
         }
 
+
+    /**
+     * Resolves this Docker Repository Name against a tag and returns the respective string
+     * Representation
+     */
+    fun resolveTag(tag : DockerTag) = "$stringRepresentation:${tag.stringRepresentation}"
+
+
     companion object {
         private val componentRegex = Regex("[a-z0-9]+(?:[._-][a-z0-9]+)*")
     }
