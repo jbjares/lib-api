@@ -4,7 +4,7 @@ package de.difuture.ekut.pht.lib.registry.train
 import de.difuture.ekut.pht.lib.SingleExposedPortContainer
 import de.difuture.ekut.pht.lib.http.TestHttpClient
 import de.difuture.ekut.pht.lib.registry.docker.DockerRegistryClient
-import de.difuture.ekut.pht.lib.registry.train.departure.tag.SpecialTrainTag
+import de.difuture.ekut.pht.lib.registry.train.arrival.tag.SpecialTrainTag
 import org.junit.ClassRule
 import org.junit.Test
 import org.junit.Assert
@@ -42,21 +42,21 @@ class TrainRegistryClientTests {
 
 
     @Test
-    fun test_list_train_departures() {
+    fun test_list_train_arrivals() {
 
-        val departures = this.client.listTrainDepartures()
-        Assert.assertTrue(departures.size > 5)
+        val arrivals = this.client.listTrainArrivals()
+        Assert.assertTrue(arrivals.size > 5)
     }
 
     @Test
-    fun test_list_train_departures_tags() {
+    fun test_list_train_arrivals_tags() {
 
-        val departuresImmediate= this.client.listTrainDepartures(SpecialTrainTag.IMMEDIATE)
-        val departuresTest = this.client.listTrainDepartures(SpecialTrainTag.TEST)
+        val arrivalsImmediate= this.client.listTrainArrivals(SpecialTrainTag.IMMEDIATE)
+        val arrivalsTests = this.client.listTrainArrivals(SpecialTrainTag.TEST)
 
-        Assert.assertTrue(departuresImmediate.size > 1)
-        Assert.assertTrue(departuresTest.size > 1)
-        Assert.assertTrue(departuresImmediate.all { it.trainTag == SpecialTrainTag.IMMEDIATE } )
-        Assert.assertTrue(departuresTest.all { it.trainTag == SpecialTrainTag.TEST })
+        Assert.assertTrue(arrivalsImmediate.size > 1)
+        Assert.assertTrue(arrivalsTests.size > 1)
+        Assert.assertTrue(arrivalsImmediate.all { it.trainTag == SpecialTrainTag.IMMEDIATE } )
+        Assert.assertTrue(arrivalsTests.all { it.trainTag == SpecialTrainTag.TEST })
     }
 }

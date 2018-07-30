@@ -2,9 +2,9 @@ package de.difuture.ekut.pht.lib.registry.train
 
 import de.difuture.ekut.pht.lib.common.docker.HostPort
 import de.difuture.ekut.pht.lib.registry.docker.IDockerRegistryClient
-import de.difuture.ekut.pht.lib.registry.train.departure.DockerTrainDeparture
-import de.difuture.ekut.pht.lib.registry.train.departure.TrainId
-import de.difuture.ekut.pht.lib.registry.train.departure.tag.TrainTag
+import de.difuture.ekut.pht.lib.registry.train.arrival.DockerTrainArrival
+import de.difuture.ekut.pht.lib.registry.train.arrival.TrainId
+import de.difuture.ekut.pht.lib.registry.train.arrival.tag.TrainTag
 import de.difuture.ekut.pht.lib.runtime.IDockerClient
 
 
@@ -17,16 +17,16 @@ class TrainRegistryClient(private val dockerRegistryClient: IDockerRegistryClien
     : ITrainRegistryClient<IDockerClient> {
 
 
-    override fun listTrainDepartures(): List<DockerTrainDeparture> =
+    override fun listTrainArrivals(): List<DockerTrainArrival> =
             dockerRegistryClient
                     .listRepositories()
                     .flatMap { repo ->  dockerRegistryClient.listTags(repo).map {
 
-                        DockerTrainDeparture(
+                        DockerTrainArrival(
                                 TrainId(repo),
                                 TrainTag.of(it), HostPort.of(dockerRegistryClient.uri))
                     } }
 
-    override fun listTrainDepartures(tag: TrainTag): List<DockerTrainDeparture> =
-        this.listTrainDepartures().filter { it.trainTag == tag }
+    override fun listTrainArrivals(tag: TrainTag): List<DockerTrainArrival> =
+        this.listTrainArrivals().filter { it.trainTag == tag }
 }

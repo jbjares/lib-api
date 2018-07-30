@@ -1,4 +1,4 @@
-package de.difuture.ekut.pht.lib.registry.train.departure.tag
+package de.difuture.ekut.pht.lib.registry.train.arrival.tag
 
 enum class SpecialTrainTag: TrainTag {
 

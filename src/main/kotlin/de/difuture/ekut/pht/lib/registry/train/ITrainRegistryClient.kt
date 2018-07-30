@@ -1,7 +1,7 @@
 package de.difuture.ekut.pht.lib.registry.train
 
-import de.difuture.ekut.pht.lib.registry.train.departure.ITrainDeparture
-import de.difuture.ekut.pht.lib.registry.train.departure.tag.TrainTag
+import de.difuture.ekut.pht.lib.registry.train.arrival.ITrainArrival
+import de.difuture.ekut.pht.lib.registry.train.arrival.tag.TrainTag
 import de.difuture.ekut.pht.lib.runtime.RuntimeClient
 
 
@@ -14,14 +14,12 @@ import de.difuture.ekut.pht.lib.runtime.RuntimeClient
 interface ITrainRegistryClient<A : RuntimeClient> {
 
     /**
-     * Lists all Train Departures
+     * Lists all Train Arrivals
      */
-    fun listTrainDepartures() : List<ITrainDeparture<A>>
+    fun listTrainArrivals() : List<ITrainArrival<A>>
 
     /**
-     * Lists all the train Departures for a certain train Tag.
+     * Lists all the train Arrivals for a certain train Tag.
      */
-    fun listTrainDepartures(tag : TrainTag) : List<ITrainDeparture<A>>
-
-
+    fun listTrainArrivals(tag : TrainTag) : List<ITrainArrival<A>>
 }

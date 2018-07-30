@@ -1,4 +1,4 @@
-package de.difuture.ekut.pht.lib.registry.train.departure
+package de.difuture.ekut.pht.lib.registry.train.arrival
 
 import de.difuture.ekut.pht.lib.SingleExposedPortContainer
 import de.difuture.ekut.pht.lib.http.TestHttpClient
@@ -10,7 +10,7 @@ import org.junit.ClassRule
 import org.junit.Test
 
 
-class DockerTrainDepartureTests {
+class DockerTrainArrivalTests {
 
     companion object {
 
@@ -46,9 +46,9 @@ class DockerTrainDepartureTests {
     @Test
     fun test_summary_trains_are_present() {
 
-        val trainDepartures = this.client.listTrainDepartures().map { it.trainId.stringRepresentation }.toSet()
+        val trainArrivals = this.client.listTrainArrivals().map { it.trainId.stringRepresentation }.toSet()
 
-        Assert.assertTrue(TRAIN_TEST_PRINT_SUMMARY_1 in trainDepartures)
-        Assert.assertTrue(TRAIN_TEST_PRINT_SUMMARY_2 in trainDepartures)
+        Assert.assertTrue(TRAIN_TEST_PRINT_SUMMARY_1 in trainArrivals)
+        Assert.assertTrue(TRAIN_TEST_PRINT_SUMMARY_2 in trainArrivals)
     }
 }

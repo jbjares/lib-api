@@ -1,4 +1,4 @@
-package de.difuture.ekut.pht.lib.registry.train.departure.tag
+package de.difuture.ekut.pht.lib.registry.train.arrival.tag
 
 import de.difuture.ekut.pht.lib.common.StringRepresentable
 
