@@ -3,9 +3,9 @@ package de.difuture.ekut.pht.lib.registry.docker
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
-import de.difuture.ekut.pht.lib.SingleExposedPortContainer
 import de.difuture.ekut.pht.lib.http.TestHttpClient
 import de.difuture.ekut.pht.lib.registry.docker.data.DockerRegistryEvents
+import de.difuture.ekut.pht.test.lib.SingleExposedPortContainer
 import org.apache.http.HttpStatus
 import org.junit.ClassRule
 import org.junit.Test
@@ -39,14 +39,14 @@ class DockerRegistryClientTests {
         @ClassRule @JvmField
         val REGISTRY : SingleExposedPortContainer =
                 SingleExposedPortContainer(
-                        5000,
-                        "lukaszimmermann/pht-test-train-registry:latest")
+                        "lukaszimmermann/pht-test-train-registry:latest",
+                        5000)
 
         @ClassRule @JvmField
         val NOTIFICATIONS: SingleExposedPortContainer =
                 SingleExposedPortContainer(
-                        6000,
-                        "lukaszimmermann/pht-test-train-registry-notifications:latest")
+                        "lukaszimmermann/pht-test-train-registry-notifications:latest",
+                        6000)
     }
     /////////////////////////  The registry client  /////////////////////////////////////////////////////////////
     private lateinit var client : IDockerRegistryClient

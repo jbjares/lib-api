@@ -4,6 +4,7 @@ plugins {
 }
 repositories {
     mavenCentral()
+    mavenLocal()
 }
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
@@ -23,7 +24,7 @@ dependencies {
     compile group: 'com.fasterxml.jackson.module', name: 'jackson-module-kotlin', version: '2.9.6'
     testCompile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.6'
     testCompile group: 'io.github.benas', name: 'random-beans', version: '3.7.0'
-    testCompile 'org.testcontainers:testcontainers:1.8.1'
+    testCompile group: 'de.difuture.ekut.pht.test', name: 'library', version: '0.0.1-SNAPSHOT'
 }
 
 // Publish locally

@@ -1,10 +1,10 @@
 package de.difuture.ekut.pht.lib.registry.train
 
 
-import de.difuture.ekut.pht.lib.SingleExposedPortContainer
 import de.difuture.ekut.pht.lib.http.TestHttpClient
 import de.difuture.ekut.pht.lib.registry.docker.DockerRegistryClient
 import de.difuture.ekut.pht.lib.registry.train.arrival.tag.SpecialTrainTag
+import de.difuture.ekut.pht.test.lib.SingleExposedPortContainer
 import org.junit.ClassRule
 import org.junit.Test
 import org.junit.Assert
@@ -24,8 +24,8 @@ class TrainRegistryClientTests {
         @ClassRule @JvmField
         val REGISTRY : SingleExposedPortContainer =
                 SingleExposedPortContainer(
-                        5000,
-                        "lukaszimmermann/pht-test-train-registry:latest")
+                        "lukaszimmermann/pht-test-train-registry:latest",
+                        5000)
     }
 
     /////////////////////////  The registry client  /////////////////////////////////////////////////////////////
