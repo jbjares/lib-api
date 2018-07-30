@@ -6,9 +6,8 @@ repositories {
     mavenCentral()
     mavenLocal()
 }
-dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
-}
+
+
 compileKotlin {
     kotlinOptions {
         jvmTarget = "1.8"
@@ -21,6 +20,7 @@ compileTestKotlin {
 }
 
 dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.51"
     compile group: 'com.fasterxml.jackson.module', name: 'jackson-module-kotlin', version: '2.9.6'
     testCompile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.6'
     testCompile group: 'io.github.benas', name: 'random-beans', version: '3.7.0'
@@ -29,6 +29,8 @@ dependencies {
 
 // Publish locally
 apply plugin: 'maven-publish'
+apply plugin: 'jacoco'
+
 
 group = "de.difuture.ekut.pht"
 version = "0.0.1-SNAPSHOT"
@@ -40,3 +42,12 @@ publishing {
         }
     }
 }
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+}
+
+check.dependsOn jacocoTestReport
