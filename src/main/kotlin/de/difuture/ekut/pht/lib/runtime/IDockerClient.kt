@@ -1,6 +1,7 @@
 package de.difuture.ekut.pht.lib.runtime
 
-import java.net.URI
+import de.difuture.ekut.pht.lib.common.docker.DockerRepositoryName
+import de.difuture.ekut.pht.lib.common.docker.DockerTag
 
 /**
  *
@@ -26,7 +27,7 @@ interface IDockerClient : RuntimeClient {
      *  Pulls the repository and returns the
      *  image ID if available, otherwise null
      */
-    fun pull(registryURI : URI, repository: String, tag: String) : String?
+    fun pull(repo : DockerRepositoryName, tag: DockerTag) : String?
 
 
     /**

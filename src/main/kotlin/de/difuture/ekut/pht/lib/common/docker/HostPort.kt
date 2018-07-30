@@ -1,6 +1,7 @@
 package de.difuture.ekut.pht.lib.common.docker
 
 import de.difuture.ekut.pht.lib.common.StringRepresentable
+import java.net.URI
 
 
 /**
@@ -23,4 +24,10 @@ data class HostPort(
     }
 
     override val stringRepresentation = host.plus(port?.let { ":$it" }  ?: "")
+
+
+    companion object {
+
+        fun of(uri : URI) = HostPort(uri.host, uri.port)
+    }
 }
