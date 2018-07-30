@@ -6,7 +6,6 @@ services:
   - docker
 
 before_install:
-  - gradle clean
   - export OLDPWD=$(pwd)
   - cd /tmp
   - git clone https://github.com/PersonalHealthTrain/test.git
@@ -14,4 +13,5 @@ before_install:
   - gradle publishToMavenLocal
   - cd $OLDPWD
   - rm -rf /tmp/test
+  - gradle clean
 
