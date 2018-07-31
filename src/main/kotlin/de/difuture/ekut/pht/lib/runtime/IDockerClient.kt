@@ -24,6 +24,15 @@ interface IDockerClient : RuntimeClient {
             timeout : Int) : DockerContainerOutput
 
     /**
+     * Tags the Docker image with the respective ID with the repository and
+     * the target tag
+     *
+     */
+    fun tag(sourceImageId: String,
+            targetRepo : DockerRepositoryName,
+            targetTag : DockerTag)
+
+    /**
      * Removes container
      *
      */
@@ -36,6 +45,11 @@ interface IDockerClient : RuntimeClient {
      */
     fun pull(repo : DockerRepositoryName, tag: DockerTag) : String
 
+
+    /**
+     * Pushes the specified docker Image
+     */
+    fun push(repo : DockerRepositoryName, tag : DockerTag)
 
     /**
      * Returns the log of the running container
