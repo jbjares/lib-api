@@ -14,10 +14,10 @@ import de.difuture.ekut.pht.lib.common.docker.DockerTag
 interface IDockerClient : RuntimeClient {
 
     /**
-     * Runs Image and returns container ID
+     * Runs Image and returns container ID. Optionally removes container after exited
      *
      */
-    fun run(imageId : String, commands : List<String>) : String
+    fun run(imageId : String, commands : List<String>, rm : Boolean = false) : String
 
 
     /**
