@@ -4,9 +4,9 @@ import org.apache.http.client.methods.HttpGet
 import org.apache.http.impl.client.HttpClientBuilder
 import java.net.URI
 
-class TestHttpClient : GetHttpClient {
+class TestHttpClient : GetRestClient {
 
     private val client = HttpClientBuilder.create().build()
 
-    override fun get(uri: URI): HttpResponse = TestHttpResponse(client.execute(HttpGet(uri)))
+    override fun get(uri: URI): RestHttpResponse = TestHttpResponse(client.execute(HttpGet(uri)))
 }

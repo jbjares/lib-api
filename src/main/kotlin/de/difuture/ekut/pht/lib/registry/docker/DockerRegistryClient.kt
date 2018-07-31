@@ -2,14 +2,14 @@ package de.difuture.ekut.pht.lib.registry.docker
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
-import de.difuture.ekut.pht.lib.http.GetHttpClient
+import de.difuture.ekut.pht.lib.http.GetRestClient
 import de.difuture.ekut.pht.lib.registry.docker.data.DockerRegistryRepositories
 import de.difuture.ekut.pht.lib.registry.docker.data.DockerRegistryTags
 import java.net.URI
 
 class DockerRegistryClient(
         override val uri : URI,
-        private val client : GetHttpClient) : IDockerRegistryClient {
+        private val client : GetRestClient) : IDockerRegistryClient {
 
     // Catalog URI
     private val catalog = uri.resolve("/v2/_catalog")
@@ -17,7 +17,7 @@ class DockerRegistryClient(
     private inline fun <reified T : Any> readGetResponse(uri : URI) : T {
 
         val response = this.client.get(uri)
-        return ObjectMapper().readValue(response.content)
+        return ObjectMapper().readValue(response.body)
     }
 
     override fun listRepositories() : DockerRegistryRepositories = readGetResponse(this.catalog)

@@ -9,7 +9,7 @@ import java.net.URI
  * @author Lukas Zimmermann
  *
  */
-interface GetHttpClient {
+interface GetRestClient {
 
-    fun get(uri : URI) : HttpResponse
+    fun get(uri : URI) : RestHttpResponse
 }

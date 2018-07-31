@@ -1,13 +1,18 @@
 package de.difuture.ekut.pht.lib.http
 
 import org.apache.http.client.methods.CloseableHttpResponse
-import java.io.InputStream
+import java.io.ByteArrayOutputStream
 
-class TestHttpResponse(response : CloseableHttpResponse) : HttpResponse {
+class TestHttpResponse(response : CloseableHttpResponse) : RestHttpResponse {
 
-    override val content: InputStream = response.entity.content
+    override val body: String
 
-    override fun close() {
-        this.content.close()
+    init {
+
+        val outstream = ByteArrayOutputStream()
+        response.entity.writeTo(outstream)
+        response.close()
+        outstream.close()
+        this.body = outstream.toString()
     }
 }
