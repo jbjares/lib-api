@@ -4,8 +4,7 @@ import de.difuture.ekut.pht.lib.common.docker.HostPort
 import de.difuture.ekut.pht.lib.registry.docker.IDockerRegistryClient
 import de.difuture.ekut.pht.lib.registry.train.arrival.DockerTrainArrival
 import de.difuture.ekut.pht.lib.registry.train.arrival.ITrainArrival
-import de.difuture.ekut.pht.lib.registry.train.arrival.TrainId
-import de.difuture.ekut.pht.lib.registry.train.arrival.tag.TrainTag
+import de.difuture.ekut.pht.lib.registry.train.tag.TrainTag
 import de.difuture.ekut.pht.lib.runtime.IDockerClient
 
 

@@ -1,8 +1,8 @@
 package de.difuture.ekut.pht.lib.registry.train.arrival
 
 import de.difuture.ekut.pht.lib.common.docker.DockerTag
-import de.difuture.ekut.pht.lib.registry.train.arrival.tag.SpecialTrainTag
-import de.difuture.ekut.pht.lib.registry.train.arrival.tag.TrainTag
+import de.difuture.ekut.pht.lib.registry.train.tag.SpecialTrainTag
+import de.difuture.ekut.pht.lib.registry.train.tag.TrainTag
 import org.junit.Assert
 import org.junit.Test
 

@@ -1,4 +1,4 @@
-package de.difuture.ekut.pht.lib.registry.train.arrival
+package de.difuture.ekut.pht.lib.registry.train
 
 import de.difuture.ekut.pht.lib.common.StringRepresentable
 

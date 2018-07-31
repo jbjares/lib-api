@@ -40,8 +40,7 @@ interface IDockerClient : RuntimeClient {
 
 
     /**
-     *  Pulls the repository and returns the
-     *  image ID if available, otherwise null
+     *  Pulls the repository and returns
      */
     fun pull(repo : DockerRepositoryName, tag: DockerTag) : String
 

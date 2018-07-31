@@ -3,9 +3,8 @@ package de.difuture.ekut.pht.lib.registry.train
 
 import de.difuture.ekut.pht.lib.http.TestHttpClient
 import de.difuture.ekut.pht.lib.registry.docker.DockerRegistryClient
-import de.difuture.ekut.pht.lib.registry.train.arrival.TrainId
-import de.difuture.ekut.pht.lib.registry.train.arrival.tag.SpecialTrainTag
-import de.difuture.ekut.pht.lib.registry.train.arrival.tag.TrainTag
+import de.difuture.ekut.pht.lib.registry.train.tag.SpecialTrainTag
+import de.difuture.ekut.pht.lib.registry.train.tag.TrainTag
 import de.difuture.ekut.pht.test.lib.SingleExposedPortContainer
 import de.difuture.ekut.pht.test.lib.TEST_TRAIN_REGISTRY_REPOSITORY
 import org.junit.ClassRule

@@ -1,10 +1,11 @@
 package de.difuture.ekut.pht.lib.registry.train.arrival
 
+import de.difuture.ekut.pht.lib.common.docker.DockerContainerOutput
 import de.difuture.ekut.pht.lib.common.docker.DockerRepositoryName
 import de.difuture.ekut.pht.lib.common.docker.DockerTag
 import de.difuture.ekut.pht.lib.common.docker.HostPort
-import de.difuture.ekut.pht.lib.registry.train.arrival.tag.TrainTag
-import de.difuture.ekut.pht.lib.runtime.DockerClientException
+import de.difuture.ekut.pht.lib.registry.train.TrainId
+import de.difuture.ekut.pht.lib.registry.train.tag.TrainTag
 import de.difuture.ekut.pht.lib.runtime.IDockerClient
 
 data class DockerTrainArrival(
@@ -13,19 +14,18 @@ data class DockerTrainArrival(
         private val host : HostPort
 ) : ITrainArrival<IDockerClient> {
 
+    private fun pullAndRun(client : IDockerClient, command : String, timeout: Int) : DockerContainerOutput {
 
-    private fun <T> runOrDockerException(msg : String, fn : () -> T? ) : T =
-
-            fn.invoke() ?: throw DockerClientException(msg)
-
-
-    override fun printSummary(client: IDockerClient, timeout : Int): String {
-
-        // Pull the image for this dockerTrain Arrival
         val imageId = client.pull(
-                DockerRepositoryName(trainId.stringRepresentation, hostPort = host),
-                DockerTag(trainTag.stringRepresentation)
-        )
-        return client.run(imageId, listOf("print_summary"), true, timeout).stdout
+                repo=DockerRepositoryName(this.trainId.stringRepresentation, hostPort = this.host),
+                tag= DockerTag(trainTag.stringRepresentation))
+        return client.run(imageId, listOf(command), true, timeout)
     }
+
+
+    override fun printSummary(client: IDockerClient, timeout : Int) =
+            pullAndRun(client, "print_summary", timeout).stdout
+
+    override fun checkRequirements(client: IDockerClient, timeout: Int) : Boolean =
+            pullAndRun(client, "check_requirements", timeout).exitCode == 0
 }
