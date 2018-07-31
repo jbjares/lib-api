@@ -19,8 +19,7 @@ data class DockerTrainArrival(
             fn.invoke() ?: throw DockerClientException(msg)
 
 
-
-    override fun printSummary(client: IDockerClient): String {
+    override fun printSummary(client: IDockerClient, timeout : Int): String {
 
         val imageId  = runOrDockerException("Cannot pull image ") {
 
@@ -30,7 +29,7 @@ data class DockerTrainArrival(
         }
         val containerID = runOrDockerException("Failed to run container") {
 
-            client.run(imageId, listOf("print_summary"))
+            client.run(imageId, listOf("print_summary"), true, timeout).stdout
         }
         return runOrDockerException("Container does not exist") {
 

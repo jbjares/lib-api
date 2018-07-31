@@ -1,5 +1,6 @@
 package de.difuture.ekut.pht.lib.runtime
 
+import de.difuture.ekut.pht.lib.common.docker.DockerContainerOutput
 import de.difuture.ekut.pht.lib.common.docker.DockerRepositoryName
 import de.difuture.ekut.pht.lib.common.docker.DockerTag
 
@@ -14,11 +15,13 @@ import de.difuture.ekut.pht.lib.common.docker.DockerTag
 interface IDockerClient : RuntimeClient {
 
     /**
-     * Runs Image and returns container ID. Optionally removes container after exited
+     * Runs the image with the given commands, waits for the container to exit.
      *
      */
-    fun run(imageId : String, commands : List<String>, rm : Boolean = false) : String
-
+    fun run(imageId : String,
+            commands : List<String>,
+            rm : Boolean,
+            timeout : Int) : DockerContainerOutput
 
     /**
      * Removes container
@@ -45,5 +48,5 @@ interface IDockerClient : RuntimeClient {
      * be allowed.
      *
      */
-    fun rmi(imageId: String)
+    fun rmi(imageId: String, force: Boolean)
 }

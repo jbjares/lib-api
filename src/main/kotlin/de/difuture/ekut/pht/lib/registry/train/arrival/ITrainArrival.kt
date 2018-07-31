@@ -12,5 +12,5 @@ interface ITrainArrival<A : RuntimeClient>{
     val trainId: TrainId
     val trainTag: TrainTag
 
-    fun printSummary(client: A) : String
+    fun printSummary(client: A, timeout : Int) : String
 }
