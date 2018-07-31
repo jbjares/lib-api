@@ -21,19 +21,11 @@ data class DockerTrainArrival(
 
     override fun printSummary(client: IDockerClient, timeout : Int): String {
 
-        val imageId  = runOrDockerException("Cannot pull image ") {
-
-            client.pull(
-                    DockerRepositoryName(
-                            trainId.stringRepresentation), DockerTag(trainTag.stringRepresentation))
-        }
-        val containerID = runOrDockerException("Failed to run container") {
-
-            client.run(imageId, listOf("print_summary"), true, timeout).stdout
-        }
-        return runOrDockerException("Container does not exist") {
-
-            client.log(containerID)
-        }
+        // Pull the image for this dockerTrain Arrival
+        val imageId = client.pull(
+                DockerRepositoryName(trainId.stringRepresentation, hostPort = host),
+                DockerTag(trainTag.stringRepresentation)
+        )
+        return client.run(imageId, listOf("print_summary"), true, timeout).stdout
     }
 }
