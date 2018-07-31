@@ -4,6 +4,7 @@ import de.difuture.ekut.pht.lib.http.TestHttpClient
 import de.difuture.ekut.pht.lib.registry.docker.DockerRegistryClient
 import de.difuture.ekut.pht.lib.registry.train.TrainRegistryClient
 import de.difuture.ekut.pht.test.lib.SingleExposedPortContainer
+import de.difuture.ekut.pht.test.lib.TEST_TRAIN_REGISTRY_REPOSITORY
 import org.junit.Assert
 import org.junit.Before
 import org.junit.ClassRule
@@ -22,7 +23,7 @@ class DockerTrainArrivalTests {
         @ClassRule @JvmField
         val REGISTRY : SingleExposedPortContainer =
                 SingleExposedPortContainer(
-                        "lukaszimmermann/pht-test-train-registry:latest",
+                        TEST_TRAIN_REGISTRY_REPOSITORY,
                         5000)
     }
 
