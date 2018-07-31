@@ -1,6 +1,7 @@
 package de.difuture.ekut.pht.lib.registry.train
 
 import de.difuture.ekut.pht.lib.registry.train.arrival.ITrainArrival
+import de.difuture.ekut.pht.lib.registry.train.arrival.TrainId
 import de.difuture.ekut.pht.lib.registry.train.arrival.tag.TrainTag
 import de.difuture.ekut.pht.lib.runtime.RuntimeClient
 
@@ -22,4 +23,9 @@ interface ITrainRegistryClient<A : RuntimeClient> {
      * Lists all the train Arrivals for a certain train Tag.
      */
     fun listTrainArrivals(tag : TrainTag) : List<ITrainArrival<A>>
+
+    /**
+     * Get TrainArrival by TrainID and TrainTag
+     */
+    fun getTrainArrival(id : TrainId, tag : TrainTag) : ITrainArrival<A>?
 }

@@ -3,6 +3,7 @@ package de.difuture.ekut.pht.lib.registry.train
 import de.difuture.ekut.pht.lib.common.docker.HostPort
 import de.difuture.ekut.pht.lib.registry.docker.IDockerRegistryClient
 import de.difuture.ekut.pht.lib.registry.train.arrival.DockerTrainArrival
+import de.difuture.ekut.pht.lib.registry.train.arrival.ITrainArrival
 import de.difuture.ekut.pht.lib.registry.train.arrival.TrainId
 import de.difuture.ekut.pht.lib.registry.train.arrival.tag.TrainTag
 import de.difuture.ekut.pht.lib.runtime.IDockerClient
@@ -29,4 +30,17 @@ class TrainRegistryClient(private val dockerRegistryClient: IDockerRegistryClien
 
     override fun listTrainArrivals(tag: TrainTag): List<DockerTrainArrival> =
         this.listTrainArrivals().filter { it.trainTag == tag }
+
+
+    override fun getTrainArrival(id: TrainId, tag: TrainTag): ITrainArrival<IDockerClient>? {
+
+        val arrivals = this.listTrainArrivals().filter { it.trainTag == tag && it.trainId == id}
+
+        return when(arrivals.size) {
+
+            0 -> null
+            1 -> arrivals[0]
+            else -> throw IllegalStateException("Tuple of TrainID and TrainTag must only resolve to one TrainArrival for each Train Registry")
+        }
+    }
 }
