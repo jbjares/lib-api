@@ -14,9 +14,7 @@ interface TrainTag : StringRepresentable {
         fun of(value : String) : TrainTag =
 
                 if (SpecialTrainTag.isMember(value)) {
-
-                    // String Representations of Train Tags are case-insensitive
-                    SpecialTrainTag.valueOf(value.toUpperCase())
+                    SpecialTrainTag.valueOf(value)
                 } else {
                     GenericTrainTag(value)
                 }

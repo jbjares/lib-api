@@ -11,6 +11,6 @@ enum class SpecialTrainTag: TrainTag {
         private val names = SpecialTrainTag.values().map { it.toString() }.toSet()
 
         // Case insensitive
-        fun isMember(value : String) = value.toUpperCase() in names
+        fun isMember(value : String) = value in names
     }
 }
