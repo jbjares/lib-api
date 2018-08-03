@@ -30,3 +30,7 @@ out
 # Idea
 .idea
 
+
+# The docs
+docs/_build
+
