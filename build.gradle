@@ -1,3 +1,13 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:0.9.17"
+    }
+}
+
 plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.2.51'
 
@@ -29,7 +39,12 @@ dependencies {
 
 // Publish locally
 apply plugin: 'maven-publish'
+
+// Enable code coverage
 apply plugin: 'jacoco'
+
+// Kotlin Javadoc generation
+apply plugin: 'org.jetbrains.dokka'
 
 
 group = "de.difuture.ekut.pht"
@@ -49,5 +64,9 @@ jacocoTestReport {
         html.enabled = true
     }
 }
-
 check.dependsOn jacocoTestReport
+
+dokka {
+    outputFormat = 'html'
+    outputDirectory = "docs/javadoc"
+}
