@@ -1,0 +1,47 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>de.difuture.ekut.pht.lib.runtime - library</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">library</a>&nbsp;/&nbsp;<a href="./index.html">de.difuture.ekut.pht.lib.runtime</a><br/>
+<br/>
+<h2>Package de.difuture.ekut.pht.lib.runtime</h2>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-i-docker-client/index.html">IDockerClient</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">IDockerClient</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-runtime-client.html"><span class="identifier">RuntimeClient</span></a></code>
+<p>Interface for implementing Docker Clients to be used with the PHT
+infrastructure. The interface is designed such that all methods
+throw Exceptions if errors occur. Thus, all return types are not nullable</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-runtime-client.html">RuntimeClient</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">RuntimeClient</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="http://docs.oracle.com/javase/6/docs/api/java/lang/AutoCloseable.html"><span class="identifier">AutoCloseable</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Exceptions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-docker-client-exception/index.html">DockerClientException</a></p>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">DockerClientException</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-exception/index.html"><span class="identifier">Exception</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

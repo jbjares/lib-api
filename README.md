@@ -3,3 +3,10 @@
 
 # library
 Kotlin library for the PHT project, which is intended to use with the individual services.
+
+
+# Documentation
+The current documentation is available at:
+
+https://personalhealthtrain.github.io/library/
+

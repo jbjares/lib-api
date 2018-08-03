@@ -1,0 +1,14 @@
+$dokka.format:html
+$dokka.linkExtension:html
+
+de.difuture.ekut.pht.lib.common
+de.difuture.ekut.pht.lib.common.docker
+de.difuture.ekut.pht.lib.http
+de.difuture.ekut.pht.lib.registry.docker
+de.difuture.ekut.pht.lib.registry.docker.data
+de.difuture.ekut.pht.lib.registry.train
+de.difuture.ekut.pht.lib.registry.train.arrival
+de.difuture.ekut.pht.lib.registry.train.departure
+de.difuture.ekut.pht.lib.registry.train.tag
+de.difuture.ekut.pht.lib.runtime
+de.difuture.ekut.pht.lib.station

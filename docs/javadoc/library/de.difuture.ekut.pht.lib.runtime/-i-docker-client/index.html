@@ -1,0 +1,88 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>IDockerClient - library</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">library</a>&nbsp;/&nbsp;<a href="../index.html">de.difuture.ekut.pht.lib.runtime</a>&nbsp;/&nbsp;<a href="./index.html">IDockerClient</a><br/>
+<br/>
+<h1>IDockerClient</h1>
+<code><span class="keyword">interface </span><span class="identifier">IDockerClient</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-runtime-client.html"><span class="identifier">RuntimeClient</span></a></code>
+<p>Interface for implementing Docker Clients to be used with the PHT
+infrastructure. The interface is designed such that all methods
+throw Exceptions if errors occur. Thus, all return types are not nullable</p>
+<p><strong>Author</strong><br/>
+Lukas Zimmermann</p>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="log.html">log</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">log</span><span class="symbol">(</span><span class="identifier" id="de.difuture.ekut.pht.lib.runtime.IDockerClient$log(kotlin.String)/containerId">containerId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>Returns the log of the running container</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="pull.html">pull</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">pull</span><span class="symbol">(</span><span class="identifier" id="de.difuture.ekut.pht.lib.runtime.IDockerClient$pull(de.difuture.ekut.pht.lib.common.docker.DockerRepositoryName, de.difuture.ekut.pht.lib.common.docker.DockerTag)/repo">repo</span><span class="symbol">:</span>&nbsp;<a href="../../de.difuture.ekut.pht.lib.common.docker/-docker-repository-name/index.html"><span class="identifier">DockerRepositoryName</span></a><span class="symbol">, </span><span class="identifier" id="de.difuture.ekut.pht.lib.runtime.IDockerClient$pull(de.difuture.ekut.pht.lib.common.docker.DockerRepositoryName, de.difuture.ekut.pht.lib.common.docker.DockerTag)/tag">tag</span><span class="symbol">:</span>&nbsp;<a href="../../de.difuture.ekut.pht.lib.common.docker/-docker-tag/index.html"><span class="identifier">DockerTag</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>Pulls the repository and returns</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="push.html">push</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">push</span><span class="symbol">(</span><span class="identifier" id="de.difuture.ekut.pht.lib.runtime.IDockerClient$push(de.difuture.ekut.pht.lib.common.docker.DockerRepositoryName, de.difuture.ekut.pht.lib.common.docker.DockerTag)/repo">repo</span><span class="symbol">:</span>&nbsp;<a href="../../de.difuture.ekut.pht.lib.common.docker/-docker-repository-name/index.html"><span class="identifier">DockerRepositoryName</span></a><span class="symbol">, </span><span class="identifier" id="de.difuture.ekut.pht.lib.runtime.IDockerClient$push(de.difuture.ekut.pht.lib.common.docker.DockerRepositoryName, de.difuture.ekut.pht.lib.common.docker.DockerTag)/tag">tag</span><span class="symbol">:</span>&nbsp;<a href="../../de.difuture.ekut.pht.lib.common.docker/-docker-tag/index.html"><span class="identifier">DockerTag</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Pushes the specified docker Image</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="rm.html">rm</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">rm</span><span class="symbol">(</span><span class="identifier" id="de.difuture.ekut.pht.lib.runtime.IDockerClient$rm(kotlin.String)/containerId">containerId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Removes container</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="rmi.html">rmi</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">rmi</span><span class="symbol">(</span><span class="identifier" id="de.difuture.ekut.pht.lib.runtime.IDockerClient$rmi(kotlin.String, kotlin.Boolean)/imageId">imageId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="de.difuture.ekut.pht.lib.runtime.IDockerClient$rmi(kotlin.String, kotlin.Boolean)/force">force</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Removes a Docker image from the client given the specified ID. The 'sha256:' prefix should also
+be allowed.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="run.html">run</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">run</span><span class="symbol">(</span><span class="identifier" id="de.difuture.ekut.pht.lib.runtime.IDockerClient$run(kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.Boolean, kotlin.Int)/imageId">imageId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="de.difuture.ekut.pht.lib.runtime.IDockerClient$run(kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.Boolean, kotlin.Int)/commands">commands</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="de.difuture.ekut.pht.lib.runtime.IDockerClient$run(kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.Boolean, kotlin.Int)/rm">rm</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">, </span><span class="identifier" id="de.difuture.ekut.pht.lib.runtime.IDockerClient$run(kotlin.String, kotlin.collections.List((kotlin.String)), kotlin.Boolean, kotlin.Int)/timeout">timeout</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../de.difuture.ekut.pht.lib.common.docker/-docker-container-output/index.html"><span class="identifier">DockerContainerOutput</span></a></code>
+<p>Runs the image with the given commands, waits for the container to exit.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="tag.html">tag</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">tag</span><span class="symbol">(</span><span class="identifier" id="de.difuture.ekut.pht.lib.runtime.IDockerClient$tag(kotlin.String, de.difuture.ekut.pht.lib.common.docker.DockerRepositoryName, de.difuture.ekut.pht.lib.common.docker.DockerTag)/sourceImageId">sourceImageId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="de.difuture.ekut.pht.lib.runtime.IDockerClient$tag(kotlin.String, de.difuture.ekut.pht.lib.common.docker.DockerRepositoryName, de.difuture.ekut.pht.lib.common.docker.DockerTag)/targetRepo">targetRepo</span><span class="symbol">:</span>&nbsp;<a href="../../de.difuture.ekut.pht.lib.common.docker/-docker-repository-name/index.html"><span class="identifier">DockerRepositoryName</span></a><span class="symbol">, </span><span class="identifier" id="de.difuture.ekut.pht.lib.runtime.IDockerClient$tag(kotlin.String, de.difuture.ekut.pht.lib.common.docker.DockerRepositoryName, de.difuture.ekut.pht.lib.common.docker.DockerTag)/targetTag">targetTag</span><span class="symbol">:</span>&nbsp;<a href="../../de.difuture.ekut.pht.lib.common.docker/-docker-tag/index.html"><span class="identifier">DockerTag</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Tags the Docker image with the respective ID with the repository and
+the target tag</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
