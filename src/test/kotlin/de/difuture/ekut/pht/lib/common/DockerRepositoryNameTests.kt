@@ -2,7 +2,6 @@ package de.difuture.ekut.pht.lib.common
 
 import de.difuture.ekut.pht.lib.common.docker.DockerRepositoryName
 import de.difuture.ekut.pht.lib.common.docker.DockerTag
-import de.difuture.ekut.pht.lib.common.docker.HostPort
 import de.difuture.ekut.pht.lib.cross
 import org.junit.Assert
 import org.junit.Test
@@ -15,7 +14,7 @@ class DockerRepositoryNameTests {
 
         val name1 = DockerRepositoryName("alpine")
         val name2 = DockerRepositoryName("library", "python")
-        val name3 = DockerRepositoryName("library", "python", HostPort("localhost",5000))
+        val name3 = DockerRepositoryName("library", "python", HostPortTuple("localhost", 5000))
 
         Assert.assertEquals("alpine", name1.canonicalStringRepresentation)
         Assert.assertEquals("library/python", name2.canonicalStringRepresentation)
@@ -57,16 +56,16 @@ class DockerRepositoryNameTests {
     fun resolve_tag() {
 
         // Hosts
-        val localhost = HostPort("localhost", 5000)
-        val dockerio = HostPort("docker.io")
+        val localhost = HostPortTuple("localhost", 5000)
+        val dockerio = HostPortTuple("docker.io")
 
         val names = listOf(
                 DockerRepositoryName("alpine"),
-                DockerRepositoryName("alpine", hostPort = localhost),
-                DockerRepositoryName("alpine", hostPort = dockerio) ,
+                DockerRepositoryName("alpine", hostPortTuple = localhost),
+                DockerRepositoryName("alpine", hostPortTuple = dockerio) ,
                 DockerRepositoryName("library", "python") ,
-                DockerRepositoryName("library", "python", hostPort = localhost) ,
-                DockerRepositoryName("library", "python", hostPort = dockerio)
+                DockerRepositoryName("library", "python", hostPortTuple = localhost) ,
+                DockerRepositoryName("library", "python", hostPortTuple = dockerio)
         )
         val tags = listOf(
                 DockerTag("latest"),

@@ -4,8 +4,9 @@ import de.difuture.ekut.pht.lib.common.CanonicalStringRepresentable
 
 
 /**
- * Represents an image tag
+ * Represents an Docker image tag.
  *
+ * @author Lukas Zimmermann
  */
 data class DockerTag(
 

@@ -1,6 +1,7 @@
 package de.difuture.ekut.pht.lib.common.docker
 
 import de.difuture.ekut.pht.lib.common.CanonicalStringRepresentable
+import de.difuture.ekut.pht.lib.common.HostPortTuple
 
 
 /**
@@ -15,7 +16,7 @@ data class DockerRepositoryName(
 
         val component1 : String,
         val component2 : String? = null,
-        val hostPort : HostPort? = null
+        val hostPortTuple : HostPortTuple? = null
 ) : CanonicalStringRepresentable {
 
     init {
@@ -33,9 +34,9 @@ data class DockerRepositoryName(
             // Join components with a '/' character
             val components = component1.plus(component2?.let { "/$it" }  ?: "")
 
-            return if (hostPort != null) {
+            return if (hostPortTuple != null) {
 
-                "${hostPort.canonicalStringRepresentation}/$components"
+                "${hostPortTuple.canonicalStringRepresentation}/$components"
             } else {
 
                 components

@@ -1,17 +1,16 @@
-package de.difuture.ekut.pht.lib.common.docker
+package de.difuture.ekut.pht.lib.common
 
-import de.difuture.ekut.pht.lib.common.CanonicalStringRepresentable
 import java.net.URI
 
 
 /**
- * Represents tuple of hostname and port, where the port is optional. This is usually used to
- * refer to remote Docker Registries
+ * Represents tuple of hostname and port, where the port is optional.
+ * The specification of the port is optional
  *
  * @author Lukas Zimmermann
  *
  */
-data class HostPort(
+data class HostPortTuple(
 
         val host: String,
         val port : Int? = null
@@ -28,6 +27,9 @@ data class HostPort(
 
     companion object {
 
-        fun of(uri : URI) = HostPort(uri.host, uri.port)
+        /**
+         * Converts the provided URI to a HostPortTuple
+         */
+        fun of(uri : URI) = HostPortTuple(uri.host, uri.port)
     }
 }
