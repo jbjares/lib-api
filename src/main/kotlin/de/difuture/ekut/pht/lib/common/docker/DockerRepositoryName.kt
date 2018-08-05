@@ -1,6 +1,6 @@
 package de.difuture.ekut.pht.lib.common.docker
 
-import de.difuture.ekut.pht.lib.common.StringRepresentable
+import de.difuture.ekut.pht.lib.common.CanonicalStringRepresentable
 
 
 /**
@@ -16,7 +16,7 @@ data class DockerRepositoryName(
         val component1 : String,
         val component2 : String? = null,
         val hostPort : HostPort? = null
-) : StringRepresentable {
+) : CanonicalStringRepresentable {
 
     init {
 
@@ -27,7 +27,7 @@ data class DockerRepositoryName(
         }
     }
 
-    override val stringRepresentation: String
+    override val canonicalStringRepresentation: String
         get()  {
 
             // Join components with a '/' character
@@ -35,7 +35,7 @@ data class DockerRepositoryName(
 
             return if (hostPort != null) {
 
-                "${hostPort.stringRepresentation}/$components"
+                "${hostPort.canonicalStringRepresentation}/$components"
             } else {
 
                 components
@@ -47,7 +47,7 @@ data class DockerRepositoryName(
      * Resolves this Docker Repository Name against a tag and returns the respective string
      * Representation
      */
-    fun resolveTag(tag : DockerTag) = "$stringRepresentation:${tag.stringRepresentation}"
+    fun resolveTag(tag : DockerTag) = "$canonicalStringRepresentation:${tag.canonicalStringRepresentation}"
 
 
     companion object {

@@ -1,13 +1,13 @@
 package de.difuture.ekut.pht.lib.registry.train.tag
 
-import de.difuture.ekut.pht.lib.common.StringRepresentable
+import de.difuture.ekut.pht.lib.common.CanonicalStringRepresentable
 import de.difuture.ekut.pht.lib.common.docker.DockerTag
 
-interface TrainTag : StringRepresentable {
+interface TrainTag : CanonicalStringRepresentable {
 
-    override val stringRepresentation : String
+    override val canonicalStringRepresentation : String
 
-    private data class GenericTrainTag(override val stringRepresentation: String) : TrainTag
+    private data class GenericTrainTag(override val canonicalStringRepresentation: String) : TrainTag
 
     companion object {
 

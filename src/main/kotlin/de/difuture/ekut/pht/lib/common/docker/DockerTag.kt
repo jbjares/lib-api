@@ -1,6 +1,6 @@
 package de.difuture.ekut.pht.lib.common.docker
 
-import de.difuture.ekut.pht.lib.common.StringRepresentable
+import de.difuture.ekut.pht.lib.common.CanonicalStringRepresentable
 
 
 /**
@@ -11,7 +11,7 @@ data class DockerTag(
 
         val value: String
 
-) : StringRepresentable {
+) : CanonicalStringRepresentable {
 
 
     // TODO What Regex does the Docker Tag need to match?
@@ -19,5 +19,5 @@ data class DockerTag(
         require(value.isNotBlank())
     }
 
-    override val stringRepresentation = value
+    override val canonicalStringRepresentation = value
 }

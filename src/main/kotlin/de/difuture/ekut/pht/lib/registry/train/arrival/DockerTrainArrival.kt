@@ -17,8 +17,8 @@ data class DockerTrainArrival(
     private fun pullAndRun(client : IDockerClient, command : String, timeout: Int) : DockerContainerOutput {
 
         val imageId = client.pull(
-                repo=DockerRepositoryName(this.trainId.stringRepresentation, hostPort = this.host),
-                tag= DockerTag(trainTag.stringRepresentation))
+                repo=DockerRepositoryName(this.trainId.canonicalStringRepresentation, hostPort = this.host),
+                tag= DockerTag(trainTag.canonicalStringRepresentation))
         return client.run(imageId, listOf(command), true, timeout)
     }
 

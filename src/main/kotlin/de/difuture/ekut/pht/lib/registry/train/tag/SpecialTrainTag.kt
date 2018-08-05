@@ -5,7 +5,7 @@ enum class SpecialTrainTag: TrainTag {
     IMMEDIATE,
     TEST;
 
-    override val stringRepresentation = this.toString()
+    override val canonicalStringRepresentation = this.toString()
 
     companion object {
         private val names = SpecialTrainTag.values().map { it.toString() }.toSet()

@@ -1,6 +1,6 @@
 package de.difuture.ekut.pht.lib.common.docker
 
-import de.difuture.ekut.pht.lib.common.StringRepresentable
+import de.difuture.ekut.pht.lib.common.CanonicalStringRepresentable
 import java.net.URI
 
 
@@ -15,7 +15,7 @@ data class HostPort(
 
         val host: String,
         val port : Int? = null
-) : StringRepresentable {
+) : CanonicalStringRepresentable {
 
     init {
 
@@ -23,7 +23,7 @@ data class HostPort(
         require(port?.let { it > 0 } ?: true)
     }
 
-    override val stringRepresentation = host.plus(port?.let { ":$it" }  ?: "")
+    override val canonicalStringRepresentation = host.plus(port?.let { ":$it" }  ?: "")
 
 
     companion object {

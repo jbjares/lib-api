@@ -13,8 +13,8 @@ class DockerTagTests {
         val tag1 = DockerTag("ajfks")
         val tag2 =  DockerTag("latest")
 
-        Assert.assertEquals("ajfks", tag1.stringRepresentation)
-        Assert.assertEquals("latest", tag2.stringRepresentation)
+        Assert.assertEquals("ajfks", tag1.canonicalStringRepresentation)
+        Assert.assertEquals("latest", tag2.canonicalStringRepresentation)
     }
 
     @Test(expected = IllegalArgumentException::class)

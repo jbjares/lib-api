@@ -16,11 +16,11 @@ class HostPortTests {
         val hostPort4 = HostPort("docker.io")
         val hostPort5 = HostPort("docker.io", port=80)
 
-        Assert.assertEquals("localhost:80", hostPort1.stringRepresentation)
-        Assert.assertEquals("localhost:5000", hostPort2.stringRepresentation)
-        Assert.assertEquals("localhost", hostPort3.stringRepresentation)
-        Assert.assertEquals("docker.io", hostPort4.stringRepresentation)
-        Assert.assertEquals("docker.io:80", hostPort5.stringRepresentation)
+        Assert.assertEquals("localhost:80", hostPort1.canonicalStringRepresentation)
+        Assert.assertEquals("localhost:5000", hostPort2.canonicalStringRepresentation)
+        Assert.assertEquals("localhost", hostPort3.canonicalStringRepresentation)
+        Assert.assertEquals("docker.io", hostPort4.canonicalStringRepresentation)
+        Assert.assertEquals("docker.io:80", hostPort5.canonicalStringRepresentation)
     }
 
 

@@ -1,11 +1,11 @@
 package de.difuture.ekut.pht.lib.registry.train
 
-import de.difuture.ekut.pht.lib.common.StringRepresentable
+import de.difuture.ekut.pht.lib.common.CanonicalStringRepresentable
 
 data class TrainId  (
 
-        override val stringRepresentation : String
-): StringRepresentable {
+        override val canonicalStringRepresentation : String
+): CanonicalStringRepresentable {
 
     companion object {
 
@@ -16,7 +16,7 @@ data class TrainId  (
     init {
 
         // Validate that the TrainId satisfies the requirement for the string
-        require(regex.matches(this.stringRepresentation)) {
+        require(regex.matches(this.canonicalStringRepresentation)) {
 
             "String for generating the TrainId does not match the required regular expression."
         }
