@@ -1,24 +1,25 @@
 package de.difuture.ekut.pht.lib.common.docker
 
-import de.difuture.ekut.pht.lib.common.CanonicalStringRepresentable
+import de.difuture.ekut.pht.lib.common.ICanonicalStringRepresentable
+import de.difuture.ekut.pht.lib.common.containsWhitespace
 
 
 /**
- * Represents an Docker image tag.
+ * Represents a Docker image tag.
  *
  * @author Lukas Zimmermann
+ * @since 0.0.1
+ *
  */
 data class DockerTag(
 
-        val value: String
+        override val canonicalStringRepresentation : String
 
-) : CanonicalStringRepresentable {
-
+) : ICanonicalStringRepresentable {
 
     // TODO What Regex does the Docker Tag need to match?
     init {
-        require(value.isNotBlank())
+        require(canonicalStringRepresentation.isNotBlank())
+        require( ! canonicalStringRepresentation.containsWhitespace())
     }
-
-    override val canonicalStringRepresentation = value
 }

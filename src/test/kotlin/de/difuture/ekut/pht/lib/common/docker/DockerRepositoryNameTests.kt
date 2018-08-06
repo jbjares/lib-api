@@ -1,7 +1,6 @@
-package de.difuture.ekut.pht.lib.common
+package de.difuture.ekut.pht.lib.common.docker
 
-import de.difuture.ekut.pht.lib.common.docker.DockerRepositoryName
-import de.difuture.ekut.pht.lib.common.docker.DockerTag
+import de.difuture.ekut.pht.lib.common.HostPortTuple
 import de.difuture.ekut.pht.lib.cross
 import org.junit.Assert
 import org.junit.Test

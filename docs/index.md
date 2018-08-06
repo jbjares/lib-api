@@ -3,29 +3,9 @@ Title: Welcome to the Personal Health Train - Library Project
 ---
 
 # Personal Health Train - Library
+Welcome to the documentation of the Personal Health Train (PHT)
+library. This document is intended to provide exhaustive
+information on the components that this library offers.
 
-## Introduction
-
-The Personal Health Train (PHT) Library project is intended to
-provide well-documented and tested classes that can by used by multiple projects
-that are related to the PHT project.
-
-## Installation
-
-The build system used in this project is Gradle. For building the project, use
-```
-gradle build
-```
-The project can be installed to the local Maven repository by using:
-```
-gradle publishToMavenLocal
-```
-
-## Tests
-Running the Unit tests is performed by using
-```
-gradle test
-```
-
-## Javadoc
-The Javadoc can be accessed [here](https://personalhealthtrain.github.io/library/javadoc/library/).
+If you want to know how to install, run tests, and use this library
+in your project, please refer to the `README.md`.
