@@ -1,4 +1,4 @@
-package de.difuture.ekut.pht.lib.registry.train.`interface`
+package de.difuture.ekut.pht.lib.registry.train.api
 
 import de.difuture.ekut.pht.lib.runtime.IDockerClient
 import de.difuture.ekut.pht.lib.runtime.IRuntimeClient
@@ -30,6 +30,15 @@ interface ITrainArrival<A : IRuntimeClient> : ITrainInterface<A> {
      *
      */
     fun runAlgorithm(client: A) : ITrainDeparture<A>
+
+    /**
+     * Uses the Train API to print the summary of the train.
+     *
+     * @param client The [IRuntimeClient] that should be used for accessing the train.
+     * @return [String] value representing the summary of the Train.
+     *
+     */
+    fun printSummary(client: A) : String
 }
 
 typealias IDockerTrainArrival = ITrainArrival<IDockerClient>

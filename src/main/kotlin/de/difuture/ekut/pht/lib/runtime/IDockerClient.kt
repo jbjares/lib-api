@@ -6,11 +6,11 @@ import de.difuture.ekut.pht.lib.common.docker.DockerRepositoryName
 import de.difuture.ekut.pht.lib.common.docker.DockerTag
 
 /**
- * Docker client interface that a station needs to implement for using the library components.
+ * Docker client api that a station needs to implement for using the library components.
  *
- * Interface for implementing Docker Clients that can be used for Train interfaces. The interface
+ * Interface for implementing Docker Clients that can be used for Train interfaces. The api
  * was designed with two key considerations in mind:
- * * The interface represents the minimal set of operations the implementing Docker client needs to support to be used
+ * * The api represents the minimal set of operations the implementing Docker client needs to support to be used
  *   in a PHT setting.
  * * Each method reflects an operation and a subset of the corresponding options of the docker CLI.
  *
@@ -120,8 +120,37 @@ interface IDockerClient : IRuntimeClient {
      * @param targetRepo The [DockerRepositoryName] of the Docker repository to commit to.
      * @param targetTag The [DockerTag] that the resulting image should be tagged with.
      *
+     * @return The [DockerImageId] that points to the newly created image.
+     *
      */
     fun commit(containerId: DockerContainerId,
                targetRepo: DockerRepositoryName,
-               targetTag: DockerTag)
+               targetTag: DockerTag) : DockerImageId
+
+    /**
+     * Lists the [DockerImageId] that this [IDockerClient] has access to.
+     *
+     * Resembles the `docker images -q` command.
+     *
+     * *Contract:* The method should fail by throwing an exception if something prevents listing the available
+     * images.
+     *
+     * @return The list of [DockerImageId] that this [IDockerClient] has access to.
+     *
+     */
+    fun images() : List<DockerImageId>
+
+
+    /**
+     *  Tags the Docker image designated by the [DockerImageId] with a target repository and tag
+     *
+     *  @param sourceImageId The [DockerImageId] of the image that should be tagged
+     *  @param targetRepo The [DockerRepositoryName] target for tagging.
+     *  @param targetTag The [DockerTag] target for tagging
+     *
+     */
+    fun tag(sourceImageId : DockerImageId,
+            targetRepo: DockerRepositoryName,
+            targetTag: DockerTag)
+
 }

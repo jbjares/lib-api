@@ -6,7 +6,7 @@ import org.junit.Test
 
 
 /**
- * Tests the [ITrainTag] interface
+ * Tests the [ITrainTag] api
  *
  * @author Lukas Zimmermann
  * @see ITrainTag

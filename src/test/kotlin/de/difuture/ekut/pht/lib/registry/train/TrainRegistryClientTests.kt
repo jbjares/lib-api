@@ -3,8 +3,9 @@ package de.difuture.ekut.pht.lib.registry.train
 
 import de.difuture.ekut.pht.lib.http.TestHttpClient
 import de.difuture.ekut.pht.lib.registry.docker.DockerRegistryClient
+import de.difuture.ekut.pht.lib.registry.train.id.ITrainId
 import de.difuture.ekut.pht.lib.registry.train.tag.SpecialTrainTag
-import de.difuture.ekut.pht.lib.registry.train.tag.TrainTag
+import de.difuture.ekut.pht.lib.registry.train.tag.ITrainTag
 import de.difuture.ekut.pht.test.lib.SingleExposedPortContainer
 import de.difuture.ekut.pht.test.lib.TEST_TRAIN_REGISTRY_REPOSITORY
 import org.junit.ClassRule
@@ -67,12 +68,12 @@ class TrainRegistryClientTests {
     @Test
     fun select_print_summary_1() {
 
-        val tag = TrainTag.of("test")
+        val tag = ITrainTag.of("test")
 
         val arrival1 = this.client.getTrainArrival(
-                TrainId("train_test_print_summary_1"), tag)
+                ITrainId.of("train_test_print_summary_1"), tag)
         val arrival2 = this.client.getTrainArrival(
-                TrainId("train_test_print_summary_2"), tag)
+                ITrainId.of("train_test_print_summary_2"), tag)
 
         Assert.assertNotNull(arrival1)
         Assert.assertNotNull(arrival2)
