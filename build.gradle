@@ -9,7 +9,7 @@ buildscript {
 }
 
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.2.51'
+    id 'org.jetbrains.kotlin.jvm' version '1.2.60'
 
 }
 repositories {
@@ -30,7 +30,7 @@ compileTestKotlin {
 }
 
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.51"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.60"
     compile group: 'com.fasterxml.jackson.module', name: 'jackson-module-kotlin', version: '2.9.6'
     testCompile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.6'
     testCompile group: 'io.github.benas', name: 'random-beans', version: '3.7.0'
