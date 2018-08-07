@@ -93,21 +93,6 @@ interface IDockerClient : IRuntimeClient {
     fun push(repo : DockerRepositoryName, tag : DockerTag)
 
     /**
-     * Removes a Docker image from the client given the specified ID.
-     *
-     * Resembles the `docker rmi` command.
-     *
-     * *Contract:* If something prevents the image to be removed, the method needs to fail with an exception.
-     * Specifically, if the selected Docker image does not exist, the method should throw [NoSuchDockerImageException].
-     *
-     * @param imageId The [DockerImageId] of the Docker image to be removed.
-     * @param force Whether removal of the Docker image should be forced. This is analogous to the `-f` or `--force`
-     * flag of the `docker rmi` command.
-     *
-     */
-    fun rmi(imageId: DockerImageId, force: Boolean)
-
-    /**
      * Commits the Docker container and creates new image.
      *
      * Resembles the `docker commit` command.
