@@ -7,6 +7,7 @@ import de.difuture.ekut.pht.lib.http.TestHttpClient
 import de.difuture.ekut.pht.lib.registry.docker.data.DockerRegistryEvents
 import de.difuture.ekut.pht.test.lib.SingleExposedPortContainer
 import de.difuture.ekut.pht.test.lib.TEST_TRAIN_REGISTRY_REPOSITORY
+import de.difuture.ekut.pht.test.lib.TEST_TRAIN_REGISTRY_REPOSITORY_NOTIFICATIONS
 import de.difuture.ekut.pht.test.lib.TRAINS_TEST_ALL
 import org.apache.http.HttpStatus
 import org.junit.ClassRule
@@ -46,9 +47,7 @@ class DockerRegistryClientTests {
         val REGISTRY = SingleExposedPortContainer(TEST_TRAIN_REGISTRY_REPOSITORY, 5000)
 
         @ClassRule @JvmField
-        val NOTIFICATIONS = SingleExposedPortContainer(
-                        "lukaszimmermann/pht-test-train-registry-notifications:latest",
-                        6000)
+        val NOTIFICATIONS = SingleExposedPortContainer(TEST_TRAIN_REGISTRY_REPOSITORY_NOTIFICATIONS, 6000)
     }
     /////////////////////////  The registry client  /////////////////////////////////////////////////////////////
     private lateinit var client : IDockerRegistryClient

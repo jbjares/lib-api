@@ -19,10 +19,6 @@ class TrainRegistryClientTests {
     /////////////////////////  Companion  //////////////////////////////////////////////////////////////
     companion object {
 
-        // Trains to be tested
-        private const val TRAIN_HOSTNAME = "test_hostname"
-        private const val TRAIN_PRINT_HELLO_WORLD = "test_print_hello_world"
-
         // Container that is used for fetching Docker Registry Notifications
         @ClassRule @JvmField
         val REGISTRY : SingleExposedPortContainer =
