@@ -139,18 +139,4 @@ interface IDockerClient : IRuntimeClient {
      *
      */
     fun images() : List<DockerImageId>
-
-
-    /**
-     *  Tags the Docker image designated by the [DockerImageId] with a target repository and tag
-     *
-     *  @param sourceImageId The [DockerImageId] of the image that should be tagged
-     *  @param targetRepo The [DockerRepositoryName] target for tagging.
-     *  @param targetTag The [DockerTag] target for tagging
-     *
-     */
-    fun tag(sourceImageId : DockerImageId,
-            targetRepo: DockerRepositoryName,
-            targetTag: DockerTag)
-
 }
