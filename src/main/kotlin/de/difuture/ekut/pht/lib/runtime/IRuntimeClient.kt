@@ -10,6 +10,7 @@ package de.difuture.ekut.pht.lib.runtime
  * able to communicate with the daemon.
  *
  * @author Lukas Zimmermann
+ * @see IDockerClient
  * @since 0.0.1
  *
  */
