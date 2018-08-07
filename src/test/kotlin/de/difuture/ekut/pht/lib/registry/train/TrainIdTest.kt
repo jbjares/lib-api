@@ -5,6 +5,14 @@ import org.junit.Assert
 import org.junit.Test
 
 
+/**
+ * Tests [TrainId]
+ *
+ * @author Lukas Zimmermann
+ * @see TrainId
+ * @since 0.0.1
+ *
+ */
 class TrainIdTest {
 
     @Test fun valid_ids() {
