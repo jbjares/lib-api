@@ -3,6 +3,14 @@ package de.difuture.ekut.pht.lib.http
 import org.apache.http.client.methods.CloseableHttpResponse
 import java.io.ByteArrayOutputStream
 
+
+/**
+ * Test class for implementing [IHttpResponse].
+ *
+ * @author Lukas Zimmermann
+ * @since 0.0.1
+ *
+ */
 class TestHttpResponse(response : CloseableHttpResponse) : IHttpResponse {
 
     override val body: String
