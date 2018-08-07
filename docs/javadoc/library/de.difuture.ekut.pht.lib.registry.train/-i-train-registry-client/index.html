@@ -8,10 +8,18 @@
 <a href="../../index.html">library</a>&nbsp;/&nbsp;<a href="../index.html">de.difuture.ekut.pht.lib.registry.train</a>&nbsp;/&nbsp;<a href="./index.html">ITrainRegistryClient</a><br/>
 <br/>
 <h1>ITrainRegistryClient</h1>
-<code><span class="keyword">interface </span><span class="identifier">ITrainRegistryClient</span><span class="symbol">&lt;</span><span class="identifier">A</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../de.difuture.ekut.pht.lib.runtime/-runtime-client.html"><span class="identifier">RuntimeClient</span></a><span class="symbol">&gt;</span></code>
-<p>General Interface of a Train Registry</p>
+<code><span class="keyword">interface </span><span class="identifier">ITrainRegistryClient</span><span class="symbol">&lt;</span><span class="identifier">A</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../de.difuture.ekut.pht.lib.runtime/-i-runtime-client.html"><span class="identifier">IRuntimeClient</span></a><span class="symbol">&gt;</span></code>
+<p>Represents the api of a client to the Train Registry.</p>
+<p>The train registry is directly dependent on a selected runtime client, as
+the train registry provides a way to interact with <a href="../../de.difuture.ekut.pht.lib.registry.train.api/-i-train-arrival/index.html">ITrainArrival</a>.</p>
+<h3>Parameters</h3>
+<p><a name="A"></a>
+<code>A</code> - The runtime client required to use <a href="../../de.difuture.ekut.pht.lib.registry.train.api/-i-train-arrival/index.html">ITrainArrival</a> instances retrieved from
+the implementer of the Train Registry.</p>
 <p><strong>Author</strong><br/>
 Lukas Zimmermann</p>
+<p><strong>Since</strong><br/>
+0.0.1</p>
 <h3>Functions</h3>
 <table>
 <tbody>
@@ -20,8 +28,8 @@ Lukas Zimmermann</p>
 <p><a href="get-train-arrival.html">getTrainArrival</a></p>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getTrainArrival</span><span class="symbol">(</span><span class="identifier" id="de.difuture.ekut.pht.lib.registry.train.ITrainRegistryClient$getTrainArrival(de.difuture.ekut.pht.lib.registry.train.TrainId, de.difuture.ekut.pht.lib.registry.train.tag.TrainTag)/id">id</span><span class="symbol">:</span>&nbsp;<a href="../-train-id/index.html"><span class="identifier">TrainId</span></a><span class="symbol">, </span><span class="identifier" id="de.difuture.ekut.pht.lib.registry.train.ITrainRegistryClient$getTrainArrival(de.difuture.ekut.pht.lib.registry.train.TrainId, de.difuture.ekut.pht.lib.registry.train.tag.TrainTag)/tag">tag</span><span class="symbol">:</span>&nbsp;<a href="../../de.difuture.ekut.pht.lib.registry.train.tag/-train-tag/index.html"><span class="identifier">TrainTag</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../de.difuture.ekut.pht.lib.registry.train.arrival/-i-train-arrival/index.html"><span class="identifier">ITrainArrival</span></a><span class="symbol">&lt;</span><a href="index.html#A"><span class="identifier">A</span></a><span class="symbol">&gt;</span><span class="symbol">?</span></code>
-<p>Get TrainArrival by TrainID and TrainTag</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getTrainArrival</span><span class="symbol">(</span><span class="identifier" id="de.difuture.ekut.pht.lib.registry.train.ITrainRegistryClient$getTrainArrival(de.difuture.ekut.pht.lib.registry.train.id.ITrainId, de.difuture.ekut.pht.lib.registry.train.tag.ITrainTag)/id">id</span><span class="symbol">:</span>&nbsp;<a href="../../de.difuture.ekut.pht.lib.registry.train.id/-i-train-id/index.html"><span class="identifier">ITrainId</span></a><span class="symbol">, </span><span class="identifier" id="de.difuture.ekut.pht.lib.registry.train.ITrainRegistryClient$getTrainArrival(de.difuture.ekut.pht.lib.registry.train.id.ITrainId, de.difuture.ekut.pht.lib.registry.train.tag.ITrainTag)/tag">tag</span><span class="symbol">:</span>&nbsp;<a href="../../de.difuture.ekut.pht.lib.registry.train.tag/-i-train-tag/index.html"><span class="identifier">ITrainTag</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../de.difuture.ekut.pht.lib.registry.train.api/-i-train-arrival/index.html"><span class="identifier">ITrainArrival</span></a><span class="symbol">&lt;</span><a href="index.html#A"><span class="identifier">A</span></a><span class="symbol">&gt;</span><span class="symbol">?</span></code>
+<p>Get <a href="../../de.difuture.ekut.pht.lib.registry.train.api/-i-train-arrival/index.html">ITrainArrival</a> by specifying <a href="../../de.difuture.ekut.pht.lib.registry.train.id/-i-train-id/index.html">ITrainId</a> and <a href="../../de.difuture.ekut.pht.lib.registry.train.tag/-i-train-tag/index.html">ITrainTag</a>.</p>
 </td>
 </tr>
 <tr>
@@ -29,10 +37,19 @@ Lukas Zimmermann</p>
 <p><a href="list-train-arrivals.html">listTrainArrivals</a></p>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">listTrainArrivals</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../de.difuture.ekut.pht.lib.registry.train.arrival/-i-train-arrival/index.html"><span class="identifier">ITrainArrival</span></a><span class="symbol">&lt;</span><a href="index.html#A"><span class="identifier">A</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code>
-<p>Lists all Train Arrivals</p>
-<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">listTrainArrivals</span><span class="symbol">(</span><span class="identifier" id="de.difuture.ekut.pht.lib.registry.train.ITrainRegistryClient$listTrainArrivals(de.difuture.ekut.pht.lib.registry.train.tag.TrainTag)/tag">tag</span><span class="symbol">:</span>&nbsp;<a href="../../de.difuture.ekut.pht.lib.registry.train.tag/-train-tag/index.html"><span class="identifier">TrainTag</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../de.difuture.ekut.pht.lib.registry.train.arrival/-i-train-arrival/index.html"><span class="identifier">ITrainArrival</span></a><span class="symbol">&lt;</span><a href="index.html#A"><span class="identifier">A</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code>
-<p>Lists all the train Arrivals for a certain train Tag.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">listTrainArrivals</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../de.difuture.ekut.pht.lib.registry.train.api/-i-train-arrival/index.html"><span class="identifier">ITrainArrival</span></a><span class="symbol">&lt;</span><a href="index.html#A"><span class="identifier">A</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code>
+<p>Lists all <a href="../../de.difuture.ekut.pht.lib.registry.train.api/-i-train-arrival/index.html">ITrainArrival</a> instances of this Train Registry.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">listTrainArrivals</span><span class="symbol">(</span><span class="identifier" id="de.difuture.ekut.pht.lib.registry.train.ITrainRegistryClient$listTrainArrivals(de.difuture.ekut.pht.lib.registry.train.tag.ITrainTag)/tag">tag</span><span class="symbol">:</span>&nbsp;<a href="../../de.difuture.ekut.pht.lib.registry.train.tag/-i-train-tag/index.html"><span class="identifier">ITrainTag</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../de.difuture.ekut.pht.lib.registry.train.api/-i-train-arrival/index.html"><span class="identifier">ITrainArrival</span></a><span class="symbol">&lt;</span><a href="index.html#A"><span class="identifier">A</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code>
+<p>List all <a href="../../de.difuture.ekut.pht.lib.registry.train.api/-i-train-arrival/index.html">ITrainArrival</a> instances that have a certain <a href="../../de.difuture.ekut.pht.lib.registry.train.tag/-i-train-tag/index.html">ITrainTag</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="push.html">push</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">push</span><span class="symbol">(</span><span class="identifier" id="de.difuture.ekut.pht.lib.registry.train.ITrainRegistryClient$push(de.difuture.ekut.pht.lib.registry.train.api.ITrainDeparture((de.difuture.ekut.pht.lib.registry.train.ITrainRegistryClient.A)))/departure">departure</span><span class="symbol">:</span>&nbsp;<a href="../../de.difuture.ekut.pht.lib.registry.train.api/-i-train-departure/index.html"><span class="identifier">ITrainDeparture</span></a><span class="symbol">&lt;</span><a href="index.html#A"><span class="identifier">A</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Pushes the specified <a href="../../de.difuture.ekut.pht.lib.registry.train.api/-i-train-departure/index.html">ITrainDeparture</a> to this Train Registry.</p>
 </td>
 </tr>
 </tbody>
@@ -46,8 +63,7 @@ Lukas Zimmermann</p>
 </td>
 <td>
 <code><span class="keyword">class </span><span class="identifier">TrainRegistryClient</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">ITrainRegistryClient</span></a><span class="symbol">&lt;</span><a href="../../de.difuture.ekut.pht.lib.runtime/-i-docker-client/index.html"><span class="identifier">IDockerClient</span></a><span class="symbol">&gt;</span></code>
-<p>Train Registry Implementation that uses the DockerRegistry Interface
-for implementing the interface of the Train Registry Client</p>
+<p>Canonical implementation of the <a href="./index.html">ITrainRegistryClient</a>.</p>
 </td>
 </tr>
 </tbody>

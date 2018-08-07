@@ -8,7 +8,10 @@
 <a href="../../index.html">library</a>&nbsp;/&nbsp;<a href="../index.html">de.difuture.ekut.pht.lib.registry.train</a>&nbsp;/&nbsp;<a href="./index.html">TrainId</a><br/>
 <br/>
 <h1>TrainId</h1>
-<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">TrainId</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../de.difuture.ekut.pht.lib.common/-string-representable/index.html"><span class="identifier">StringRepresentable</span></a></code>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">TrainId</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../de.difuture.ekut.pht.lib.common/-i-canonical-string-representable/index.html"><span class="identifier">ICanonicalStringRepresentable</span></a></code>
+<p>Represents the ID of a train</p>
+<p><strong>Author</strong><br/>
+Lukas Zimmermann</p>
 <h3>Constructors</h3>
 <table>
 <tbody>
@@ -17,7 +20,9 @@
 <p><a href="-init-.html">&lt;init&gt;</a></p>
 </td>
 <td>
-<code><span class="identifier">TrainId</span><span class="symbol">(</span><span class="identifier" id="de.difuture.ekut.pht.lib.registry.train.TrainId$<init>(kotlin.String)/stringRepresentation">stringRepresentation</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span></code></td>
+<code><span class="identifier">TrainId</span><span class="symbol">(</span><span class="identifier" id="de.difuture.ekut.pht.lib.registry.train.id.ITrainId$<init>(kotlin.String)/canonicalStringRepresentation">canonicalStringRepresentation</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span></code>
+<p>Represents the ID of a train</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -26,22 +31,12 @@
 <tbody>
 <tr>
 <td>
-<p><a href="string-representation.html">stringRepresentation</a></p>
+<p><a href="canonical-string-representation.html">canonicalStringRepresentation</a></p>
 </td>
 <td>
-<code><span class="keyword">val </span><span class="identifier">stringRepresentation</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
-</tr>
-</tbody>
-</table>
-<h3>Companion Object Properties</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<p><a href="regex.html">regex</a></p>
+<code><span class="keyword">val </span><span class="identifier">canonicalStringRepresentation</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>The canonical String representation of the object</p>
 </td>
-<td>
-<code><span class="keyword">val </span><span class="identifier">regex</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/-regex/index.html"><span class="identifier">Regex</span></a></code></td>
 </tr>
 </tbody>
 </table>

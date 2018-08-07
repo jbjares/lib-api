@@ -1,0 +1,39 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>IRuntimeClient - library</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">library</a>&nbsp;/&nbsp;<a href="index.html">de.difuture.ekut.pht.lib.runtime</a>&nbsp;/&nbsp;<a href="./-i-runtime-client.html">IRuntimeClient</a><br/>
+<br/>
+<h1>IRuntimeClient</h1>
+<code><span class="keyword">interface </span><span class="identifier">IRuntimeClient</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="http://docs.oracle.com/javase/6/docs/api/java/lang/AutoCloseable.html"><span class="identifier">AutoCloseable</span></a></code>
+<p>Top-most api of runtime clients implemented by the station.</p>
+<p>Represents the Client that will run trains at the station. Implementers of this api use
+and depend on the resources offered by the infrastructure of the station. As an example, the
+<a href="-i-docker-client/index.html">IDockerClient</a> depends on the host system offering a running Docker daemon and the user being
+able to communicate with the daemon.</p>
+<p><strong>Author</strong><br/>
+Lukas Zimmermann</p>
+<p><strong>See Also</strong><br/>
+<p><a href="-i-docker-client/index.html">IDockerClient</a></p>
+</p>
+<p><strong>Since</strong><br/>
+0.0.1</p>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-i-docker-client/index.html">IDockerClient</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">IDockerClient</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./-i-runtime-client.html"><span class="identifier">IRuntimeClient</span></a></code>
+<p>Docker client api that a station needs to implement for using the library components.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

@@ -12,158 +12,219 @@
 <td>
 <a href="../de.difuture.ekut.pht.lib.runtime/-docker-client-exception/index.html">de.difuture.ekut.pht.lib.runtime.DockerClientException</a></td>
 <td>
+<p>Exception intended to be thrown by <a href="../de.difuture.ekut.pht.lib.runtime/-i-docker-client/index.html">IDockerClient</a> implementations.</p>
 </td>
 </tr>
 <tr>
 <td>
-<a href="../de.difuture.ekut.pht.lib.common.docker/-docker-container-output/index.html">de.difuture.ekut.pht.lib.common.docker.DockerContainerOutput</a></td>
+<a href="../de.difuture.ekut.pht.lib.common.docker/-docker-container-id/index.html">de.difuture.ekut.pht.lib.common.docker.DockerContainerId</a></td>
 <td>
-<p>Represents the output of a Docker Container after having been started</p>
+<p>Represents the ID of a Docker Container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../de.difuture.ekut.pht.lib.runtime/-docker-container-output/index.html">de.difuture.ekut.pht.lib.runtime.DockerContainerOutput</a></td>
+<td>
+<p>Represents the output of a Docker Container after it has been exited.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../de.difuture.ekut.pht.lib.common.docker/-docker-image-id/index.html">de.difuture.ekut.pht.lib.common.docker.DockerImageId</a></td>
+<td>
+<p>Represents the ID of a Docker Image.</p>
 </td>
 </tr>
 <tr>
 <td>
 <a href="../de.difuture.ekut.pht.lib.registry.docker/-docker-registry-client/index.html">de.difuture.ekut.pht.lib.registry.docker.DockerRegistryClient</a></td>
 <td>
+<p>Implementation of the Docker Registry Client Interface for V2 Docker Registry.</p>
 </td>
 </tr>
 <tr>
 <td>
 <a href="../de.difuture.ekut.pht.lib.registry.docker.data/-docker-registry-event/index.html">de.difuture.ekut.pht.lib.registry.docker.data.DockerRegistryEvent</a></td>
 <td>
-<p>Represents a event of a Docker Registry</p>
+<p>Represents a event of a Docker Registry.</p>
 </td>
 </tr>
 <tr>
 <td>
 <a href="../de.difuture.ekut.pht.lib.registry.docker.data/-docker-registry-events/index.html">de.difuture.ekut.pht.lib.registry.docker.data.DockerRegistryEvents</a></td>
 <td>
+<p>Represents the envelope of events that can be emitted from a Docker Registry</p>
 </td>
 </tr>
 <tr>
 <td>
 <a href="../de.difuture.ekut.pht.lib.registry.docker.data/-docker-registry-repositories/index.html">de.difuture.ekut.pht.lib.registry.docker.data.DockerRegistryRepositories</a></td>
 <td>
+<p>Represents the response from the Docker Registry when requesting contained repositories.</p>
 </td>
 </tr>
 <tr>
 <td>
 <a href="../de.difuture.ekut.pht.lib.registry.docker.data/-docker-registry-tags/index.html">de.difuture.ekut.pht.lib.registry.docker.data.DockerRegistryTags</a></td>
 <td>
+<p>Represents the Docker Registry response when requesting the tags for a particular repository</p>
 </td>
 </tr>
 <tr>
 <td>
 <a href="../de.difuture.ekut.pht.lib.common.docker/-docker-repository-name/index.html">de.difuture.ekut.pht.lib.common.docker.DockerRepositoryName</a></td>
 <td>
-<p>Represents a valid Docker Repository Name. Currently we allow up to two path components.
-Each component needs to match the regular expression that the Docker Registry v2 implementation
-uses for such names.</p>
+<p>Represents a valid Docker Repository Name.</p>
 </td>
 </tr>
 <tr>
 <td>
 <a href="../de.difuture.ekut.pht.lib.common.docker/-docker-tag/index.html">de.difuture.ekut.pht.lib.common.docker.DockerTag</a></td>
 <td>
-<p>Represents an image tag</p>
+<p>Represents a Docker image tag.</p>
 </td>
 </tr>
 <tr>
 <td>
-<a href="../de.difuture.ekut.pht.lib.registry.train.arrival/-docker-train-arrival/index.html">de.difuture.ekut.pht.lib.registry.train.arrival.DockerTrainArrival</a></td>
+<a href="../de.difuture.ekut.pht.lib.common/-host-port-tuple/index.html">de.difuture.ekut.pht.lib.common.HostPortTuple</a></td>
 <td>
+<p>Represents tuple of hostname and port, where the port is optional.</p>
 </td>
 </tr>
 <tr>
 <td>
-<a href="../de.difuture.ekut.pht.lib.http/-get-rest-client/index.html">de.difuture.ekut.pht.lib.http.GetRestClient</a></td>
+<a href="../de.difuture.ekut.pht.lib.common/-i-canonical-string-representable/index.html">de.difuture.ekut.pht.lib.common.ICanonicalStringRepresentable</a></td>
 <td>
-<p>Interface for HttpClient that only support the HTTP GET method on the provided URI.</p>
-</td>
-</tr>
-<tr>
-<td>
-<a href="../de.difuture.ekut.pht.lib.common.docker/-host-port/index.html">de.difuture.ekut.pht.lib.common.HostPortTuple</a></td>
-<td>
-<p>Represents tuple of hostname and port, where the port is optional. This is usually used to
-refer to remote Docker Registries</p>
+<p>Interface denoting classes whose instances can be represented as a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>.</p>
 </td>
 </tr>
 <tr>
 <td>
 <a href="../de.difuture.ekut.pht.lib.runtime/-i-docker-client/index.html">de.difuture.ekut.pht.lib.runtime.IDockerClient</a></td>
 <td>
-<p>Interface for implementing Docker Clients to be used with the PHT
-infrastructure. The interface is designed such that all methods
-throw Exceptions if errors occur. Thus, all return types are not nullable</p>
+<p>Docker client api that a station needs to implement for using the library components.</p>
 </td>
 </tr>
 <tr>
 <td>
 <a href="../de.difuture.ekut.pht.lib.registry.docker/-i-docker-registry-client/index.html">de.difuture.ekut.pht.lib.registry.docker.IDockerRegistryClient</a></td>
 <td>
-<p>Interface for representing client that can</p>
+<p>Interface for representing client that can communicate with a Docker Registry.</p>
 </td>
 </tr>
 <tr>
 <td>
-<a href="../de.difuture.ekut.pht.lib.registry.train.arrival/-i-train-arrival/index.html">de.difuture.ekut.pht.lib.registry.train.arrival.ITrainArrival</a></td>
+<a href="../de.difuture.ekut.pht.lib.registry.train.api/-i-docker-train-arrival.html">de.difuture.ekut.pht.lib.registry.train.api.IDockerTrainArrival</a></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../de.difuture.ekut.pht.lib.registry.train.api/-i-docker-train-departure.html">de.difuture.ekut.pht.lib.registry.train.api.IDockerTrainDeparture</a></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../de.difuture.ekut.pht.lib.http/-i-http-get-client/index.html">de.difuture.ekut.pht.lib.http.IHttpGetClient</a></td>
+<td>
+<p>Interface for a HTTP client that only support the HTTP GET method on the provided URI.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../de.difuture.ekut.pht.lib.http/-i-http-response/index.html">de.difuture.ekut.pht.lib.http.IHttpResponse</a></td>
+<td>
+<p>Represents the response of a Http Request. Currently,</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../de.difuture.ekut.pht.lib.runtime/-i-runtime-client.html">de.difuture.ekut.pht.lib.runtime.IRuntimeClient</a></td>
+<td>
+<p>Top-most api of runtime clients implemented by the station.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../de.difuture.ekut.pht.lib.registry.train.api/-i-train-arrival/index.html">de.difuture.ekut.pht.lib.registry.train.api.ITrainArrival</a></td>
 <td>
 <p>Interface for Train Arrivals.</p>
 </td>
 </tr>
 <tr>
 <td>
-<a href="../de.difuture.ekut.pht.lib.registry.train.departure/-i-train-departure.html">de.difuture.ekut.pht.lib.registry.train.departure.ITrainDeparture</a></td>
+<a href="../de.difuture.ekut.pht.lib.registry.train.api/-i-train-departure/index.html">de.difuture.ekut.pht.lib.registry.train.api.ITrainDeparture</a></td>
 <td>
+<p>The <a href="../de.difuture.ekut.pht.lib.registry.train.api/-i-train-departure/index.html">ITrainDeparture</a> for this Train instance.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../de.difuture.ekut.pht.lib.registry.train.id/-i-train-id/index.html">de.difuture.ekut.pht.lib.registry.train.id.ITrainId</a></td>
+<td>
+<p>Represents the ID of a train.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../de.difuture.ekut.pht.lib.registry.train.api/-i-train-interface/index.html">de.difuture.ekut.pht.lib.registry.train.api.ITrainInterface</a></td>
+<td>
+<p>Super api for <a href="../de.difuture.ekut.pht.lib.registry.train.api/-i-train-arrival/index.html">ITrainArrival</a> and <a href="../de.difuture.ekut.pht.lib.registry.train.api/-i-train-departure/index.html">ITrainDeparture</a></p>
 </td>
 </tr>
 <tr>
 <td>
 <a href="../de.difuture.ekut.pht.lib.registry.train/-i-train-registry-client/index.html">de.difuture.ekut.pht.lib.registry.train.ITrainRegistryClient</a></td>
 <td>
-<p>General Interface of a Train Registry</p>
+<p>Represents the api of a client to the Train Registry.</p>
 </td>
 </tr>
 <tr>
 <td>
-<a href="../de.difuture.ekut.pht.lib.http/-rest-http-response/index.html">de.difuture.ekut.pht.lib.http.RestHttpResponse</a></td>
+<a href="../de.difuture.ekut.pht.lib.registry.train.tag/-i-train-tag/index.html">de.difuture.ekut.pht.lib.registry.train.tag.ITrainTag</a></td>
+<td>
+<p>Represents the Tag of a Train.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../de.difuture.ekut.pht.lib.common/kotlin.-int/index.html">kotlin.Int</a> (extensions in package de.difuture.ekut.pht.lib.common)</td>
 <td>
 </td>
 </tr>
 <tr>
 <td>
-<a href="../de.difuture.ekut.pht.lib.runtime/-runtime-client.html">de.difuture.ekut.pht.lib.runtime.RuntimeClient</a></td>
+<a href="../de.difuture.ekut.pht.lib.runtime/-no-such-docker-container-exception/index.html">de.difuture.ekut.pht.lib.runtime.NoSuchDockerContainerException</a></td>
 <td>
+<p>Exception to be thrown when the selected Docker Container does not exits.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../de.difuture.ekut.pht.lib.runtime/-no-such-docker-image-exception/index.html">de.difuture.ekut.pht.lib.runtime.NoSuchDockerImageException</a></td>
+<td>
+<p>Exception to be thrown when the selected Docker Image does not exist.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../de.difuture.ekut.pht.lib.runtime/-no-such-docker-repository-exception/index.html">de.difuture.ekut.pht.lib.runtime.NoSuchDockerRepositoryException</a></td>
+<td>
+<p>Exception to tbe thrown when the selected repository does not exits.</p>
 </td>
 </tr>
 <tr>
 <td>
 <a href="../de.difuture.ekut.pht.lib.registry.train.tag/-special-train-tag/index.html">de.difuture.ekut.pht.lib.registry.train.tag.SpecialTrainTag</a></td>
 <td>
+<p>Represents train tags with special semantics.</p>
 </td>
 </tr>
 <tr>
 <td>
-<a href="../de.difuture.ekut.pht.lib.station/-station-ping/index.html">de.difuture.ekut.pht.lib.station.StationPing</a></td>
-<td>
-</td>
-</tr>
-<tr>
-<td>
-<a href="../de.difuture.ekut.pht.lib.common/-string-representable/index.html">de.difuture.ekut.pht.lib.common.CanonicalStringRepresentable</a></td>
-<td>
-</td>
-</tr>
-<tr>
-<td>
-<a href="../de.difuture.ekut.pht.lib.registry.train/-train-id/index.html">de.difuture.ekut.pht.lib.registry.train.TrainId</a></td>
-<td>
-</td>
-</tr>
-<tr>
-<td>
-<a href="../de.difuture.ekut.pht.lib.registry.train/-train-interface/index.html">de.difuture.ekut.pht.lib.registry.train.TrainInterface</a></td>
+<a href="../de.difuture.ekut.pht.lib.common/kotlin.-string/index.html">kotlin.String</a> (extensions in package de.difuture.ekut.pht.lib.common)</td>
 <td>
 </td>
 </tr>
@@ -171,14 +232,7 @@ throw Exceptions if errors occur. Thus, all return types are not nullable</p>
 <td>
 <a href="../de.difuture.ekut.pht.lib.registry.train/-train-registry-client/index.html">de.difuture.ekut.pht.lib.registry.train.TrainRegistryClient</a></td>
 <td>
-<p>Train Registry Implementation that uses the DockerRegistry Interface
-for implementing the interface of the Train Registry Client</p>
-</td>
-</tr>
-<tr>
-<td>
-<a href="../de.difuture.ekut.pht.lib.registry.train.tag/-train-tag/index.html">de.difuture.ekut.pht.lib.registry.train.tag.TrainTag</a></td>
-<td>
+<p>Canonical implementation of the <a href="../de.difuture.ekut.pht.lib.registry.train/-i-train-registry-client/index.html">ITrainRegistryClient</a>.</p>
 </td>
 </tr>
 </tbody>

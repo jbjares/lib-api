@@ -13,21 +13,30 @@
 <tbody>
 <tr>
 <td>
-<p><a href="-i-docker-client/index.html">IDockerClient</a></p>
+<p><a href="-docker-container-output/index.html">DockerContainerOutput</a></p>
 </td>
 <td>
-<code><span class="keyword">interface </span><span class="identifier">IDockerClient</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-runtime-client.html"><span class="identifier">RuntimeClient</span></a></code>
-<p>Interface for implementing Docker Clients to be used with the PHT
-infrastructure. The interface is designed such that all methods
-throw Exceptions if errors occur. Thus, all return types are not nullable</p>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">DockerContainerOutput</span></code>
+<p>Represents the output of a Docker Container after it has been exited.</p>
 </td>
 </tr>
 <tr>
 <td>
-<p><a href="-runtime-client.html">RuntimeClient</a></p>
+<p><a href="-i-docker-client/index.html">IDockerClient</a></p>
 </td>
 <td>
-<code><span class="keyword">interface </span><span class="identifier">RuntimeClient</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="http://docs.oracle.com/javase/6/docs/api/java/lang/AutoCloseable.html"><span class="identifier">AutoCloseable</span></a></code></td>
+<code><span class="keyword">interface </span><span class="identifier">IDockerClient</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-i-runtime-client.html"><span class="identifier">IRuntimeClient</span></a></code>
+<p>Docker client api that a station needs to implement for using the library components.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-i-runtime-client.html">IRuntimeClient</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">IRuntimeClient</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="http://docs.oracle.com/javase/6/docs/api/java/lang/AutoCloseable.html"><span class="identifier">AutoCloseable</span></a></code>
+<p>Top-most api of runtime clients implemented by the station.</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -39,7 +48,36 @@ throw Exceptions if errors occur. Thus, all return types are not nullable</p>
 <p><a href="-docker-client-exception/index.html">DockerClientException</a></p>
 </td>
 <td>
-<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">DockerClientException</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-exception/index.html"><span class="identifier">Exception</span></a></code></td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">DockerClientException</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-exception/index.html"><span class="identifier">Exception</span></a></code>
+<p>Exception intended to be thrown by <a href="-i-docker-client/index.html">IDockerClient</a> implementations.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-no-such-docker-container-exception/index.html">NoSuchDockerContainerException</a></p>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">NoSuchDockerContainerException</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-docker-client-exception/index.html"><span class="identifier">DockerClientException</span></a></code>
+<p>Exception to be thrown when the selected Docker Container does not exits.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-no-such-docker-image-exception/index.html">NoSuchDockerImageException</a></p>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">NoSuchDockerImageException</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-docker-client-exception/index.html"><span class="identifier">DockerClientException</span></a></code>
+<p>Exception to be thrown when the selected Docker Image does not exist.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-no-such-docker-repository-exception/index.html">NoSuchDockerRepositoryException</a></p>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">NoSuchDockerRepositoryException</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-docker-client-exception/index.html"><span class="identifier">DockerClientException</span></a></code>
+<p>Exception to tbe thrown when the selected repository does not exits.</p>
+</td>
 </tr>
 </tbody>
 </table>

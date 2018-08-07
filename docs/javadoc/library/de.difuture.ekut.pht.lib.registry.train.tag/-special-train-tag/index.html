@@ -8,7 +8,15 @@
 <a href="../../index.html">library</a>&nbsp;/&nbsp;<a href="../index.html">de.difuture.ekut.pht.lib.registry.train.tag</a>&nbsp;/&nbsp;<a href="./index.html">SpecialTrainTag</a><br/>
 <br/>
 <h1>SpecialTrainTag</h1>
-<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">SpecialTrainTag</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-train-tag/index.html"><span class="identifier">TrainTag</span></a></code>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">SpecialTrainTag</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-i-train-tag/index.html"><span class="identifier">ITrainTag</span></a></code>
+<p>Represents train tags with special semantics.</p>
+<p><strong>Author</strong><br/>
+Lukas Zimmermann</p>
+<p><strong>See Also</strong><br/>
+<p><a href="../-i-train-tag/index.html">ITrainTag</a></p>
+</p>
+<p><strong>Since</strong><br/>
+0.0.1</p>
 <h3>Enum Values</h3>
 <table>
 <tbody>
@@ -33,10 +41,12 @@
 <tbody>
 <tr>
 <td>
-<p><a href="string-representation.html">stringRepresentation</a></p>
+<p><a href="canonical-string-representation.html">canonicalStringRepresentation</a></p>
 </td>
 <td>
-<code><span class="keyword">val </span><span class="identifier">stringRepresentation</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+<code><span class="keyword">val </span><span class="identifier">canonicalStringRepresentation</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>The canonical String representation of the object</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -48,7 +58,9 @@
 <p><a href="is-member.html">isMember</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">isMember</span><span class="symbol">(</span><span class="identifier" id="de.difuture.ekut.pht.lib.registry.train.tag.SpecialTrainTag.Companion$isMember(kotlin.String)/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+<code><span class="keyword">fun </span><span class="identifier">isMember</span><span class="symbol">(</span><span class="identifier" id="de.difuture.ekut.pht.lib.registry.train.tag.SpecialTrainTag.Companion$isMember(kotlin.String)/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Tests whether the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a> value is a representation of a <a href="./index.html">SpecialTrainTag</a></p>
+</td>
 </tr>
 </tbody>
 </table>

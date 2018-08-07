@@ -1,0 +1,65 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>ITrainTag - library</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">library</a>&nbsp;/&nbsp;<a href="../index.html">de.difuture.ekut.pht.lib.registry.train.tag</a>&nbsp;/&nbsp;<a href="./index.html">ITrainTag</a><br/>
+<br/>
+<h1>ITrainTag</h1>
+<code><span class="keyword">interface </span><span class="identifier">ITrainTag</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../de.difuture.ekut.pht.lib.common/-i-canonical-string-representable/index.html"><span class="identifier">ICanonicalStringRepresentable</span></a></code>
+<p>Represents the Tag of a Train.</p>
+<p><strong>Author</strong><br/>
+Lukas Zimmermann</p>
+<p><strong>See Also</strong><br/>
+<p><a href="../-special-train-tag/index.html">SpecialTrainTag</a></p>
+</p>
+<p><strong>Since</strong><br/>
+0.0.1</p>
+<h3>Inherited Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../../de.difuture.ekut.pht.lib.common/-i-canonical-string-representable/canonical-string-representation.html">canonicalStringRepresentation</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">canonicalStringRepresentation</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>The canonical String representation of the object</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Companion Object Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="of.html">of</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">of</span><span class="symbol">(</span><span class="identifier" id="de.difuture.ekut.pht.lib.registry.train.tag.ITrainTag.Companion$of(kotlin.String)/value">value</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">ITrainTag</span></a></code>
+<p>Creates a <a href="./index.html">ITrainTag</a> of the provided <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a> value</p>
+<code><span class="keyword">fun </span><span class="identifier">of</span><span class="symbol">(</span><span class="identifier" id="de.difuture.ekut.pht.lib.registry.train.tag.ITrainTag.Companion$of(de.difuture.ekut.pht.lib.common.docker.DockerTag)/tag">tag</span><span class="symbol">:</span>&nbsp;<a href="../../de.difuture.ekut.pht.lib.common.docker/-docker-tag/index.html"><span class="identifier">DockerTag</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">ITrainTag</span></a></code>
+<p>Converts a <a href="../../de.difuture.ekut.pht.lib.common.docker/-docker-tag/index.html">DockerTag</a> to a <a href="./index.html">ITrainTag</a> instance</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-special-train-tag/index.html">SpecialTrainTag</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">SpecialTrainTag</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">ITrainTag</span></a></code>
+<p>Represents train tags with special semantics.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

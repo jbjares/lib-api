@@ -9,6 +9,11 @@
 <br/>
 <h1>DockerRegistryClient</h1>
 <code><span class="keyword">class </span><span class="identifier">DockerRegistryClient</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-i-docker-registry-client/index.html"><span class="identifier">IDockerRegistryClient</span></a></code>
+<p>Implementation of the Docker Registry Client Interface for V2 Docker Registry.</p>
+<p><strong>Author</strong><br/>
+Lukas Zimmermann</p>
+<p><strong>Since</strong><br/>
+0.0.1</p>
 <h3>Constructors</h3>
 <table>
 <tbody>
@@ -17,7 +22,9 @@
 <p><a href="-init-.html">&lt;init&gt;</a></p>
 </td>
 <td>
-<code><span class="identifier">DockerRegistryClient</span><span class="symbol">(</span><span class="identifier" id="de.difuture.ekut.pht.lib.registry.docker.DockerRegistryClient$<init>(java.net.URI, de.difuture.ekut.pht.lib.http.GetRestClient)/uri">uri</span><span class="symbol">:</span>&nbsp;<a href="http://docs.oracle.com/javase/6/docs/api/java/net/URI.html"><span class="identifier">URI</span></a><span class="symbol">, </span><span class="identifier" id="de.difuture.ekut.pht.lib.registry.docker.DockerRegistryClient$<init>(java.net.URI, de.difuture.ekut.pht.lib.http.GetRestClient)/client">client</span><span class="symbol">:</span>&nbsp;<a href="../../de.difuture.ekut.pht.lib.http/-get-rest-client/index.html"><span class="identifier">GetRestClient</span></a><span class="symbol">)</span></code></td>
+<code><span class="identifier">DockerRegistryClient</span><span class="symbol">(</span><span class="identifier" id="de.difuture.ekut.pht.lib.registry.docker.DockerRegistryClient$<init>(java.net.URI, de.difuture.ekut.pht.lib.http.IHttpGetClient)/uri">uri</span><span class="symbol">:</span>&nbsp;<a href="http://docs.oracle.com/javase/6/docs/api/java/net/URI.html"><span class="identifier">URI</span></a><span class="symbol">, </span><span class="identifier" id="de.difuture.ekut.pht.lib.registry.docker.DockerRegistryClient$<init>(java.net.URI, de.difuture.ekut.pht.lib.http.IHttpGetClient)/client">client</span><span class="symbol">:</span>&nbsp;<a href="../../de.difuture.ekut.pht.lib.http/-i-http-get-client/index.html"><span class="identifier">IHttpGetClient</span></a><span class="symbol">)</span></code>
+<p>Implementation of the Docker Registry Client Interface for V2 Docker Registry.</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -29,7 +36,9 @@
 <p><a href="uri.html">uri</a></p>
 </td>
 <td>
-<code><span class="keyword">val </span><span class="identifier">uri</span><span class="symbol">: </span><a href="http://docs.oracle.com/javase/6/docs/api/java/net/URI.html"><span class="identifier">URI</span></a></code></td>
+<code><span class="keyword">val </span><span class="identifier">uri</span><span class="symbol">: </span><a href="http://docs.oracle.com/javase/6/docs/api/java/net/URI.html"><span class="identifier">URI</span></a></code>
+<p>The <a href="http://docs.oracle.com/javase/6/docs/api/java/net/URI.html">URI</a> of the Docker Registry.</p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -41,14 +50,18 @@
 <p><a href="list-repositories.html">listRepositories</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">listRepositories</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../de.difuture.ekut.pht.lib.registry.docker.data/-docker-registry-repositories/index.html"><span class="identifier">DockerRegistryRepositories</span></a></code></td>
+<code><span class="keyword">fun </span><span class="identifier">listRepositories</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../de.difuture.ekut.pht.lib.registry.docker.data/-docker-registry-repositories/index.html"><span class="identifier">DockerRegistryRepositories</span></a></code>
+<p>Lists all the available repositories in the Docker Registry.</p>
+</td>
 </tr>
 <tr>
 <td>
 <p><a href="list-tags.html">listTags</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><span class="identifier">listTags</span><span class="symbol">(</span><span class="identifier" id="de.difuture.ekut.pht.lib.registry.docker.DockerRegistryClient$listTags(kotlin.String)/repository">repository</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../de.difuture.ekut.pht.lib.registry.docker.data/-docker-registry-tags/index.html"><span class="identifier">DockerRegistryTags</span></a></code></td>
+<code><span class="keyword">fun </span><span class="identifier">listTags</span><span class="symbol">(</span><span class="identifier" id="de.difuture.ekut.pht.lib.registry.docker.DockerRegistryClient$listTags(kotlin.String)/repository">repository</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../de.difuture.ekut.pht.lib.registry.docker.data/-docker-registry-tags/index.html"><span class="identifier">DockerRegistryTags</span></a></code>
+<p>Lists all the tags for a specific repository.</p>
+</td>
 </tr>
 </tbody>
 </table>

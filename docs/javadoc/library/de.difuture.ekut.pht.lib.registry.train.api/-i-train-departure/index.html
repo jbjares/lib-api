@@ -1,0 +1,75 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>ITrainDeparture - library</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">library</a>&nbsp;/&nbsp;<a href="../index.html">de.difuture.ekut.pht.lib.registry.train.api</a>&nbsp;/&nbsp;<a href="./index.html">ITrainDeparture</a><br/>
+<br/>
+<h1>ITrainDeparture</h1>
+<code><span class="keyword">interface </span><span class="identifier">ITrainDeparture</span><span class="symbol">&lt;</span><span class="identifier">A</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../de.difuture.ekut.pht.lib.runtime/-i-runtime-client.html"><span class="identifier">IRuntimeClient</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-i-train-interface/index.html"><span class="identifier">ITrainInterface</span></a><span class="symbol">&lt;</span><a href="index.html#A"><span class="identifier">A</span></a><span class="symbol">&gt;</span></code>
+<p>The <a href="./index.html">ITrainDeparture</a> for this Train instance.</p>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="client.html">client</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">client</span><span class="symbol">: </span><a href="index.html#A"><span class="identifier">A</span></a></code>
+<p>The runtime client that is associated with this <a href="./index.html">ITrainDeparture</a>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-i-train-interface/train-id.html">trainId</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">trainId</span><span class="symbol">: </span><a href="../../de.difuture.ekut.pht.lib.registry.train.id/-i-train-id/index.html"><span class="identifier">ITrainId</span></a></code>
+<p>The <a href="../../de.difuture.ekut.pht.lib.registry.train.id/-i-train-id/index.html">ITrainId</a> of the Train to which this object refers.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-i-train-interface/train-tag.html">trainTag</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">trainTag</span><span class="symbol">: </span><a href="../../de.difuture.ekut.pht.lib.registry.train.tag/-i-train-tag/index.html"><span class="identifier">ITrainTag</span></a></code>
+<p>The <a href="../../de.difuture.ekut.pht.lib.registry.train.tag/-i-train-tag/index.html">ITrainTag</a> of the Train to which this object refers.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="is-valid.html">isValid</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">isValid</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Checks whether this <a href="./index.html">ITrainDeparture</a> is valid, i.e. whether the result of running the algorithm can
+be accessed.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="print-summary.html">printSummary</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">printSummary</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>Uses the Train API to print the summary of the train.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
