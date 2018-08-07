@@ -7,6 +7,7 @@ import de.difuture.ekut.pht.lib.http.TestHttpClient
 import de.difuture.ekut.pht.lib.registry.docker.data.DockerRegistryEvents
 import de.difuture.ekut.pht.test.lib.SingleExposedPortContainer
 import de.difuture.ekut.pht.test.lib.TEST_TRAIN_REGISTRY_REPOSITORY
+import de.difuture.ekut.pht.test.lib.TRAINS_TEST_ALL
 import org.apache.http.HttpStatus
 import org.junit.ClassRule
 import org.junit.Test
@@ -14,8 +15,18 @@ import org.apache.http.client.methods.HttpGet
 import org.apache.http.impl.client.HttpClientBuilder
 import org.junit.Assert
 import org.junit.Before
+import java.net.URI
 
 
+/**
+ *
+ * Tests [DockerRegistryClient]
+ *
+ * @author Lukas Zimmermann
+ * @see DockerRegistryClient
+ * @since 0.0.1
+ *
+ */
 class DockerRegistryClientTests {
 
     /////////////////////////  Used for Notifications communication  //////////////////////////////////////////
@@ -27,35 +38,23 @@ class DockerRegistryClientTests {
         @JsonProperty("items") val items: List<Int>
     )
 
-
-
     /////////////////////////  Companion  //////////////////////////////////////////////////////////////
     companion object {
 
-        // Trains to be tested
-        private const val TRAIN_HOSTNAME = "test_hostname"
-        private const val TRAIN_PRINT_HELLO_WORLD = "test_print_hello_world"
-
         // Container that is used for fetching Docker Registry Notifications
         @ClassRule @JvmField
-        val REGISTRY : SingleExposedPortContainer =
-                SingleExposedPortContainer(
-                        TEST_TRAIN_REGISTRY_REPOSITORY,
-                        5000)
+        val REGISTRY = SingleExposedPortContainer(TEST_TRAIN_REGISTRY_REPOSITORY, 5000)
 
         @ClassRule @JvmField
-        val NOTIFICATIONS: SingleExposedPortContainer =
-                SingleExposedPortContainer(
+        val NOTIFICATIONS = SingleExposedPortContainer(
                         "lukaszimmermann/pht-test-train-registry-notifications:latest",
                         6000)
     }
     /////////////////////////  The registry client  /////////////////////////////////////////////////////////////
     private lateinit var client : IDockerRegistryClient
 
-    @Before
-    fun before() {
+    @Before fun before() {
 
-        // The Docker Registry Client that should be tested
         this.client = DockerRegistryClient(REGISTRY.getExternalURI(), TestHttpClient())
     }
 
@@ -73,8 +72,7 @@ class DockerRegistryClientTests {
 
         // Deserialize groups
         val mapper = ObjectMapper()
-        val groups : List<Group> = mapper.readValue(
-                        httpResponse.entity.content)
+        val groups : List<Group> = mapper.readValue(httpResponse.entity.content)
 
         // Test all groups and all items
         for (group in groups) {
@@ -99,23 +97,30 @@ class DockerRegistryClientTests {
         }
     }
 
+    // Asserts that the position of the '/' character does not matter and that two '/' characters
+    // are resolved correctly
+    @Test fun resolve_uri() {
 
-    @Test
-    fun client_list_trains() {
-
-        val repos = this.client.listRepositories().repositories
-        Assert.assertTrue(TRAIN_HOSTNAME in repos && TRAIN_PRINT_HELLO_WORLD in repos)
+        Assert.assertEquals(
+                URI.create("http://localhost:5000").resolve("/test"),
+                URI.create("http://localhost:5000/").resolve("/test"))
+        Assert.assertEquals(
+                URI.create("http://localhost:5000").resolve("/test"),
+                URI.create("http://localhost:5000/").resolve("test"))
     }
 
-    @Test
-    fun client_list_tags() {
 
-        val init = "init"
-        val tagsHostname = this.client.listTags(TRAIN_HOSTNAME)
-        val tagsPrintHelloWorld = this.client.listTags(TRAIN_PRINT_HELLO_WORLD)
-        Assert.assertEquals(TRAIN_HOSTNAME, tagsHostname.name)
-        Assert.assertEquals(TRAIN_PRINT_HELLO_WORLD, tagsPrintHelloWorld.name)
-        Assert.assertTrue(init in tagsHostname.tags)
-        Assert.assertTrue(init in tagsPrintHelloWorld.tags)
+    @Test fun client_list_trains() {
+
+        val repos = this.client.listRepositories()
+        TRAINS_TEST_ALL.forEach {Assert.assertTrue(it in repos)}
+    }
+
+    @Test fun client_list_tags() {
+
+        TRAINS_TEST_ALL.forEach {
+
+            Assert.assertTrue("test" in client.listTags(it))
+        }
     }
 }

@@ -6,6 +6,14 @@ import org.junit.Before
 import org.junit.Test
 
 
+/**
+ * Tests [DockerRegistryRepositories]
+ *
+ * @author Lukas Zimmermann
+ * @see DockerRegistryRepositories
+ * @since 0.0.1
+ *
+ */
 class DockerRegistryRepositoriesTests {
 
     private lateinit var repositories: List<DockerRegistryRepositories>

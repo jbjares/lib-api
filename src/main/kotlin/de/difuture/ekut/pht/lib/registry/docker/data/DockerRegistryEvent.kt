@@ -8,9 +8,11 @@ import java.util.*
 
 
 /**
- * Represents a event of a Docker Registry
+ * Represents a event of a Docker Registry.
  *
  * @author Lukas Zimmermann
+ * @since 0.0.1
+ *
  */
 data class DockerRegistryEvent(
 

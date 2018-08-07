@@ -6,6 +6,15 @@ import org.junit.Before
 import org.junit.Test
 
 
+/**
+ * Tests [DockerRegistryEvent]
+ *
+ * @author Lukas Zimmermann
+ * @see [DockerRegistryEvent]
+ * @see [DockerRegistryEvents]
+ * @since 0.0.1
+ *
+ */
 class DockerRegistryEventTests {
 
     private lateinit var events: List<DockerRegistryEvent>

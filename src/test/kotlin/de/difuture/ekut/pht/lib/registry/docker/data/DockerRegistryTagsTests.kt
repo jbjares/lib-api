@@ -5,6 +5,14 @@ import io.github.benas.randombeans.api.EnhancedRandom
 import org.junit.Before
 import org.junit.Test
 
+/**
+ * Test [DockerRegistryTags]
+ *
+ * @author Lukas Zimmermann
+ * @see DockerRegistryTags
+ * @since 0.0.1
+ *
+ */
 class DockerRegistryTagsTests {
 
     private lateinit var tags: List<DockerRegistryTags>
