@@ -1,15 +1,16 @@
 package de.difuture.ekut.pht.lib.registry.train
 
+import de.difuture.ekut.pht.lib.registry.train.id.ITrainId
 import de.difuture.ekut.pht.test.lib.TRAINS_TEST_ALL
 import org.junit.Assert
 import org.junit.Test
 
 
 /**
- * Tests [TrainId]
+ * Tests [ITrainId]
  *
  * @author Lukas Zimmermann
- * @see TrainId
+ * @see ITrainId
  * @since 0.0.1
  *
  */
@@ -19,31 +20,47 @@ class TrainIdTest {
 
         listOf("a", "Z").plus(TRAINS_TEST_ALL).forEach {
 
-            Assert.assertEquals(it, TrainId(it).canonicalStringRepresentation)
+            Assert.assertEquals(it, ITrainId.of(it).canonicalStringRepresentation)
         }
     }
 
     @Test(expected = IllegalArgumentException::class)
-    fun invalid_1() { TrainId("") }
+    fun invalid_1() {
+        ITrainId.of("")
+    }
 
     @Test(expected = IllegalArgumentException::class)
-    fun invalid_2() { TrainId("_") }
+    fun invalid_2() {
+        ITrainId.of("_")
+    }
 
     @Test(expected = IllegalArgumentException::class)
-    fun invalid_3() { TrainId("69fkxhzjhfghs") }
+    fun invalid_3() {
+        ITrainId.of("69fkxhzjhfghs")
+    }
 
     @Test(expected = IllegalArgumentException::class)
-    fun invalid_4() { TrainId("-") }
+    fun invalid_4() {
+        ITrainId.of("-")
+    }
 
     @Test(expected = IllegalArgumentException::class)
-    fun invalid_5() { TrainId("-akjfjk0") }
+    fun invalid_5() {
+        ITrainId.of("-akjfjk0")
+    }
 
     @Test(expected = IllegalArgumentException::class)
-    fun invalid_6() { TrainId("afbsjf-") }
+    fun invalid_6() {
+        ITrainId.of("afbsjf-")
+    }
 
     @Test(expected = IllegalArgumentException::class)
-    fun invalid_7() { TrainId("af  bsjf") }
+    fun invalid_7() {
+        ITrainId.of("af  bsjf")
+    }
 
     @Test(expected = IllegalArgumentException::class)
-    fun invalid_8() { TrainId("0") }
+    fun invalid_8() {
+        ITrainId.of("0")
+    }
 }
