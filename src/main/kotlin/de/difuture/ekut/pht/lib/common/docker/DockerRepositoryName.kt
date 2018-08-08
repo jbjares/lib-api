@@ -21,7 +21,7 @@ data class DockerRepositoryName(
         val hostPortTuple : HostPortTuple? = null
 ) : ICanonicalStringRepresentable {
 
-    override val canonicalStringRepresentation: String
+    override val repr: String
     init {
 
         // Require that the components match the regular expression
@@ -34,9 +34,9 @@ data class DockerRepositoryName(
         // Join components with a '/' character
         val components = component1.plus(component2?.let { "/$it" } ?: "")
 
-        this.canonicalStringRepresentation =  if (hostPortTuple != null) {
+        this.repr =  if (hostPortTuple != null) {
 
-            "${hostPortTuple.canonicalStringRepresentation}/$components"
+            "${hostPortTuple.repr}/$components"
         } else {
 
             components
@@ -50,7 +50,7 @@ data class DockerRepositoryName(
      * @param tag [DockerTag] against this [DockerRepositoryName] should be resolved.
      * @return [String] representation of the Docker Name
      */
-    fun resolveTag(tag : DockerTag) = "$canonicalStringRepresentation:${tag.canonicalStringRepresentation}"
+    fun resolveTag(tag : DockerTag) = "$repr:${tag.repr}"
 
     companion object {
         private val componentRegex = Regex("[a-z0-9]+(?:[._-][a-z0-9]+)*")

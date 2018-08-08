@@ -13,10 +13,10 @@ import de.difuture.ekut.pht.lib.common.isValidDockerHash
  * @since 0.0.1
  */
 data class DockerImageId(
-        override val canonicalStringRepresentation: String
+        override val repr: String
 ) : ICanonicalStringRepresentable {
 
     init {
-        require(canonicalStringRepresentation.isValidDockerHash())
+        require(repr.isValidDockerHash())
     }
 }

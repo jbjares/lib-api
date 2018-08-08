@@ -27,6 +27,6 @@ data class HostPortTuple(
         require(   host.isValidHostname() || host.isValidIP4Address() )
         require(port?.isValidPort() ?: true)
     }
-    override val canonicalStringRepresentation = host.plus(port?.let {":$it"} ?: "")
+    override val repr = host.plus(port?.let {":$it"} ?: "")
     constructor(uri : URI)  : this(uri.host, uri.port)
 }

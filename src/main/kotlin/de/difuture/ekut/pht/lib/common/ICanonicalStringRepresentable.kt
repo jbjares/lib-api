@@ -18,5 +18,5 @@ interface ICanonicalStringRepresentable {
     /**
      * The canonical String representation of the object
      */
-    val canonicalStringRepresentation : String
+    val repr : String
 }

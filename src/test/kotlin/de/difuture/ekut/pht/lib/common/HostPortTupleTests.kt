@@ -34,7 +34,7 @@ class HostPortTupleTests {
             val portString = port?.let { ":$it"} ?: ""
             Assert.assertEquals(
 
-                    HostPortTuple(host, port).canonicalStringRepresentation, host.plus(portString))
+                    HostPortTuple(host, port).repr, host.plus(portString))
         }
     }
 

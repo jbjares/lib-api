@@ -15,9 +15,9 @@ class DockerRepositoryNameTests {
         val name2 = DockerRepositoryName("library", "python")
         val name3 = DockerRepositoryName("library", "python", HostPortTuple("localhost", 5000))
 
-        Assert.assertEquals("alpine", name1.canonicalStringRepresentation)
-        Assert.assertEquals("library/python", name2.canonicalStringRepresentation)
-        Assert.assertEquals("localhost:5000/library/python", name3.canonicalStringRepresentation)
+        Assert.assertEquals("alpine", name1.repr)
+        Assert.assertEquals("library/python", name2.repr)
+        Assert.assertEquals("localhost:5000/library/python", name3.repr)
     }
 
     @Test(expected = IllegalArgumentException::class)

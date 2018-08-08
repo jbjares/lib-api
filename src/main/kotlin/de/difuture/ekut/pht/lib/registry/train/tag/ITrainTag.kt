@@ -15,7 +15,7 @@ import de.difuture.ekut.pht.lib.common.docker.DockerTag
  */
 interface ITrainTag : ICanonicalStringRepresentable {
 
-    private data class GenericITrainTag(override val canonicalStringRepresentation: String) : ITrainTag
+    private data class GenericITrainTag(override val repr: String) : ITrainTag
 
     companion object {
 
@@ -44,6 +44,6 @@ interface ITrainTag : ICanonicalStringRepresentable {
          * @return The [ITrainTag] instance that results from this [DockerTag]
          *
          */
-        fun of(tag : DockerTag) = of(tag.canonicalStringRepresentation)
+        fun of(tag : DockerTag) = of(tag.repr)
     }
 }

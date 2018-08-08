@@ -15,7 +15,7 @@ class DockerTagTests {
                 "python3.8-alpine3.8"
         ).forEach {
 
-            Assert.assertEquals(it, DockerTag(it).canonicalStringRepresentation)
+            Assert.assertEquals(it, DockerTag(it).repr)
         }
     }
 

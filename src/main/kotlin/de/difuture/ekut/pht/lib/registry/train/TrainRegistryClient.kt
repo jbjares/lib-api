@@ -61,9 +61,9 @@ class TrainRegistryClient(
             // ensure that the image is pulled from remote and determine the ID of the Docker image
             val imageId = dockerClient.pull(
                     DockerRepositoryName(
-                        trainId.canonicalStringRepresentation,
+                        trainId.repr,
                         hostPortTuple = hostTuple),
-                    DockerTag(trainTag.canonicalStringRepresentation))
+                    DockerTag(trainTag.repr))
             return dockerClient.run(imageId, listOf(command), true)
         }
 
@@ -82,7 +82,7 @@ class TrainRegistryClient(
 
             val imageId = client.commit(
                     containerId,
-                    DockerRepositoryName(trainId.canonicalStringRepresentation),
+                    DockerRepositoryName(trainId.repr),
                     dockerTag)
 
             return DockerTrainDeparture(
@@ -123,10 +123,10 @@ class TrainRegistryClient(
     override fun push(departure: IDockerTrainDeparture) {
 
         val name = DockerRepositoryName(
-                departure.trainId.canonicalStringRepresentation,
+                departure.trainId.repr,
                 hostPortTuple = HostPortTuple(dockerRegistryClient.uri))
 
-        val tag = DockerTag(departure.trainTag.canonicalStringRepresentation)
+        val tag = DockerTag(departure.trainTag.repr)
 
         departure.client.push(name, tag)
     }

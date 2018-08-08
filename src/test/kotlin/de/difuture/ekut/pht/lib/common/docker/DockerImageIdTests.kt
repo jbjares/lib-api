@@ -13,7 +13,7 @@ class DockerImageIdTests {
 
             "a8c94ff83800", "0", "a", "nd632dw82e", "adabjhdt2"
         ).forEach {
-            Assert.assertEquals(it, DockerImageId(it).canonicalStringRepresentation)
+            Assert.assertEquals(it, DockerImageId(it).repr)
         }
     }
 }

@@ -20,7 +20,7 @@ class TrainIdTest {
 
         listOf("a", "Z").plus(TRAINS_TEST_ALL).forEach {
 
-            Assert.assertEquals(it, ITrainId.of(it).canonicalStringRepresentation)
+            Assert.assertEquals(it, ITrainId.of(it).repr)
         }
     }
 

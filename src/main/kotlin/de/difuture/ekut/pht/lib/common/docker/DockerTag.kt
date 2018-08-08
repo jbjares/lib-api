@@ -13,13 +13,13 @@ import de.difuture.ekut.pht.lib.common.containsWhitespace
  */
 data class DockerTag(
 
-        override val canonicalStringRepresentation : String
+        override val repr : String
 
 ) : ICanonicalStringRepresentable {
 
     // TODO What Regex does the Docker Tag need to match?
     init {
-        require(canonicalStringRepresentation.isNotBlank())
-        require( ! canonicalStringRepresentation.containsWhitespace())
+        require(repr.isNotBlank())
+        require( ! repr.containsWhitespace())
     }
 }

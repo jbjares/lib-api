@@ -11,7 +11,7 @@ import de.difuture.ekut.pht.lib.common.ICanonicalStringRepresentable
  */
 interface ITrainId : ICanonicalStringRepresentable {
 
-    private data class GenericTrainId(override val canonicalStringRepresentation: String) : ITrainId
+    private data class GenericTrainId(override val repr: String) : ITrainId
 
     companion object {
 

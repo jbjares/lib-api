@@ -9,13 +9,13 @@ package de.difuture.ekut.pht.lib.registry.train.tag
  * @since 0.0.1
  *
  */
-enum class SpecialTrainTag(override val canonicalStringRepresentation: String): ITrainTag {
+enum class SpecialTrainTag(override val repr: String): ITrainTag {
 
     IMMEDIATE("immediate"),
     TEST("test");
 
     companion object {
-        private val names = SpecialTrainTag.values().map { it.canonicalStringRepresentation }.toSet()
+        private val names = SpecialTrainTag.values().map { it.repr }.toSet()
 
         /**
          *  Tests whether the [String] value is a representation of a [SpecialTrainTag]

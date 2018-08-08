@@ -47,7 +47,7 @@ class DockerTrainArrivalTests {
     @Test
     fun test_summary_trains_are_present() {
 
-        val trainArrivals = this.client.listTrainArrivals().map { it.trainId.canonicalStringRepresentation }.toSet()
+        val trainArrivals = this.client.listTrainArrivals().map { it.trainId.repr }.toSet()
 
         Assert.assertTrue(TRAIN_TEST_PRINT_SUMMARY_1 in trainArrivals)
         Assert.assertTrue(TRAIN_TEST_PRINT_SUMMARY_2 in trainArrivals)
