@@ -104,13 +104,15 @@ interface IDockerClient : IRuntimeClient {
      * @param containerId The [DockerContainerId] of the container to be commited.
      * @param targetRepo The [DockerRepositoryName] of the Docker repository to commit to.
      * @param targetTag The [DockerTag] that the resulting image should be tagged with.
-     *
+     * @param author
      * @return The [DockerImageId] that points to the newly created image.
      *
      */
     fun commit(containerId: DockerContainerId,
                targetRepo: DockerRepositoryName,
-               targetTag: DockerTag) : DockerImageId
+               targetTag: DockerTag,
+               author : String? = null,
+               comment : String? = null) : DockerImageId
 
     /**
      * Lists the [DockerImageId] that this [IDockerClient] has access to.

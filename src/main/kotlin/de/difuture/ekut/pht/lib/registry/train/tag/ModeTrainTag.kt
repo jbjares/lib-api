@@ -2,20 +2,19 @@ package de.difuture.ekut.pht.lib.registry.train.tag
 
 
 /**
- * Represents train tags with special semantics. This currently only includes the 'test' train
- * tag.
+ * Represents train tags that encode the mode of a train. Currently, only Immediate is supported.
  *
  * @author Lukas Zimmermann
  * @see ITrainTag
  * @since 0.0.1
  *
  */
-enum class SpecialTrainTag(override val repr: String): ITrainTag {
+enum class ModeTrainTag(override val repr: String) : ITrainTag {
 
-    TEST("test");
+    IMMEDIATE("immediate");
 
     companion object {
-        private val names = SpecialTrainTag.values().map { it.repr }.toSet()
+        private val names = ModeTrainTag.values().map { it.repr }.toSet()
 
         /**
          *  Tests whether the [String] value is a representation of a [SpecialTrainTag]

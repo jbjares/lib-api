@@ -15,7 +15,7 @@ import de.difuture.ekut.pht.lib.common.docker.DockerTag
  */
 interface ITrainTag : ICanonicalStringRepresentable {
 
-    private data class GenericITrainTag(override val repr: String) : ITrainTag
+    private data class GenericTrainTag(override val repr: String) : ITrainTag
 
     companion object {
 
@@ -29,11 +29,10 @@ interface ITrainTag : ICanonicalStringRepresentable {
 
             require(value.isNotBlank())
             require( ! value.containsWhitespace())
-
-            return if (SpecialTrainTag.isMember(value)) {
-                SpecialTrainTag.valueOf(value.toUpperCase())
-            } else {
-                GenericITrainTag(value)
+            return when {
+                SpecialTrainTag.isMember(value) -> SpecialTrainTag.valueOf(value.toUpperCase())
+                ModeTrainTag.isMember(value) -> ModeTrainTag.valueOf(value.toUpperCase())
+                else -> GenericTrainTag(value)
             }
         }
 

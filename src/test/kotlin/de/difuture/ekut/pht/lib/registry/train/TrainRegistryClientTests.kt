@@ -6,6 +6,7 @@ import de.difuture.ekut.pht.lib.registry.docker.DockerRegistryClient
 import de.difuture.ekut.pht.lib.registry.train.id.ITrainId
 import de.difuture.ekut.pht.lib.registry.train.tag.SpecialTrainTag
 import de.difuture.ekut.pht.lib.registry.train.tag.ITrainTag
+import de.difuture.ekut.pht.lib.registry.train.tag.ModeTrainTag
 import de.difuture.ekut.pht.test.lib.SingleExposedPortContainer
 import de.difuture.ekut.pht.test.lib.TEST_TRAIN_REGISTRY_REPOSITORY
 import org.junit.ClassRule
@@ -50,12 +51,12 @@ class TrainRegistryClientTests {
     @Test
     fun test_list_train_arrivals_tags() {
 
-        val arrivalsImmediate= this.client.listTrainArrivals(SpecialTrainTag.IMMEDIATE)
+        val arrivalsImmediate= this.client.listTrainArrivals(ModeTrainTag.IMMEDIATE)
         val arrivalsTests = this.client.listTrainArrivals(SpecialTrainTag.TEST)
 
         //Assert.assertTrue(arrivalsImmediate.size > 1)
         Assert.assertTrue(arrivalsTests.size > 1)
-        Assert.assertTrue(arrivalsImmediate.all { it.trainTag == SpecialTrainTag.IMMEDIATE } )
+        Assert.assertTrue(arrivalsImmediate.all { it.trainTag == ModeTrainTag.IMMEDIATE } )
         Assert.assertTrue(arrivalsTests.all { it.trainTag == SpecialTrainTag.TEST })
     }
 
