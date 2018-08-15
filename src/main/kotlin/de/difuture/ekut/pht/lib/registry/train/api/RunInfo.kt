@@ -14,4 +14,15 @@ data class RunInfo(
 
         val stationID : Int,
         val mode : ModeTrainTag
-)
+) {
+
+    /**
+     * Encodes the content of [RunInfo] as command line parameters, as it would be passed to `docker run`.
+     *
+     */
+    val commandLine = listOf(
+
+        "--stationid", stationID.toString(),
+        "--mode", mode.repr
+    )
+}

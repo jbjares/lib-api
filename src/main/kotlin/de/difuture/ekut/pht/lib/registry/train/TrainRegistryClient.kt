@@ -57,7 +57,7 @@ class TrainRegistryClient(
     ) : IDockerTrainArrival {
 
 
-        private fun run(dockerClient : IDockerClient, rm : Boolean, vararg command : String) : DockerContainerOutput {
+        private fun run(dockerClient : IDockerClient, rm : Boolean, commands : List<String>) : DockerContainerOutput {
 
             // ensure that the image is pulled from remote and determine the ID of the Docker image
             val imageId = dockerClient.pull(
@@ -65,17 +65,20 @@ class TrainRegistryClient(
                         trainId.repr,
                         hostPortTuple = hostTuple),
                     DockerTag(trainTag.repr))
-            return dockerClient.run(imageId, command.toList(), rm)
+            return dockerClient.run(imageId, commands, rm)
         }
 
-        override fun printSummary(client: IDockerClient, info : RunInfo) = run(client, true, "print_summary").stdout
+        override fun printSummary(client: IDockerClient, info : RunInfo)
+                = run(client, true, info.commandLine.plus("print_summary")).stdout
 
-        override fun checkRequirements(client: IDockerClient, info : RunInfo) = run(client, true, "check_requirements").exitCode == 0
+        override fun checkRequirements(client: IDockerClient, info : RunInfo)
+                = run(client, true, info.commandLine.plus("check_requirements")).exitCode == 0
 
 
         override fun runAlgorithm(client: IDockerClient, info : RunInfo): DockerTrainDeparture {
 
-            val containerOutput = run(client, false, "run_algorithm")
+            val containerOutput = run(client, false, info.commandLine.plus("run_algorithm"))
+
             val containerId = containerOutput.containerId
             val departureTag = ObjectMapper().readTree(containerOutput.stdout)["departure_tag"].asText()
             val trainTag  = ITrainTag.of(departureTag)
