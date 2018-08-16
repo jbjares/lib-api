@@ -32,6 +32,8 @@ interface IDockerClient : IRuntimeClient {
      * @param imageId The Image ID of the Docker Image that should be run.
      * @param commands The list of Strings that is passed to the image.
      * @param rm Whether the Docker client should remove the container after it has been exited.
+     * @param env The environment variables that should be made available to the container
+     * @param networkId The [DockerNetworkId] that the run container will attach to.
      *
      * @return [DockerContainerOutput] object describing the output of the Docker run command.
      *
@@ -39,6 +41,7 @@ interface IDockerClient : IRuntimeClient {
     fun run(imageId : DockerImageId,
             commands : List<String>,
             rm : Boolean,
+            env : Map<String, String>? = null,
             networkId : DockerNetworkId? = null) : DockerContainerOutput
 
     /**
