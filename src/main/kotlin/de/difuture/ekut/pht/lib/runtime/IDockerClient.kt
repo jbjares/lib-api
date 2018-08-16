@@ -1,9 +1,6 @@
 package de.difuture.ekut.pht.lib.runtime
 
-import de.difuture.ekut.pht.lib.common.docker.DockerContainerId
-import de.difuture.ekut.pht.lib.common.docker.DockerImageId
-import de.difuture.ekut.pht.lib.common.docker.DockerRepositoryName
-import de.difuture.ekut.pht.lib.common.docker.DockerTag
+import de.difuture.ekut.pht.lib.common.docker.*
 
 /**
  * Docker client api that a station needs to implement for using the library components.
@@ -41,7 +38,8 @@ interface IDockerClient : IRuntimeClient {
      */
     fun run(imageId : DockerImageId,
             commands : List<String>,
-            rm : Boolean) : DockerContainerOutput
+            rm : Boolean,
+            networkId : DockerNetworkId? = null) : DockerContainerOutput
 
     /**
      * Removes container with specified ID.
