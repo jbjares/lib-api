@@ -46,7 +46,7 @@ interface IDockerClient : IRuntimeClient {
             env : Map<String, String>? = null,
             networkId : DockerNetworkId? = null,
             warnings : MutableList<String>? = null,
-            timeoutHandler: ITimeoutHandler? = null) : DockerContainerOutput
+            timeoutHandler: IDockerContainerTimeoutHandler? = null) : DockerContainerOutput
 
     /**
      * Removes container with specified ID.
