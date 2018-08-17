@@ -29,6 +29,10 @@ interface IDockerClient : IRuntimeClient {
      * exception. Specifically, if the specified Docker Image does not exist, the method should throw
      * [NoSuchDockerImageException].
      *
+     * Furthermore, note that this interface does not support the procedural separation of creating and
+     * starting containers, as, in the current state of concerns, this separation is considered to be meaningless
+     * for the PHT library.
+     *
      * @param imageId The Image ID of the Docker Image that should be run.
      * @param commands The list of Strings that is passed to the image.
      * @param rm Whether the Docker client should remove the container after it has been exited.
