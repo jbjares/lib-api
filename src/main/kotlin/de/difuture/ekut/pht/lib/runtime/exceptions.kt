@@ -9,7 +9,10 @@ package de.difuture.ekut.pht.lib.runtime
  * @since 0.0.1
  *
  */
-open class DockerClientException(msg : String) : Exception(msg)
+open class DockerClientException(msg : String?) : Exception(msg) {
+
+    constructor(ex : Exception) : this(ex.message)
+}
 
 
 /**
@@ -22,7 +25,10 @@ open class DockerClientException(msg : String) : Exception(msg)
  * @since 0.0.1
  *
  */
-data class NoSuchDockerContainerException(val msg : String) : DockerClientException(msg)
+data class NoSuchDockerContainerException(val msg : String?) : DockerClientException(msg) {
+
+    constructor(ex : Exception) : this(ex.message)
+}
 
 
 /**
@@ -35,7 +41,10 @@ data class NoSuchDockerContainerException(val msg : String) : DockerClientExcept
  * @since 0.0.1
  *
  */
-data class NoSuchDockerImageException(val msg : String) : DockerClientException(msg)
+data class NoSuchDockerImageException(val msg : String?) : DockerClientException(msg) {
+
+    constructor(ex : Exception) : this(ex.message)
+}
 
 
 /**
@@ -48,7 +57,10 @@ data class NoSuchDockerImageException(val msg : String) : DockerClientException(
  * @since 0.0.1
  *
  */
-data class NoSuchDockerRepositoryException(val msg: String) : DockerClientException(msg)
+data class NoSuchDockerRepositoryException(val msg : String?) : DockerClientException(msg) {
+
+    constructor(ex : Exception) : this(ex.message)
+}
 
 
 /**
@@ -61,4 +73,7 @@ data class NoSuchDockerRepositoryException(val msg: String) : DockerClientExcept
  * @since 0.0.1
  *
  */
-data class CreateDockerContainerFailedException(val msg: String) : DockerClientException(msg)
+data class CreateDockerContainerFailedException(val msg: String?) : DockerClientException(msg) {
+
+    constructor(ex : Exception) : this(ex.message)
+}
