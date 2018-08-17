@@ -64,6 +64,22 @@ data class NoSuchDockerRepositoryException(val msg : String?) : DockerClientExce
 
 
 /**
+ * Exception to be thrown when the selected Docker Network does not exist.
+ *
+ * Typically thrown by [IDockerClient.run]
+ *
+ * @authoer Lukas Zimmermann
+ * @see IDockerClient
+ * @since 0.0.1
+ *
+ */
+data class NoSuchDockerNetworkException(val msg : String?) : DockerClientException(msg) {
+
+    constructor(ex : Exception) : this(ex.message)
+}
+
+
+/**
  * Exception that can be thrown to signal that the creation of a Docker container has failed
  *
  * Exception can be used for [IDockerClient.run]
