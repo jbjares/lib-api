@@ -34,6 +34,8 @@ interface IDockerClient : IRuntimeClient {
      * @param rm Whether the Docker client should remove the container after it has been exited.
      * @param env The environment variables that should be made available to the container
      * @param networkId The [DockerNetworkId] that the run container will attach to.
+     * @param timeoutHandler A [ITimeoutHandler] that will be used to interrupt the running
+     * container once the timeout has been reached.
      *
      * @return [DockerContainerOutput] object describing the output of the Docker run command.
      *
@@ -43,7 +45,8 @@ interface IDockerClient : IRuntimeClient {
             rm : Boolean,
             env : Map<String, String>? = null,
             networkId : DockerNetworkId? = null,
-            warnings : MutableList<String>? = null) : DockerContainerOutput
+            warnings : MutableList<String>? = null,
+            timeoutHandler: ITimeoutHandler? = null) : DockerContainerOutput
 
     /**
      * Removes container with specified ID.
