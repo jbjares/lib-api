@@ -8,12 +8,18 @@ package de.difuture.ekut.pht.lib.common
  *
  */
 
-private val dockerHashRegex = Regex("[a-z0-9]+")
+/**
+ * The regular expression for Docker Hash values. The sha256: prefix is optional
+ */
+private val dockerHashRegex = Regex("(?:sha256:)?[a-z0-9]+")
+
+
 private val hostnameRegex
         = Regex("\\p{Alpha}(?:[\\p{Alnum}-]*\\p{Alnum})?(?:\\.\\p{Alpha}(?:[\\p{Alnum}-]*\\p{Alnum})?)*")
 
 
 fun String.isValidDockerHash() = this.matches(dockerHashRegex)
+
 fun String.isValidHostname() = this.matches(hostnameRegex)
 fun String.isValidIP4Address() =
 
