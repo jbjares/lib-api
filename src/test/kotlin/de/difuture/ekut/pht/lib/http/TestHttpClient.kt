@@ -17,5 +17,5 @@ class TestHttpClient : IHttpGetClient {
 
     private val client = HttpClientBuilder.create().build()
 
-    override fun get(uri: URI, httpHeaders: Map<String, String>?): IHttpResponse = TestHttpResponse(client.execute(HttpGet(uri)))
+    override fun get(uri: URI, httpHeaders: Map<HttpHeader, String>?): IHttpResponse = TestHttpResponse(client.execute(HttpGet(uri)))
 }
