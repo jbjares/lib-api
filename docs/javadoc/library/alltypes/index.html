@@ -10,6 +10,20 @@
 <tbody>
 <tr>
 <td>
+<a href="../de.difuture.ekut.pht.lib.runtime/-create-docker-container-failed-exception/index.html">de.difuture.ekut.pht.lib.runtime.CreateDockerContainerFailedException</a></td>
+<td>
+<p>Exception that can be thrown to signal that the creation of a Docker container has failed</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../de.difuture.ekut.pht.lib.registry.docker/-default-docker-registry-client/index.html">de.difuture.ekut.pht.lib.registry.docker.DefaultDockerRegistryClient</a></td>
+<td>
+<p>Implementation of the Docker Registry Client Interface for V2 Docker Registry.</p>
+</td>
+</tr>
+<tr>
+<td>
 <a href="../de.difuture.ekut.pht.lib.runtime/-docker-client-exception/index.html">de.difuture.ekut.pht.lib.runtime.DockerClientException</a></td>
 <td>
 <p>Exception intended to be thrown by <a href="../de.difuture.ekut.pht.lib.runtime/-i-docker-client/index.html">IDockerClient</a> implementations.</p>
@@ -38,9 +52,9 @@
 </tr>
 <tr>
 <td>
-<a href="../de.difuture.ekut.pht.lib.registry.docker/-docker-registry-client/index.html">de.difuture.ekut.pht.lib.registry.docker.DockerRegistryClient</a></td>
+<a href="../de.difuture.ekut.pht.lib.common.docker/-docker-network-id/index.html">de.difuture.ekut.pht.lib.common.docker.DockerNetworkId</a></td>
 <td>
-<p>Implementation of the Docker Registry Client Interface for V2 Docker Registry.</p>
+<p>Represents the ID of a Docker Network.</p>
 </td>
 </tr>
 <tr>
@@ -94,6 +108,12 @@
 </tr>
 <tr>
 <td>
+<a href="../de.difuture.ekut.pht.lib.http/-http-header/index.html">de.difuture.ekut.pht.lib.http.HttpHeader</a></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
 <a href="../de.difuture.ekut.pht.lib.common/-i-canonical-string-representable/index.html">de.difuture.ekut.pht.lib.common.ICanonicalStringRepresentable</a></td>
 <td>
 <p>Interface denoting classes whose instances can be represented as a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a>.</p>
@@ -104,6 +124,12 @@
 <a href="../de.difuture.ekut.pht.lib.runtime/-i-docker-client/index.html">de.difuture.ekut.pht.lib.runtime.IDockerClient</a></td>
 <td>
 <p>Docker client api that a station needs to implement for using the library components.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../de.difuture.ekut.pht.lib.runtime/-i-docker-container-interrupt-handler.html">de.difuture.ekut.pht.lib.runtime.IDockerContainerInterruptHandler</a></td>
+<td>
 </td>
 </tr>
 <tr>
@@ -137,6 +163,13 @@
 <a href="../de.difuture.ekut.pht.lib.http/-i-http-response/index.html">de.difuture.ekut.pht.lib.http.IHttpResponse</a></td>
 <td>
 <p>Represents the response of a Http Request. Currently,</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../de.difuture.ekut.pht.lib.runtime/-i-interrupt-handler/index.html">de.difuture.ekut.pht.lib.runtime.IInterruptHandler</a></td>
+<td>
+<p>Handler that can be passed to runtime commands to determine whether timeout has been reached.</p>
 </td>
 </tr>
 <tr>
@@ -196,6 +229,13 @@
 </tr>
 <tr>
 <td>
+<a href="../de.difuture.ekut.pht.lib.registry.train.tag/-mode-train-tag/index.html">de.difuture.ekut.pht.lib.registry.train.tag.ModeTrainTag</a></td>
+<td>
+<p>Represents train tags that encode the mode of a train. Currently, only Immediate is supported.</p>
+</td>
+</tr>
+<tr>
+<td>
 <a href="../de.difuture.ekut.pht.lib.runtime/-no-such-docker-container-exception/index.html">de.difuture.ekut.pht.lib.runtime.NoSuchDockerContainerException</a></td>
 <td>
 <p>Exception to be thrown when the selected Docker Container does not exits.</p>
@@ -210,6 +250,13 @@
 </tr>
 <tr>
 <td>
+<a href="../de.difuture.ekut.pht.lib.runtime/-no-such-docker-network-exception/index.html">de.difuture.ekut.pht.lib.runtime.NoSuchDockerNetworkException</a></td>
+<td>
+<p>Exception to be thrown when the selected Docker Network does not exist.</p>
+</td>
+</tr>
+<tr>
+<td>
 <a href="../de.difuture.ekut.pht.lib.runtime/-no-such-docker-repository-exception/index.html">de.difuture.ekut.pht.lib.runtime.NoSuchDockerRepositoryException</a></td>
 <td>
 <p>Exception to tbe thrown when the selected repository does not exits.</p>
@@ -217,9 +264,17 @@
 </tr>
 <tr>
 <td>
+<a href="../de.difuture.ekut.pht.lib.registry.train.api/-run-info/index.html">de.difuture.ekut.pht.lib.registry.train.api.RunInfo</a></td>
+<td>
+<p>Represents the set of information that is passed to the train durig runtime.</p>
+</td>
+</tr>
+<tr>
+<td>
 <a href="../de.difuture.ekut.pht.lib.registry.train.tag/-special-train-tag/index.html">de.difuture.ekut.pht.lib.registry.train.tag.SpecialTrainTag</a></td>
 <td>
-<p>Represents train tags with special semantics.</p>
+<p>Represents train tags with special semantics. This currently only includes the 'test' train
+tag.</p>
 </td>
 </tr>
 <tr>

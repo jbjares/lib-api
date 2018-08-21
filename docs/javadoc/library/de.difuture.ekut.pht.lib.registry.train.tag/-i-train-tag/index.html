@@ -22,10 +22,10 @@ Lukas Zimmermann</p>
 <tbody>
 <tr>
 <td>
-<p><a href="../../de.difuture.ekut.pht.lib.common/-i-canonical-string-representable/canonical-string-representation.html">canonicalStringRepresentation</a></p>
+<p><a href="../../de.difuture.ekut.pht.lib.common/-i-canonical-string-representable/repr.html">repr</a></p>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">canonicalStringRepresentation</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">repr</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
 <p>The canonical String representation of the object</p>
 </td>
 </tr>
@@ -52,11 +52,21 @@ Lukas Zimmermann</p>
 <tbody>
 <tr>
 <td>
+<p><a href="../-mode-train-tag/index.html">ModeTrainTag</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">ModeTrainTag</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">ITrainTag</span></a></code>
+<p>Represents train tags that encode the mode of a train. Currently, only Immediate is supported.</p>
+</td>
+</tr>
+<tr>
+<td>
 <p><a href="../-special-train-tag/index.html">SpecialTrainTag</a></p>
 </td>
 <td>
 <code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">SpecialTrainTag</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">ITrainTag</span></a></code>
-<p>Represents train tags with special semantics.</p>
+<p>Represents train tags with special semantics. This currently only includes the 'test' train
+tag.</p>
 </td>
 </tr>
 </tbody>

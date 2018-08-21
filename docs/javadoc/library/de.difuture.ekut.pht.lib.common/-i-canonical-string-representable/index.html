@@ -23,10 +23,10 @@ Lukas Zimmermann</p>
 <tbody>
 <tr>
 <td>
-<p><a href="canonical-string-representation.html">canonicalStringRepresentation</a></p>
+<p><a href="repr.html">repr</a></p>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">canonicalStringRepresentation</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">repr</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
 <p>The canonical String representation of the object</p>
 </td>
 </tr>
@@ -55,6 +55,15 @@ Lukas Zimmermann</p>
 </tr>
 <tr>
 <td>
+<p><a href="../../de.difuture.ekut.pht.lib.common.docker/-docker-network-id/index.html">DockerNetworkId</a></p>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">DockerNetworkId</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">ICanonicalStringRepresentable</span></a></code>
+<p>Represents the ID of a Docker Network.</p>
+</td>
+</tr>
+<tr>
+<td>
 <p><a href="../../de.difuture.ekut.pht.lib.common.docker/-docker-repository-name/index.html">DockerRepositoryName</a></p>
 </td>
 <td>
@@ -79,6 +88,13 @@ Lukas Zimmermann</p>
 <code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">HostPortTuple</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">ICanonicalStringRepresentable</span></a></code>
 <p>Represents tuple of hostname and port, where the port is optional.</p>
 </td>
+</tr>
+<tr>
+<td>
+<p><a href="../../de.difuture.ekut.pht.lib.http/-http-header/index.html">HttpHeader</a></p>
+</td>
+<td>
+<code><span class="keyword">enum</span> <span class="keyword">class </span><span class="identifier">HttpHeader</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">ICanonicalStringRepresentable</span></a></code></td>
 </tr>
 <tr>
 <td>

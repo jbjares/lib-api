@@ -12,6 +12,9 @@
 <p>Exception intended to be thrown by <a href="../-i-docker-client/index.html">IDockerClient</a> implementations.</p>
 <p><strong>Author</strong><br/>
 Lukas Zimmermann</p>
+<p><strong>See Also</strong><br/>
+<p><a href="../-i-docker-client/index.html">IDockerClient</a></p>
+</p>
 <p><strong>Since</strong><br/>
 0.0.1</p>
 <h3>Constructors</h3>
@@ -22,7 +25,7 @@ Lukas Zimmermann</p>
 <p><a href="-init-.html">&lt;init&gt;</a></p>
 </td>
 <td>
-<code><span class="identifier">DockerClientException</span><span class="symbol">(</span><span class="identifier" id="de.difuture.ekut.pht.lib.runtime.DockerClientException$<init>(kotlin.String)/msg">msg</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span></code>
+<code><span class="identifier">DockerClientException</span><span class="symbol">(</span><span class="identifier" id="de.difuture.ekut.pht.lib.runtime.DockerClientException$<init>(java.lang.Exception)/ex">ex</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-exception/index.html"><span class="identifier">Exception</span></a><span class="symbol">)</span></code><code><span class="identifier">DockerClientException</span><span class="symbol">(</span><span class="identifier" id="de.difuture.ekut.pht.lib.runtime.DockerClientException$<init>(kotlin.String)/msg">msg</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">)</span></code>
 <p>Exception intended to be thrown by <a href="../-i-docker-client/index.html">IDockerClient</a> implementations.</p>
 </td>
 </tr>
@@ -31,6 +34,15 @@ Lukas Zimmermann</p>
 <h3>Inheritors</h3>
 <table>
 <tbody>
+<tr>
+<td>
+<p><a href="../-create-docker-container-failed-exception/index.html">CreateDockerContainerFailedException</a></p>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">CreateDockerContainerFailedException</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">DockerClientException</span></a></code>
+<p>Exception that can be thrown to signal that the creation of a Docker container has failed</p>
+</td>
+</tr>
 <tr>
 <td>
 <p><a href="../-no-such-docker-container-exception/index.html">NoSuchDockerContainerException</a></p>
@@ -47,6 +59,15 @@ Lukas Zimmermann</p>
 <td>
 <code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">NoSuchDockerImageException</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">DockerClientException</span></a></code>
 <p>Exception to be thrown when the selected Docker Image does not exist.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-no-such-docker-network-exception/index.html">NoSuchDockerNetworkException</a></p>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">NoSuchDockerNetworkException</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">DockerClientException</span></a></code>
+<p>Exception to be thrown when the selected Docker Network does not exist.</p>
 </td>
 </tr>
 <tr>

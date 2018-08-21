@@ -21,10 +21,10 @@ import java.net.URI
 
 /**
  *
- * Tests [DockerRegistryClient]
+ * Tests [DefaultDockerRegistryClient]
  *
  * @author Lukas Zimmermann
- * @see DockerRegistryClient
+ * @see DefaultDockerRegistryClient
  * @since 0.0.1
  *
  */
@@ -54,7 +54,7 @@ class DockerRegistryClientTests {
 
     @Before fun before() {
 
-        this.client = DockerRegistryClient(REGISTRY.getExternalURI(), TestHttpClient())
+        this.client = DefaultDockerRegistryClient(REGISTRY.getExternalURI(), TestHttpClient())
     }
 
     /////////////////////////  Tests  /////////////////////////////////////////////////////////////////////

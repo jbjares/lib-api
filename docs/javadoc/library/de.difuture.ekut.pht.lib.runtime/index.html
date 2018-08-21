@@ -31,6 +31,15 @@
 </tr>
 <tr>
 <td>
+<p><a href="-i-interrupt-handler/index.html">IInterruptHandler</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">IInterruptHandler</span><span class="symbol">&lt;</span><span class="identifier">A</span><span class="symbol">&gt;</span></code>
+<p>Handler that can be passed to runtime commands to determine whether timeout has been reached.</p>
+</td>
+</tr>
+<tr>
+<td>
 <p><a href="-i-runtime-client.html">IRuntimeClient</a></p>
 </td>
 <td>
@@ -43,6 +52,15 @@
 <h3>Exceptions</h3>
 <table>
 <tbody>
+<tr>
+<td>
+<p><a href="-create-docker-container-failed-exception/index.html">CreateDockerContainerFailedException</a></p>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">CreateDockerContainerFailedException</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-docker-client-exception/index.html"><span class="identifier">DockerClientException</span></a></code>
+<p>Exception that can be thrown to signal that the creation of a Docker container has failed</p>
+</td>
+</tr>
 <tr>
 <td>
 <p><a href="-docker-client-exception/index.html">DockerClientException</a></p>
@@ -72,12 +90,33 @@
 </tr>
 <tr>
 <td>
+<p><a href="-no-such-docker-network-exception/index.html">NoSuchDockerNetworkException</a></p>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">NoSuchDockerNetworkException</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-docker-client-exception/index.html"><span class="identifier">DockerClientException</span></a></code>
+<p>Exception to be thrown when the selected Docker Network does not exist.</p>
+</td>
+</tr>
+<tr>
+<td>
 <p><a href="-no-such-docker-repository-exception/index.html">NoSuchDockerRepositoryException</a></p>
 </td>
 <td>
 <code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">NoSuchDockerRepositoryException</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-docker-client-exception/index.html"><span class="identifier">DockerClientException</span></a></code>
 <p>Exception to tbe thrown when the selected repository does not exits.</p>
 </td>
+</tr>
+</tbody>
+</table>
+<h3>Type Aliases</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-i-docker-container-interrupt-handler.html">IDockerContainerInterruptHandler</a></p>
+</td>
+<td>
+<code><span class="keyword">typealias </span><span class="identifier">IDockerContainerInterruptHandler</span>&nbsp;<span class="symbol">=</span>&nbsp;<a href="-i-interrupt-handler/index.html"><span class="identifier">IInterruptHandler</span></a><span class="symbol">&lt;</span><a href="../de.difuture.ekut.pht.lib.common.docker/-docker-container-id/index.html"><span class="identifier">DockerContainerId</span></a><span class="symbol">&gt;</span></code></td>
 </tr>
 </tbody>
 </table>

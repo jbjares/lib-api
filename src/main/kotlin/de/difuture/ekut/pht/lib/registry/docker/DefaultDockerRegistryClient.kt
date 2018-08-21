@@ -16,7 +16,7 @@ import java.net.URI
  * @since 0.0.1
  *
  */
-class DockerRegistryClient(
+class DefaultDockerRegistryClient(
         override val uri : URI,
         private val client : IHttpGetClient,
         token : String? = null) : IDockerRegistryClient {

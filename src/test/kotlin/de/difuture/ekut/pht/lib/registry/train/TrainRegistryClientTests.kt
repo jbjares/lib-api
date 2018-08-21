@@ -2,7 +2,7 @@ package de.difuture.ekut.pht.lib.registry.train
 
 
 import de.difuture.ekut.pht.lib.http.TestHttpClient
-import de.difuture.ekut.pht.lib.registry.docker.DockerRegistryClient
+import de.difuture.ekut.pht.lib.registry.docker.DefaultDockerRegistryClient
 import de.difuture.ekut.pht.lib.registry.train.id.ITrainId
 import de.difuture.ekut.pht.lib.registry.train.tag.SpecialTrainTag
 import de.difuture.ekut.pht.lib.registry.train.tag.ITrainTag
@@ -34,7 +34,7 @@ class TrainRegistryClientTests {
     @Before
     fun before() {
 
-        val dockerRegistryClient = DockerRegistryClient(REGISTRY.getExternalURI(), TestHttpClient())
+        val dockerRegistryClient = DefaultDockerRegistryClient(REGISTRY.getExternalURI(), TestHttpClient())
         this.client = TrainRegistryClient(dockerRegistryClient)
     }
 

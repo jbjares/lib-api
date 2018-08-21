@@ -1,7 +1,7 @@
 package de.difuture.ekut.pht.lib.registry.train.arrival
 
 import de.difuture.ekut.pht.lib.http.TestHttpClient
-import de.difuture.ekut.pht.lib.registry.docker.DockerRegistryClient
+import de.difuture.ekut.pht.lib.registry.docker.DefaultDockerRegistryClient
 import de.difuture.ekut.pht.lib.registry.train.TrainRegistryClient
 import de.difuture.ekut.pht.test.lib.SingleExposedPortContainer
 import de.difuture.ekut.pht.test.lib.TEST_TRAIN_REGISTRY_REPOSITORY
@@ -34,7 +34,7 @@ class DockerTrainArrivalTests {
     @Before
     fun before() {
 
-        val dockerRegistryClient = DockerRegistryClient(REGISTRY.getExternalURI(), TestHttpClient())
+        val dockerRegistryClient = DefaultDockerRegistryClient(REGISTRY.getExternalURI(), TestHttpClient())
         this.client = TrainRegistryClient(dockerRegistryClient)
     }
 
