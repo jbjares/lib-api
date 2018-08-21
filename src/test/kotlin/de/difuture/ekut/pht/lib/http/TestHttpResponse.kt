@@ -14,7 +14,11 @@ import java.io.ByteArrayOutputStream
 class TestHttpResponse(response : CloseableHttpResponse) : IHttpResponse {
 
     override val body: String
-    override val statusCode = response.statusLine.statusCode
+    override val statusCode = HttpStatusCode.of(response.statusLine.statusCode)?.let { it } ?:
+            throw IllegalStateException("Returned Status Code not supported!")
+
+    // We do not use the headers for testing explicitly, hence we set the empty map
+    override val headers = emptyMap<String, String>()
 
     init {
         val outstream = ByteArrayOutputStream()

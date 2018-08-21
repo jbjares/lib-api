@@ -19,5 +19,5 @@ interface IHttpGetClient {
      * @param httpHeaders The optional Http Header to be used
      * @return [IHttpResponse] object reflecting the result of the request
      */
-    fun get(uri : URI, httpHeaders : Map<HttpHeader, String>? = null) : IHttpResponse
+    fun get(uri: URI, httpHeaders: Map<HttpHeader, String>? = null): IHttpResponse
 }

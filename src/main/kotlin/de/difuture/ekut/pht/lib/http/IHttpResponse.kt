@@ -13,10 +13,15 @@ interface IHttpResponse {
     /**
      * The HTTP statusCode code, represented as [Int].
      */
-    val statusCode : Int
+    val statusCode: HttpStatusCode
 
     /**
      * The body of the HTTP response, represented as [String].
      */
-    val body : String
+    val body: String
+
+    /**
+     * The protocol headers of the Http Response, represented as [Map]
+     */
+    val headers: Map<String, String>
 }
