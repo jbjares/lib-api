@@ -7,7 +7,7 @@ package de.difuture.ekut.pht.lib.registry.docker
  * @since 0.0.1
  *
  */
-data class BasicAuthentication(
+data class BasicAuth(
 
         val username: String,
         val password: String

@@ -23,5 +23,5 @@ interface IHttpResponse {
     /**
      * The protocol headers of the Http Response, represented as [Map]
      */
-    val headers: Map<String, String>
+    val headers: Map<String, List<String>>
 }

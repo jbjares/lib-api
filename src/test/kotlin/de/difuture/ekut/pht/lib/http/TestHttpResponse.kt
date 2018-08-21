@@ -18,7 +18,7 @@ class TestHttpResponse(response : CloseableHttpResponse) : IHttpResponse {
             throw IllegalStateException("Returned Status Code not supported!")
 
     // We do not use the headers for testing explicitly, hence we set the empty map
-    override val headers = emptyMap<String, String>()
+    override val headers = emptyMap<String, List<String>>()
 
     init {
         val outstream = ByteArrayOutputStream()

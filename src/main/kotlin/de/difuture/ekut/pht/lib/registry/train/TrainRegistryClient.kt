@@ -52,7 +52,8 @@ class TrainRegistryClient(
     private data class DockerTrainArrival(
             override val trainId: ITrainId,
             override val trainTag: ITrainTag,
-            private val hostTuple : HostPortTuple
+            private val hostTuple : HostPortTuple,
+            private val namespace: String?
 
     ) : IDockerTrainArrival {
 
@@ -97,10 +98,24 @@ class TrainRegistryClient(
                     .listRepositories()
                     .flatMap { repo ->  dockerRegistryClient.listTags(repo).map {
 
+                        // Count the number of '/' characters in the repository
+                        val count = repo.count { c -> c == NAMESPACE_SEP }
+
+                        // Only 0 or 1 '/' characters are allowed, and they determine the namespace and the trainID
+                        val (namespace, trainIdString) = when (count) {
+
+                            0 -> Pair(null, repo)
+                            1 -> Pair(repo.substringBefore(NAMESPACE_SEP), repo.substringAfter(NAMESPACE_SEP))
+                            else -> throw IllegalStateException("Too many '$NAMESPACE_SEP' characters in Docker Registry response")
+                        }
+
+                        // Create The DockerTrainArrival based on trainId, namespace, tag and original registry.
                         DockerTrainArrival(
-                                ITrainId.of(repo),
-                                ITrainTag.of(it), HostPortTuple(dockerRegistryClient.uri))
-                    } }
+                                ITrainId.of(trainIdString),
+                                ITrainTag.of(it),
+                                HostPortTuple(dockerRegistryClient.uri),
+                                namespace)
+                    }}
 
 
     override fun listTrainArrivals(tag: ITrainTag): List<IDockerTrainArrival> =
@@ -130,5 +145,11 @@ class TrainRegistryClient(
         val tag = DockerTag(departure.trainTag.repr)
 
         departure.client.push(name, tag)
+    }
+
+
+    companion object {
+
+        const val NAMESPACE_SEP = '/'
     }
 }
