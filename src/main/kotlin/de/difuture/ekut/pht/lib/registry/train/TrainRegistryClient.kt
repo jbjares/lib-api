@@ -18,12 +18,17 @@ import de.difuture.ekut.pht.lib.runtime.IDockerClient
 /**
  * Canonical implementation of the [ITrainRegistryClient].
  *
+ * @param dockerRegistryClient The [IDockerRegistryClient] that should be used for interacting with the train registry
+ * @param namespace The namespace of the Docker Registry that is targeted by this client. If the name
+ * space is null, then the root namespace of the registry is targeted
+ *
  * @author Lukas Zimmermann
  * @since 0.0.1
  *
  */
 class TrainRegistryClient(
-        private val dockerRegistryClient: IDockerRegistryClient) : ITrainRegistryClient<IDockerClient> {
+        private val dockerRegistryClient: IDockerRegistryClient,
+        private val namespace: String? = null) : ITrainRegistryClient<IDockerClient> {
 
     /**
      * Implementations of the ITrainInterface
@@ -96,26 +101,35 @@ class TrainRegistryClient(
     override fun listTrainArrivals(): List<IDockerTrainArrival> =
             dockerRegistryClient
                     .listRepositories()
-                    .flatMap { repo ->  dockerRegistryClient.listTags(repo).map {
+                    .flatMap { repo ->  dockerRegistryClient.listTags(repo).map {tag ->
 
                         // Count the number of '/' characters in the repository
                         val count = repo.count { c -> c == NAMESPACE_SEP }
 
                         // Only 0 or 1 '/' characters are allowed, and they determine the namespace and the trainID
-                        val (namespace, trainIdString) = when (count) {
+                        // Collect namespace, reponame, and tag here
+                        when (count) {
 
-                            0 -> Pair(null, repo)
-                            1 -> Pair(repo.substringBefore(NAMESPACE_SEP), repo.substringAfter(NAMESPACE_SEP))
+                            0 -> Triple(null, repo, tag)
+                            1 -> Triple(
+                                    repo.substringBefore(NAMESPACE_SEP),
+                                    repo.substringAfter(NAMESPACE_SEP),
+                                    tag)
                             else -> throw IllegalStateException("Too many '$NAMESPACE_SEP' characters in Docker Registry response")
                         }
+                    }}.filter { (namespace, repo, _) ->
+
+                        // The repo must be a valid TrainId and the namespace must be the one that we target
+                        ITrainId.isValid(repo) && namespace == this.namespace
+                    }.map { (namespace, repo, tag) ->
 
                         // Create The DockerTrainArrival based on trainId, namespace, tag and original registry.
                         DockerTrainArrival(
-                                ITrainId.of(trainIdString),
-                                ITrainTag.of(it),
+                                ITrainId.of(repo),
+                                ITrainTag.of(tag),
                                 HostPortTuple(dockerRegistryClient.uri),
                                 namespace)
-                    }}
+                    }
 
 
     override fun listTrainArrivals(tag: ITrainTag): List<IDockerTrainArrival> =
@@ -134,6 +148,8 @@ class TrainRegistryClient(
             else -> throw IllegalStateException("Tuple of TrainID and trainTag must only resolve to one TrainArrival for each Train Registry")
         }
     }
+
+    override fun hasTrainArrival(id: ITrainId, tag: ITrainTag) = this.getTrainArrival(id, tag) != null
 
 
     override fun push(departure: IDockerTrainDeparture) {

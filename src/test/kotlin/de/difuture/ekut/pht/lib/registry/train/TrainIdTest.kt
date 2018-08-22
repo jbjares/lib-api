@@ -18,7 +18,7 @@ class TrainIdTest {
 
     @Test fun valid_ids() {
 
-        listOf("a", "Z").plus(TRAINS_TEST_ALL).forEach {
+        listOf("train_a", "train_Z").plus(TRAINS_TEST_ALL).forEach {
 
             Assert.assertEquals(it, ITrainId.of(it).repr)
         }

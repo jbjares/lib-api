@@ -21,5 +21,8 @@ data class DockerTag(
     init {
         require(repr.isNotBlank())
         require( ! repr.containsWhitespace())
+
+        // Docker Tag is not allowed to contain '/'
+        require( ! repr.contains('/'))
     }
 }

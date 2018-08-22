@@ -31,8 +31,7 @@ class TrainRegistryClientTests {
     /////////////////////////  The registry client  /////////////////////////////////////////////////////////////
     private lateinit var client : TrainRegistryClient
 
-    @Before
-    fun before() {
+    @Before fun before() {
 
         val dockerRegistryClient = DefaultDockerRegistryClient(REGISTRY.getExternalURI(), TestHttpClient())
         this.client = TrainRegistryClient(dockerRegistryClient)
@@ -41,15 +40,13 @@ class TrainRegistryClientTests {
     /////////////////////////  The actual test  //////////////////////////////////////////////////////////////////
 
 
-    @Test
-    fun test_list_train_arrivals() {
+    @Test fun test_list_train_arrivals() {
 
         val arrivals = this.client.listTrainArrivals()
         Assert.assertTrue(arrivals.size > 5)
     }
 
-    @Test
-    fun test_list_train_arrivals_tags() {
+    @Test fun test_list_train_arrivals_tags() {
 
         val arrivalsImmediate= this.client.listTrainArrivals(ModeTrainTag.IMMEDIATE)
         val arrivalsTests = this.client.listTrainArrivals(SpecialTrainTag.TEST)
@@ -62,17 +59,27 @@ class TrainRegistryClientTests {
 
 
     // Select the print_summary trains
-    @Test
-    fun select_print_summary_1() {
+    @Test fun select_print_summary_1() {
 
         val tag = ITrainTag.of("test")
 
+        // These train arrivals should exist
         val arrival1 = this.client.getTrainArrival(
                 ITrainId.of("train_test_print_summary_1"), tag)
         val arrival2 = this.client.getTrainArrival(
                 ITrainId.of("train_test_print_summary_2"), tag)
 
+        // These train arrivals do not exist
+        val arrival3 = this.client.getTrainArrival(
+                ITrainId.of("train_foobar"), tag)
+        val arrival4 = this.client.getTrainArrival(
+                ITrainId.of("train_sfsf"), tag)
+
         Assert.assertNotNull(arrival1)
         Assert.assertNotNull(arrival2)
+        Assert.assertNull(arrival3)
+        Assert.assertNull(arrival4)
     }
+
+
 }

@@ -23,6 +23,13 @@ private val hostnameRegex = Regex("\\p{Alpha}(?:[\\p{Alnum}-]*\\p{Alnum})?(?:\\.
 fun String.isValidDockerHash() = this.matches(dockerHashRegex)
 
 fun String.isValidHostname() = this.matches(hostnameRegex)
+
+
+/**
+ * Tests whether this [String] denotes a valid IP4 address
+ *
+ * @return Whether this [String] denotes a valid IP4 Address.
+ */
 fun String.isValidIP4Address() =
 
         try {
@@ -34,7 +41,17 @@ fun String.isValidIP4Address() =
             false
         }
 
+/**
+ * Tests whether this [String] contains any whitespace character.
+ *
+ */
 fun String.containsWhitespace() = this.any { it.isWhitespace() }
+
+
+/**
+ * Supposed to test whether this integer denotes a valid port.
+ *
+ */
 fun Int.isValidPort() = this > 0
 
 
