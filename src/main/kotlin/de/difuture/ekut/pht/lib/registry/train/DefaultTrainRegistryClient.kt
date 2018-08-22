@@ -1,6 +1,5 @@
 package de.difuture.ekut.pht.lib.registry.train
 
-import com.fasterxml.jackson.databind.ObjectMapper
 import de.difuture.ekut.pht.lib.common.HostPortTuple
 import de.difuture.ekut.pht.lib.common.docker.DockerImageId
 import de.difuture.ekut.pht.lib.runtime.docker.DockerContainerOutput
@@ -30,6 +29,7 @@ class DefaultTrainRegistryClient(
         private val dockerRegistryClient: IDockerRegistryClient,
         private val namespace: String? = null) : ITrainRegistryClient<IDockerClient> {
 
+
     /**
      * Implementations of the ITrainInterface
      */
@@ -45,55 +45,61 @@ class DefaultTrainRegistryClient(
 
         override fun printSummary(): String {
 
-            if ( ! this.isValid()) {
+            if (!this.isValid()) {
 
                 throw IllegalStateException(
                         "The Docker image with the ID $imageId was deleted. Please use the corresponding arrival to rerun the algorithm")
             }
-            return this.client.run(imageId, listOf("print_summary"), rm=true).stdout
+            return this.client.run(imageId, listOf("print_summary"), rm = true).stdout
         }
     }
 
     private data class DockerTrainArrival(
             override val trainId: ITrainId,
             override val trainTag: ITrainTag,
-            private val hostTuple : HostPortTuple,
+            private val hostTuple: HostPortTuple,
             private val namespace: String?
 
     ) : IDockerTrainArrival {
 
-
-        private fun run(dockerClient : IDockerClient, rm : Boolean, commands : List<String>) : DockerContainerOutput {
+        private fun run(dockerClient: IDockerClient, rm: Boolean, commands: List<String>): DockerContainerOutput {
 
             // ensure that the image is pulled from remote and determine the ID of the Docker image
             val imageId = dockerClient.pull(
-                    DockerRepositoryName(
-                        trainId.repr,
-                        hostPortTuple = hostTuple),
+                    toDockerRepoName(this.namespace, trainId, hostTuple),
                     DockerTag(trainTag.repr))
+
+            // Actually run the image
             return dockerClient.run(imageId, commands, rm)
         }
 
-        override fun printSummary(client: IDockerClient, info : RunInfo)
-                = run(client, true, info.commandLine.plus("print_summary")).stdout
+        override fun printSummary(client: IDockerClient, info: RunInfo) = run(client, true, info.commandLine.plus("print_summary")).stdout
 
-        override fun checkRequirements(client: IDockerClient, info : RunInfo)
-                = run(client, true, info.commandLine.plus("check_requirements")).exitCode == 0
+        override fun checkRequirements(client: IDockerClient, info: RunInfo) = run(client, true, info.commandLine.plus("check_requirements")).exitCode == 0
 
+        override fun runAlgorithm(client: IDockerClient, info: RunInfo): DockerTrainDeparture {
 
-        override fun runAlgorithm(client: IDockerClient, info : RunInfo): DockerTrainDeparture {
-
+            // Run the container by passing the command line and tool name
             val containerOutput = run(client, false, info.commandLine.plus("run_algorithm"))
 
-            val containerId = containerOutput.containerId
-            val departureTag = ObjectMapper().readTree(containerOutput.stdout)["departure_tag"].asText()
-            val trainTag  = ITrainTag.of(departureTag)
+            // If the algorithm terminates with a non-zero exitCode, a proper TrainDeparture
+            // cannot be generated
+            if (containerOutput.exitCode != 0) {
 
+                throw RunAlgorithmFailed("Run Algorithm has failed!", containerOutput)
+            }
+
+            // The Departure Tag is always going to be the StationID
+            val departureTag = ITrainTag.of(info.stationID.toString())
+
+
+            // Commit the container and create the image
             val imageId = client.commit(
-                    containerId,
-                    DockerRepositoryName(trainId.repr),
-                    DockerTag(departureTag))
-            return DockerTrainDeparture(client, trainId, trainTag, imageId)
+                    containerOutput.containerId,
+                    toDockerRepoName(this.namespace, trainId, hostTuple),
+                    DockerTag(departureTag.repr))
+
+            return DockerTrainDeparture(client, trainId, departureTag, imageId)
         }
     }
 
@@ -101,23 +107,25 @@ class DefaultTrainRegistryClient(
     override fun listTrainArrivals(): List<IDockerTrainArrival> =
             dockerRegistryClient
                     .listRepositories()
-                    .flatMap { repo ->  dockerRegistryClient.listTags(repo).map {tag ->
+                    .flatMap { repo ->
+                        dockerRegistryClient.listTags(repo).map { tag ->
 
-                        // Count the number of '/' characters in the repository
-                        val count = repo.count { c -> c == NAMESPACE_SEP }
+                            // Count the number of '/' characters in the repository
+                            val count = repo.count { c -> c == NAMESPACE_SEP }
 
-                        // Only 0 or 1 '/' characters are allowed, and they determine the namespace and the trainID
-                        // Collect namespace, reponame, and tag here
-                        when (count) {
+                            // Only 0 or 1 '/' characters are allowed, and they determine the namespace and the trainID
+                            // Collect namespace, reponame, and tag here
+                            when (count) {
 
-                            0 -> Triple(null, repo, tag)
-                            1 -> Triple(
-                                    repo.substringBefore(NAMESPACE_SEP),
-                                    repo.substringAfter(NAMESPACE_SEP),
-                                    tag)
-                            else -> throw IllegalStateException("Too many '$NAMESPACE_SEP' characters in Docker Registry response")
+                                0 -> Triple(null, repo, tag)
+                                1 -> Triple(
+                                        repo.substringBefore(NAMESPACE_SEP),
+                                        repo.substringAfter(NAMESPACE_SEP),
+                                        tag)
+                                else -> throw IllegalStateException("Too many '$NAMESPACE_SEP' characters in Docker Registry response")
+                            }
                         }
-                    }}.filter { (namespace, repo, _) ->
+                    }.filter { (namespace, repo, _) ->
 
                         // The repo must be a valid TrainId and the namespace must be the one that we target
                         ITrainId.isValid(repo) && namespace == this.namespace
@@ -141,9 +149,9 @@ class DefaultTrainRegistryClient(
 
     override fun getTrainArrival(id: ITrainId, tag: ITrainTag): ITrainArrival<IDockerClient>? {
 
-        val arrivals = this.listTrainArrivals().filter { it.trainTag == tag && it.trainId == id}
+        val arrivals = this.listTrainArrivals().filter { it.trainTag == tag && it.trainId == id }
 
-        return when(arrivals.size) {
+        return when (arrivals.size) {
 
             0 -> null
             1 -> arrivals[0]
@@ -156,9 +164,10 @@ class DefaultTrainRegistryClient(
 
     override fun push(departure: IDockerTrainDeparture) {
 
-        val name = DockerRepositoryName(
-                departure.trainId.repr,
-                hostPortTuple = HostPortTuple(dockerRegistryClient.uri))
+        val name = toDockerRepoName(
+                this.namespace,
+                departure.trainId,
+                HostPortTuple(dockerRegistryClient.uri))
 
         val tag = DockerTag(departure.trainTag.repr)
 
@@ -169,5 +178,11 @@ class DefaultTrainRegistryClient(
     companion object {
 
         const val NAMESPACE_SEP = '/'
+
+
+        private fun toDockerRepoName(namespace: String?, id: ITrainId, host: HostPortTuple) =
+
+                namespace?.let { DockerRepositoryName(namespace, id.repr, hostPortTuple = host) }
+                        ?: DockerRepositoryName(id.repr, hostPortTuple = host)
     }
 }

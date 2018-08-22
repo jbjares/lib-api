@@ -16,12 +16,13 @@ import de.difuture.ekut.pht.lib.common.HostPortTuple
  */
 data class DockerRepositoryName(
 
-        val component1 : String,
-        val component2 : String? = null,
-        val hostPortTuple : HostPortTuple? = null
+        val component1: String,
+        val component2: String? = null,
+        val hostPortTuple: HostPortTuple? = null
 ) : ICanonicalStringRepresentable {
 
     override val repr: String
+
     init {
 
         // Require that the components match the regular expression
@@ -34,7 +35,7 @@ data class DockerRepositoryName(
         // Join components with a '/' character
         val components = component1.plus(component2?.let { "/$it" } ?: "")
 
-        this.repr =  if (hostPortTuple != null) {
+        this.repr = if (hostPortTuple != null) {
 
             "${hostPortTuple.repr}/$components"
         } else {
@@ -50,7 +51,7 @@ data class DockerRepositoryName(
      * @param tag [DockerTag] against this [DockerRepositoryName] should be resolved.
      * @return [String] representation of the Docker Name
      */
-    fun resolveTag(tag : DockerTag) = "$repr:${tag.repr}"
+    fun resolveTag(tag: DockerTag) = "$repr:${tag.repr}"
 
     companion object {
         private val componentRegex = Regex("[a-z0-9]+(?:[._-][a-z0-9]+)*")
