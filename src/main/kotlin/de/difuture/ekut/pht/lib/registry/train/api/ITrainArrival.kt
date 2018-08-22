@@ -1,6 +1,6 @@
 package de.difuture.ekut.pht.lib.registry.train.api
 
-import de.difuture.ekut.pht.lib.runtime.IDockerClient
+import de.difuture.ekut.pht.lib.runtime.docker.IDockerClient
 import de.difuture.ekut.pht.lib.runtime.IRuntimeClient
 
 /**

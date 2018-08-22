@@ -1,6 +1,8 @@
-package de.difuture.ekut.pht.lib.runtime
+package de.difuture.ekut.pht.lib.runtime.docker
 
 import de.difuture.ekut.pht.lib.common.docker.*
+import de.difuture.ekut.pht.lib.runtime.IDockerContainerInterruptHandler
+import de.difuture.ekut.pht.lib.runtime.IRuntimeClient
 
 /**
  * Docker client api that a station needs to implement for using the library components.

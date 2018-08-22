@@ -1,4 +1,4 @@
-package de.difuture.ekut.pht.lib.runtime
+package de.difuture.ekut.pht.lib.runtime.docker
 
 import de.difuture.ekut.pht.lib.common.docker.DockerContainerId
 

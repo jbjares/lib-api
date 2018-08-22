@@ -3,7 +3,7 @@ package de.difuture.ekut.pht.lib.registry.train
 import com.fasterxml.jackson.databind.ObjectMapper
 import de.difuture.ekut.pht.lib.common.HostPortTuple
 import de.difuture.ekut.pht.lib.common.docker.DockerImageId
-import de.difuture.ekut.pht.lib.runtime.DockerContainerOutput
+import de.difuture.ekut.pht.lib.runtime.docker.DockerContainerOutput
 import de.difuture.ekut.pht.lib.common.docker.DockerRepositoryName
 import de.difuture.ekut.pht.lib.common.docker.DockerTag
 import de.difuture.ekut.pht.lib.registry.docker.IDockerRegistryClient
@@ -13,7 +13,7 @@ import de.difuture.ekut.pht.lib.registry.train.api.ITrainArrival
 import de.difuture.ekut.pht.lib.registry.train.api.RunInfo
 import de.difuture.ekut.pht.lib.registry.train.id.ITrainId
 import de.difuture.ekut.pht.lib.registry.train.tag.ITrainTag
-import de.difuture.ekut.pht.lib.runtime.IDockerClient
+import de.difuture.ekut.pht.lib.runtime.docker.IDockerClient
 
 /**
  * Canonical implementation of the [ITrainRegistryClient].
@@ -133,10 +133,9 @@ class DefaultTrainRegistryClient(
 
 
     override fun listTrainArrivals(tag: ITrainTag): List<IDockerTrainArrival> =
-        this.listTrainArrivals().filter { it.trainTag == tag }
+            this.listTrainArrivals().filter { it.trainTag == tag }
 
     override fun listTrainArrivals(id: ITrainId): List<ITrainArrival<IDockerClient>> =
-
             this.listTrainArrivals().filter { it.trainId == id }
 
 
