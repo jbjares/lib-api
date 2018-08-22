@@ -15,7 +15,7 @@ import org.junit.Assert
 import org.junit.Before
 
 
-class TrainRegistryClientTests {
+class DefaultTrainRegistryClientTests {
 
     /////////////////////////  Companion  //////////////////////////////////////////////////////////////
     companion object {
@@ -29,12 +29,12 @@ class TrainRegistryClientTests {
     }
 
     /////////////////////////  The registry client  /////////////////////////////////////////////////////////////
-    private lateinit var client : TrainRegistryClient
+    private lateinit var client : DefaultTrainRegistryClient
 
     @Before fun before() {
 
         val dockerRegistryClient = DefaultDockerRegistryClient(REGISTRY.getExternalURI(), TestHttpClient())
-        this.client = TrainRegistryClient(dockerRegistryClient)
+        this.client = DefaultTrainRegistryClient(dockerRegistryClient)
     }
 
     /////////////////////////  The actual test  //////////////////////////////////////////////////////////////////

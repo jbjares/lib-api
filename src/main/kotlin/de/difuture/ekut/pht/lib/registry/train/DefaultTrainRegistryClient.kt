@@ -26,7 +26,7 @@ import de.difuture.ekut.pht.lib.runtime.IDockerClient
  * @since 0.0.1
  *
  */
-class TrainRegistryClient(
+class DefaultTrainRegistryClient(
         private val dockerRegistryClient: IDockerRegistryClient,
         private val namespace: String? = null) : ITrainRegistryClient<IDockerClient> {
 
