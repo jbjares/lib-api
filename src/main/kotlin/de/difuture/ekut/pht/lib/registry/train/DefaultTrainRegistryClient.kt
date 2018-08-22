@@ -135,6 +135,9 @@ class DefaultTrainRegistryClient(
     override fun listTrainArrivals(tag: ITrainTag): List<IDockerTrainArrival> =
         this.listTrainArrivals().filter { it.trainTag == tag }
 
+    override fun listTrainArrivals(id: ITrainId): List<ITrainArrival<IDockerClient>> =
+
+            this.listTrainArrivals().filter { it.trainId == id }
 
 
     override fun getTrainArrival(id: ITrainId, tag: ITrainTag): ITrainArrival<IDockerClient>? {

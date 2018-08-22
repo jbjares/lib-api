@@ -58,6 +58,20 @@ class DefaultTrainRegistryClientTests {
     }
 
 
+    @Test fun test_list_train_arrivals_ids() {
+
+        val id1 = ITrainId.of("train_test_print_summary_1")
+        val id2 = ITrainId.of("train_test_print_summary_2")
+
+        val arrivalsId1= this.client.listTrainArrivals(id1)
+        val arrivalsId2 = this.client.listTrainArrivals(id2)
+
+        //Assert.assertTrue(arrivalsImmediate.size > 1)
+        Assert.assertTrue(arrivalsId1.isNotEmpty())
+        Assert.assertTrue(arrivalsId2.isNotEmpty())
+    }
+
+
     // Select the print_summary trains
     @Test fun select_print_summary_1() {
 

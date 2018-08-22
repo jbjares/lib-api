@@ -46,6 +46,19 @@ interface ITrainRegistryClient<A : IRuntimeClient> {
     fun listTrainArrivals(tag: ITrainTag): List<ITrainArrival<A>>
 
     /**
+     *  List TrainArrivals by giving the [ITrainId]
+     *
+     * *Contract:* This method should throw an exception if communication with the remote
+     * train repository fails.
+     *
+     * @param id The [ITrainId] that should be queries
+     *
+     * @return List of [ITrainArrival] that all share the same [ITrainId]
+     *
+     */
+    fun listTrainArrivals(id: ITrainId): List<ITrainArrival<A>>
+
+    /**
      * Get [ITrainArrival] by specifying [ITrainId] and [ITrainTag].
      *
      * *Contract:* If the specified [ITrainArrival] does not exist, this method should
@@ -60,7 +73,6 @@ interface ITrainRegistryClient<A : IRuntimeClient> {
      *
      */
     fun getTrainArrival(id: ITrainId, tag: ITrainTag): ITrainArrival<A>?
-
 
     /**
      * Checks whether the [ITrainArrival]] exists in the Train Registry that is targeted by this registry.
