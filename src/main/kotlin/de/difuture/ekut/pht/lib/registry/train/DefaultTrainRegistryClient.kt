@@ -108,7 +108,8 @@ class DefaultTrainRegistryClient(
             dockerRegistryClient
                     .listRepositories()
                     .flatMap { repo ->
-                        dockerRegistryClient.listTags(repo).map { tag ->
+                        val tags = dockerRegistryClient.listTags(repo).tags ?: emptyList()
+                        tags.map { tag ->
 
                             // Count the number of '/' characters in the repository
                             val count = repo.count { c -> c == NAMESPACE_SEP }
