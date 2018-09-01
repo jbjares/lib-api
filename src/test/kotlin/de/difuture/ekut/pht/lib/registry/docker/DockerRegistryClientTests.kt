@@ -119,7 +119,8 @@ class DockerRegistryClientTests {
 
         TRAINS_TEST_ALL.forEach {
 
-            Assert.assertTrue("test" in client.listTags(it))
+            val tags = client.listTags(it).tags
+            Assert.assertTrue(tags != null && "test" in tags)
         }
     }
 }
