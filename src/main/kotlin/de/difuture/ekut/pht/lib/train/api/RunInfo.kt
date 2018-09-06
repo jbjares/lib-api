@@ -12,8 +12,8 @@ import de.difuture.ekut.pht.lib.train.tag.ModeTrainTag
  */
 data class RunInfo(
 
-        val stationID : Int,
-        val mode : ModeTrainTag
+    val stationID: Int,
+    val mode: ModeTrainTag
 ) {
 
     /**

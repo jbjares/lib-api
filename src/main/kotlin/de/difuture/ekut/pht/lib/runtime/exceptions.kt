@@ -1,6 +1,5 @@
 package de.difuture.ekut.pht.lib.runtime
 
-
 /**
  * Exception intended to be thrown by [IDockerClient] implementations.
  *
@@ -9,11 +8,10 @@ package de.difuture.ekut.pht.lib.runtime
  * @since 0.0.1
  *
  */
-open class DockerClientException(msg : String?) : Exception(msg) {
+open class DockerClientException(msg: String?) : Exception(msg) {
 
-    constructor(ex : Exception) : this(ex.message)
+    constructor(ex: Exception) : this(ex.message)
 }
-
 
 /**
  * Exception to be thrown when the selected Docker Container does not exits.
@@ -25,11 +23,10 @@ open class DockerClientException(msg : String?) : Exception(msg) {
  * @since 0.0.1
  *
  */
-data class NoSuchDockerContainerException(val msg : String?) : DockerClientException(msg) {
+data class NoSuchDockerContainerException(val msg: String?) : DockerClientException(msg) {
 
-    constructor(ex : Exception) : this(ex.message)
+    constructor(ex: Exception) : this(ex.message)
 }
-
 
 /**
  * Exception to be thrown when the selected Docker Image does not exist.
@@ -41,11 +38,10 @@ data class NoSuchDockerContainerException(val msg : String?) : DockerClientExcep
  * @since 0.0.1
  *
  */
-data class NoSuchDockerImageException(val msg : String?) : DockerClientException(msg) {
+data class NoSuchDockerImageException(val msg: String?) : DockerClientException(msg) {
 
-    constructor(ex : Exception) : this(ex.message)
+    constructor(ex: Exception) : this(ex.message)
 }
-
 
 /**
  * Exception to tbe thrown when the selected repository does not exits.
@@ -57,11 +53,10 @@ data class NoSuchDockerImageException(val msg : String?) : DockerClientException
  * @since 0.0.1
  *
  */
-data class NoSuchDockerRepositoryException(val msg : String?) : DockerClientException(msg) {
+data class NoSuchDockerRepositoryException(val msg: String?) : DockerClientException(msg) {
 
-    constructor(ex : Exception) : this(ex.message)
+    constructor(ex: Exception) : this(ex.message)
 }
-
 
 /**
  * Exception to be thrown when the selected Docker Network does not exist.
@@ -73,11 +68,10 @@ data class NoSuchDockerRepositoryException(val msg : String?) : DockerClientExce
  * @since 0.0.1
  *
  */
-data class NoSuchDockerNetworkException(val msg : String?) : DockerClientException(msg) {
+data class NoSuchDockerNetworkException(val msg: String?) : DockerClientException(msg) {
 
-    constructor(ex : Exception) : this(ex.message)
+    constructor(ex: Exception) : this(ex.message)
 }
-
 
 /**
  * Exception that can be thrown to signal that the creation of a Docker container has failed
@@ -91,5 +85,5 @@ data class NoSuchDockerNetworkException(val msg : String?) : DockerClientExcepti
  */
 data class CreateDockerContainerFailedException(val msg: String?) : DockerClientException(msg) {
 
-    constructor(ex : Exception) : this(ex.message)
+    constructor(ex: Exception) : this(ex.message)
 }

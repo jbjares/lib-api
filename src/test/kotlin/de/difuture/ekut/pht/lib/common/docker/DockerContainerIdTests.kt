@@ -5,7 +5,6 @@ import org.junit.Test
 
 class DockerContainerIdTests {
 
-
     @Test
     fun valid_container_ids() {
 

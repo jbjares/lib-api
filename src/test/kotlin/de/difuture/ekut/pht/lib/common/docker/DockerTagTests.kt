@@ -3,7 +3,6 @@ package de.difuture.ekut.pht.lib.common.docker
 import org.junit.Assert
 import org.junit.Test
 
-
 class DockerTagTests {
 
     @Test

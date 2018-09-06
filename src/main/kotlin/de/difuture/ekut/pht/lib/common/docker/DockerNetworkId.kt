@@ -12,7 +12,7 @@ import de.difuture.ekut.pht.lib.common.isValidDockerHash
  * @since 0.0.1
  */
 data class DockerNetworkId(
-        override val repr: String
+    override val repr: String
 ) : ICanonicalStringRepresentable {
 
     init {

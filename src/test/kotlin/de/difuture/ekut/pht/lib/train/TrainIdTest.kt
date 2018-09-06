@@ -5,7 +5,6 @@ import de.difuture.ekut.pht.test.lib.TRAINS_TEST_ALL
 import org.junit.Assert
 import org.junit.Test
 
-
 /**
  * Tests [ITrainId]
  *

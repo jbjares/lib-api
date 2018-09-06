@@ -3,7 +3,6 @@ package de.difuture.ekut.pht.lib.common.docker
 import de.difuture.ekut.pht.lib.common.ICanonicalStringRepresentable
 import de.difuture.ekut.pht.lib.common.HostPortTuple
 
-
 /**
  * Represents a valid Docker Repository Name.
  *
@@ -16,9 +15,9 @@ import de.difuture.ekut.pht.lib.common.HostPortTuple
  */
 data class DockerRepositoryName(
 
-        val component1: String,
-        val component2: String? = null,
-        val hostPortTuple: HostPortTuple? = null
+    val component1: String,
+    val component2: String? = null,
+    val hostPortTuple: HostPortTuple? = null
 ) : ICanonicalStringRepresentable {
 
     override val repr: String

@@ -1,6 +1,5 @@
 package de.difuture.ekut.pht.lib.train.tag
 
-
 /**
  * Represents train tags with special semantics. This currently only includes the 'test' train
  * tag.
@@ -10,7 +9,7 @@ package de.difuture.ekut.pht.lib.train.tag
  * @since 0.0.1
  *
  */
-enum class SpecialTrainTag(override val repr: String): ITrainTag {
+enum class SpecialTrainTag(override val repr: String) : ITrainTag {
 
     TEST("test");
 
@@ -24,6 +23,6 @@ enum class SpecialTrainTag(override val repr: String): ITrainTag {
          *  @return Whether the provided value represents a [SpecialTrainTag]
          *
          */
-        fun isMember(value : String) = value in names
+        fun isMember(value: String) = value in names
     }
 }

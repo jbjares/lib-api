@@ -2,7 +2,6 @@ package de.difuture.ekut.pht.lib.train.arrival
 
 import de.difuture.ekut.pht.lib.http.TestHttpClient
 import de.difuture.ekut.pht.lib.train.DefaultTrainRegistryClient
-import de.difuture.ekut.pht.lib.train.DefaultTrainRegistryClientTests
 import de.difuture.ekut.pht.test.lib.SingleExposedPortContainer
 import de.difuture.ekut.pht.test.lib.TEST_TRAIN_REGISTRY_REPOSITORY
 import jdregistry.client.DockerRegistryGetClient
@@ -10,7 +9,6 @@ import org.junit.Assert
 import org.junit.Before
 import org.junit.ClassRule
 import org.junit.Test
-
 
 class DockerTrainArrivalTests {
 
@@ -22,12 +20,11 @@ class DockerTrainArrivalTests {
 
         // Container that is used for fetching Docker Registry Notifications
         @ClassRule @JvmField
-        val REGISTRY  = SingleExposedPortContainer(TEST_TRAIN_REGISTRY_REPOSITORY, 5000)
+        val REGISTRY = SingleExposedPortContainer(TEST_TRAIN_REGISTRY_REPOSITORY, 5000)
     }
 
-
-    /////////////////////////  The registry client  /////////////////////////////////////////////////////////////
-    private lateinit var client : DefaultTrainRegistryClient
+    // ///////////////////////  The registry client  /////////////////////////////////////////////////////////////
+    private lateinit var client: DefaultTrainRegistryClient
 
     @Before
     fun before() {
@@ -39,9 +36,7 @@ class DockerTrainArrivalTests {
         this.client = DefaultTrainRegistryClient(drclient)
     }
 
-
-    /////////////////////////  The test  //////////////////////////////////////////////////////////////////////
-
+    // ///////////////////////  The test  //////////////////////////////////////////////////////////////////////
 
     // Tests that the print_summary test trains are there
 

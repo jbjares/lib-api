@@ -4,7 +4,6 @@ import de.difuture.ekut.pht.lib.train.id.ITrainId
 import de.difuture.ekut.pht.lib.train.tag.ITrainTag
 import de.difuture.ekut.pht.lib.runtime.IRuntimeClient
 
-
 /**
  * Super api for [ITrainArrival] and [ITrainDeparture]
  *
@@ -31,4 +30,3 @@ interface ITrainInterface<A : IRuntimeClient> {
      */
     val trainTag: ITrainTag
 }
-

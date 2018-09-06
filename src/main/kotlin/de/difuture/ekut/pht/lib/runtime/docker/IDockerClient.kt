@@ -1,6 +1,10 @@
 package de.difuture.ekut.pht.lib.runtime.docker
 
-import de.difuture.ekut.pht.lib.common.docker.*
+import de.difuture.ekut.pht.lib.common.docker.DockerContainerId
+import de.difuture.ekut.pht.lib.common.docker.DockerImageId
+import de.difuture.ekut.pht.lib.common.docker.DockerNetworkId
+import de.difuture.ekut.pht.lib.common.docker.DockerTag
+import de.difuture.ekut.pht.lib.common.docker.DockerRepositoryName
 import de.difuture.ekut.pht.lib.runtime.IDockerContainerInterruptHandler
 import de.difuture.ekut.pht.lib.runtime.IRuntimeClient
 
@@ -46,13 +50,15 @@ interface IDockerClient : IRuntimeClient {
      * @return [DockerContainerOutput] object describing the output of the Docker run command.
      *
      */
-    fun run(imageId : DockerImageId,
-            commands : List<String>,
-            rm : Boolean,
-            env : Map<String, String>? = null,
-            networkId : DockerNetworkId? = null,
-            warnings : MutableList<String>? = null,
-            interruptHandler: IDockerContainerInterruptHandler? = null) : DockerContainerOutput
+    fun run(
+        imageId: DockerImageId,
+        commands: List<String>,
+        rm: Boolean,
+        env: Map<String, String>? = null,
+        networkId: DockerNetworkId? = null,
+        warnings: MutableList<String>? = null,
+        interruptHandler: IDockerContainerInterruptHandler? = null
+    ): DockerContainerOutput
 
     /**
      * Removes container with specified ID.
@@ -66,7 +72,7 @@ interface IDockerClient : IRuntimeClient {
      * @param containerId The [DockerContainerId] of the container to be removed.
      *
      */
-    fun rm(containerId : DockerContainerId)
+    fun rm(containerId: DockerContainerId)
 
     /**
      * Pulls the repository specified by [DockerRepositoryName] and [DockerTag].
@@ -85,7 +91,7 @@ interface IDockerClient : IRuntimeClient {
      * @return [DockerImageId] of the image retrieved via pulling.
      *
      */
-    fun pull(repo : DockerRepositoryName, tag: DockerTag) : DockerImageId
+    fun pull(repo: DockerRepositoryName, tag: DockerTag): DockerImageId
 
     /**
      * Pushes the specified docker image via the provided [DockerRepositoryName] and [DockerTag].
@@ -101,7 +107,7 @@ interface IDockerClient : IRuntimeClient {
      * @param tag The [DockerTag] that should be pushed to.
      *
      */
-    fun push(repo : DockerRepositoryName, tag : DockerTag)
+    fun push(repo: DockerRepositoryName, tag: DockerTag)
 
     /**
      * Commits the Docker container and creates new image.
@@ -119,11 +125,13 @@ interface IDockerClient : IRuntimeClient {
      * @return The [DockerImageId] that points to the newly created image.
      *
      */
-    fun commit(containerId: DockerContainerId,
-               targetRepo: DockerRepositoryName,
-               targetTag: DockerTag,
-               author : String? = null,
-               comment : String? = null) : DockerImageId
+    fun commit(
+        containerId: DockerContainerId,
+        targetRepo: DockerRepositoryName,
+        targetTag: DockerTag,
+        author: String? = null,
+        comment: String? = null
+    ): DockerImageId
 
     /**
      * Lists the [DockerImageId] that this [IDockerClient] has access to.
@@ -136,5 +144,5 @@ interface IDockerClient : IRuntimeClient {
      * @return The list of [DockerImageId] that this [IDockerClient] has access to.
      *
      */
-    fun images() : List<DockerImageId>
+    fun images(): List<DockerImageId>
 }

@@ -4,7 +4,6 @@ import de.difuture.ekut.pht.lib.common.docker.DockerTag
 import org.junit.Assert
 import org.junit.Test
 
-
 /**
  * Tests the [ITrainTag] api
  *
@@ -15,7 +14,6 @@ import org.junit.Test
  *
  */
 class ITrainTagTests {
-
 
     @Test fun special_train_tag_from_string() {
 
@@ -56,7 +54,6 @@ class ITrainTagTests {
             Assert.assertNotEquals(ITrainTag.of(s), tag)
         }
     }
-
 
     @Test
     fun generic_train_tag_from_string() {

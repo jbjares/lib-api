@@ -5,7 +5,6 @@ import de.difuture.ekut.pht.lib.cross
 import org.junit.Assert
 import org.junit.Test
 
-
 class DockerRepositoryNameTests {
 
     @Test
@@ -50,7 +49,6 @@ class DockerRepositoryNameTests {
         DockerRepositoryName("sfsbff/a8fus")
     }
 
-
     @Test
     fun resolve_tag() {
 
@@ -61,9 +59,9 @@ class DockerRepositoryNameTests {
         val names = listOf(
                 DockerRepositoryName("alpine"),
                 DockerRepositoryName("alpine", hostPortTuple = localhost),
-                DockerRepositoryName("alpine", hostPortTuple = dockerio) ,
-                DockerRepositoryName("library", "python") ,
-                DockerRepositoryName("library", "python", hostPortTuple = localhost) ,
+                DockerRepositoryName("alpine", hostPortTuple = dockerio),
+                DockerRepositoryName("library", "python"),
+                DockerRepositoryName("library", "python", hostPortTuple = localhost),
                 DockerRepositoryName("library", "python", hostPortTuple = dockerio)
         )
         val tags = listOf(
@@ -102,4 +100,3 @@ class DockerRepositoryNameTests {
         }
     }
 }
-

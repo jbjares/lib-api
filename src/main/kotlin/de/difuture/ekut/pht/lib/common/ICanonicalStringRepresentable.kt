@@ -1,6 +1,5 @@
 package de.difuture.ekut.pht.lib.common
 
-
 /**
  * Interface denoting classes whose instances can be represented as a [String].
  *
@@ -18,5 +17,5 @@ interface ICanonicalStringRepresentable {
     /**
      * The canonical String representation of the object
      */
-    val repr : String
+    val repr: String
 }

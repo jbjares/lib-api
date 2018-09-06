@@ -4,7 +4,6 @@ import de.difuture.ekut.pht.lib.common.ICanonicalStringRepresentable
 import de.difuture.ekut.pht.lib.common.containsWhitespace
 import de.difuture.ekut.pht.lib.common.docker.DockerTag
 
-
 /**
  * Represents the Tag of a Train.
  *
@@ -25,10 +24,10 @@ interface ITrainTag : ICanonicalStringRepresentable {
          * @param value The value that should be converted to an [ITrainTag] instance
          * @return The [ITrainTag] from this [String]
          */
-        fun of(value : String) : ITrainTag {
+        fun of(value: String): ITrainTag {
 
             require(value.isNotBlank())
-            require( ! value.containsWhitespace())
+            require(! value.containsWhitespace())
             return when {
                 SpecialTrainTag.isMember(value) -> SpecialTrainTag.valueOf(value.toUpperCase())
                 ModeTrainTag.isMember(value) -> ModeTrainTag.valueOf(value.toUpperCase())
@@ -43,6 +42,6 @@ interface ITrainTag : ICanonicalStringRepresentable {
          * @return The [ITrainTag] instance that results from this [DockerTag]
          *
          */
-        fun of(tag : DockerTag) = of(tag.repr)
+        fun of(tag: DockerTag) = of(tag.repr)
     }
 }

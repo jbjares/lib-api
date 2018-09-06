@@ -26,19 +26,19 @@ import jdregistry.client.DockerRegistryGetClient
  *
  */
 class DefaultTrainRegistryClient(
-        private val dockerRegistryClient: DockerRegistryGetClient,
-        private val namespace: String? = null) : ITrainRegistryClient<IDockerClient> {
-
+    private val dockerRegistryClient: DockerRegistryGetClient,
+    private val namespace: String? = null
+) : ITrainRegistryClient<IDockerClient> {
 
     /**
      * Implementations of the ITrainInterface
      */
 
     private data class DockerTrainDeparture(
-            override val client: IDockerClient,
-            override val trainId: ITrainId,
-            override val trainTag: ITrainTag,
-            private val imageId: DockerImageId
+        override val client: IDockerClient,
+        override val trainId: ITrainId,
+        override val trainTag: ITrainTag,
+        private val imageId: DockerImageId
     ) : IDockerTrainDeparture {
 
         override fun isValid() = imageId in client.images()
@@ -55,10 +55,10 @@ class DefaultTrainRegistryClient(
     }
 
     private data class DockerTrainArrival(
-            override val trainId: ITrainId,
-            override val trainTag: ITrainTag,
-            private val hostTuple: HostPortTuple,
-            private val namespace: String?
+        override val trainId: ITrainId,
+        override val trainTag: ITrainTag,
+        private val hostTuple: HostPortTuple,
+        private val namespace: String?
 
     ) : IDockerTrainArrival {
 
@@ -92,7 +92,6 @@ class DefaultTrainRegistryClient(
             // The Departure Tag is always going to be the StationID
             val departureTag = ITrainTag.of(info.stationID.toString())
 
-
             // Commit the container and create the image
             val imageId = client.commit(
                     containerOutput.containerId,
@@ -102,7 +101,6 @@ class DefaultTrainRegistryClient(
             return DockerTrainDeparture(client, trainId, departureTag, imageId)
         }
     }
-
 
     override fun listTrainArrivals(): List<IDockerTrainArrival> =
             dockerRegistryClient
@@ -140,13 +138,11 @@ class DefaultTrainRegistryClient(
                                 namespace)
                     }
 
-
     override fun listTrainArrivals(tag: ITrainTag): List<IDockerTrainArrival> =
             this.listTrainArrivals().filter { it.trainTag == tag }
 
     override fun listTrainArrivals(id: ITrainId): List<ITrainArrival<IDockerClient>> =
             this.listTrainArrivals().filter { it.trainId == id }
-
 
     override fun getTrainArrival(id: ITrainId, tag: ITrainTag): ITrainArrival<IDockerClient>? {
 
@@ -162,7 +158,6 @@ class DefaultTrainRegistryClient(
 
     override fun hasTrainArrival(id: ITrainId, tag: ITrainTag) = this.getTrainArrival(id, tag) != null
 
-
     override fun push(departure: IDockerTrainDeparture) {
 
         val name = toDockerRepoName(
@@ -175,11 +170,9 @@ class DefaultTrainRegistryClient(
         departure.client.push(name, tag)
     }
 
-
     companion object {
 
         const val NAMESPACE_SEP = '/'
-
 
         private fun toDockerRepoName(namespace: String?, id: ITrainId, host: HostPortTuple) =
 

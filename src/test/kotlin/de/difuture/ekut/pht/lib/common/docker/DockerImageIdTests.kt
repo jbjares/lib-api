@@ -5,7 +5,6 @@ import org.junit.Test
 
 class DockerImageIdTests {
 
-
     @Test
     fun valid_image_ids() {
 

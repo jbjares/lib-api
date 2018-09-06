@@ -1,6 +1,5 @@
 package de.difuture.ekut.pht.lib.train.tag
 
-
 /**
  * Represents train tags that encode the mode of a train. Currently, only Immediate is supported.
  *
@@ -23,6 +22,6 @@ enum class ModeTrainTag(override val repr: String) : ITrainTag {
          *  @return Whether the provided value represents a [SpecialTrainTag]
          *
          */
-        fun isMember(value : String) = value in names
+        fun isMember(value: String) = value in names
     }
 }

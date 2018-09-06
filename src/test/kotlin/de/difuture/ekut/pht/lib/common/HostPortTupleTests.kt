@@ -4,7 +4,6 @@ import de.difuture.ekut.pht.lib.cross
 import org.junit.Assert
 import org.junit.Test
 
-
 class HostPortTupleTests {
 
     // Valid HostPortTuple instances
@@ -29,9 +28,9 @@ class HostPortTupleTests {
                 442
         )
 
-        cross(hostnames, ports).forEach {  (host, port) ->
+        cross(hostnames, ports).forEach { (host, port) ->
 
-            val portString = port?.let { ":$it"} ?: ""
+            val portString = port?.let { ":$it" } ?: ""
             Assert.assertEquals(
 
                     HostPortTuple(host, port).repr, host.plus(portString))

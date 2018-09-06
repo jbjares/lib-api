@@ -3,7 +3,6 @@ package de.difuture.ekut.pht.lib.common.docker
 import de.difuture.ekut.pht.lib.common.ICanonicalStringRepresentable
 import de.difuture.ekut.pht.lib.common.isValidDockerHash
 
-
 /**
  * Represents the ID of a Docker Container.
  *
@@ -13,7 +12,7 @@ import de.difuture.ekut.pht.lib.common.isValidDockerHash
  * @since 0.0.1
  */
 data class DockerContainerId(
-        override val repr: String
+    override val repr: String
 ) : ICanonicalStringRepresentable {
 
     init {

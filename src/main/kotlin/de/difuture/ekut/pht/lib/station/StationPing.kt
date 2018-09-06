@@ -11,6 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty
  */
 data class StationPing(
 
-        @JsonProperty("id") val id: Int,
-        @JsonProperty("display_name") val displayName: String?
+    @JsonProperty("id") val id: Int,
+    @JsonProperty("display_name") val displayName: String?
 )

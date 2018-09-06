@@ -2,7 +2,6 @@ package de.difuture.ekut.pht.lib.train.id
 
 import de.difuture.ekut.pht.lib.common.ICanonicalStringRepresentable
 
-
 /**
  * Represents the ID of a train.
  *

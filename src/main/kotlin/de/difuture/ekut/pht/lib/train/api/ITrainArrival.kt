@@ -20,7 +20,7 @@ interface ITrainArrival<A : IRuntimeClient> : ITrainInterface<A> {
      * @return Whether all requirements are met such that the Train can run its algorithm.
      *
      */
-    fun checkRequirements(client : A, info: RunInfo) : Boolean
+    fun checkRequirements(client: A, info: RunInfo): Boolean
 
     /**
      *  Runs the algorithm and returns the corresponding [ITrainDeparture]
@@ -29,7 +29,7 @@ interface ITrainArrival<A : IRuntimeClient> : ITrainInterface<A> {
      *  @return The [ITrainDeparture] for this execution of the algorithm.
      *
      */
-    fun runAlgorithm(client: A, info: RunInfo) : ITrainDeparture<A>
+    fun runAlgorithm(client: A, info: RunInfo): ITrainDeparture<A>
 
     /**
      * Uses the Train API to print the summary of the train.
@@ -38,7 +38,7 @@ interface ITrainArrival<A : IRuntimeClient> : ITrainInterface<A> {
      * @return [String] value representing the summary of the Train.
      *
      */
-    fun printSummary(client: A, info: RunInfo) : String
+    fun printSummary(client: A, info: RunInfo): String
 }
 
 typealias IDockerTrainArrival = ITrainArrival<IDockerClient>

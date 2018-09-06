@@ -3,7 +3,6 @@ package de.difuture.ekut.pht.lib.common.docker
 import de.difuture.ekut.pht.lib.common.ICanonicalStringRepresentable
 import de.difuture.ekut.pht.lib.common.containsWhitespace
 
-
 /**
  * Represents a Docker image tag.
  *
@@ -13,16 +12,16 @@ import de.difuture.ekut.pht.lib.common.containsWhitespace
  */
 data class DockerTag(
 
-        override val repr : String
+    override val repr: String
 
 ) : ICanonicalStringRepresentable {
 
     // TODO What Regex does the Docker Tag need to match?
     init {
         require(repr.isNotBlank())
-        require( ! repr.containsWhitespace())
+        require(! repr.containsWhitespace())
 
         // Docker Tag is not allowed to contain '/'
-        require( ! repr.contains('/'))
+        require(! repr.contains('/'))
     }
 }

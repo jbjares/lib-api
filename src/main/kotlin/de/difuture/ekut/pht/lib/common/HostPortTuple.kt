@@ -2,7 +2,6 @@ package de.difuture.ekut.pht.lib.common
 
 import java.net.URI
 
-
 /**
  * Represents tuple of hostname and port, where the port is optional.
  *
@@ -19,14 +18,14 @@ import java.net.URI
  */
 data class HostPortTuple(
 
-        val host: String,
-        val port : Int? = null
+    val host: String,
+    val port: Int? = null
 ) : ICanonicalStringRepresentable {
 
     init {
-        require(   host.isValidHostname() || host.isValidIP4Address() )
+        require(host.isValidHostname() || host.isValidIP4Address())
         require(port?.isValidPort() ?: true)
     }
-    override val repr = host.plus(port?.let {":$it"} ?: "")
-    constructor(uri : URI)  : this(uri.host, uri.port)
+    override val repr = host.plus(port?.let { ":$it" } ?: "")
+    constructor(uri: URI) : this(uri.host, uri.port)
 }

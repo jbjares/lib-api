@@ -12,7 +12,7 @@ interface ITrainDeparture<A : IRuntimeClient> : ITrainInterface<A> {
     /**
      * The runtime client that is associated with this [ITrainDeparture].
      */
-    val client : A
+    val client: A
 
     /**
      * Uses the Train API to print the summary of the train.
@@ -23,7 +23,7 @@ interface ITrainDeparture<A : IRuntimeClient> : ITrainInterface<A> {
      * @return [String] value representing the summary of the Train.
      *
      */
-    fun printSummary() : String
+    fun printSummary(): String
 
     /**
      * Checks whether this [ITrainDeparture] is valid, i.e. whether the result of running the algorithm can
@@ -34,7 +34,7 @@ interface ITrainDeparture<A : IRuntimeClient> : ITrainInterface<A> {
      * @return Whether this [ITrainDeparture] is still valid.
      *
      */
-    fun isValid() : Boolean
+    fun isValid(): Boolean
 }
 
 typealias IDockerTrainDeparture = ITrainDeparture<IDockerClient>
