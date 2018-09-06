@@ -1,9 +1,9 @@
-package de.difuture.ekut.pht.lib.train.id
+package de.difuture.ekut.pht.lib.trainregistry.id
 
 import de.difuture.ekut.pht.lib.common.ICanonicalStringRepresentable
 
 /**
- * Represents the ID of a train.
+ * Represents the ID of a trainregistry.
  *
  * @author Lukas Zimmermann
  * @since 0.0.1
@@ -15,7 +15,7 @@ interface ITrainId : ICanonicalStringRepresentable {
     companion object {
 
         // The regex that we allow for potential values of the trainId
-        // A train needs to start with the train_ prefix
+        // A trainregistry needs to start with the train_ prefix
         private val regex = Regex("train_[a-zA-Z](?:[a-zA-Z0-9_-]*[a-z0-9])?")
 
         fun of(value: String): ITrainId {

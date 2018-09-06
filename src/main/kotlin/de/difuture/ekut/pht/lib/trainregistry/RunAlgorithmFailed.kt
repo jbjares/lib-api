@@ -1,10 +1,10 @@
-package de.difuture.ekut.pht.lib.train
+package de.difuture.ekut.pht.lib.trainregistry
 
 import de.difuture.ekut.pht.lib.runtime.docker.DockerContainerOutput
 
 /**
  * Exception that is thrown when the execution of th run_algorithm fails and no
- * train Departure can be generated
+ * trainregistry Departure can be generated
  *
  * @author Lukas Zimmermann
  * @since 0.0.1

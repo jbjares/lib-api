@@ -1,16 +1,16 @@
-package de.difuture.ekut.pht.lib.train
+package de.difuture.ekut.pht.lib.trainregistry
 
-import de.difuture.ekut.pht.lib.train.api.ITrainArrival
-import de.difuture.ekut.pht.lib.train.api.ITrainDeparture
-import de.difuture.ekut.pht.lib.train.id.ITrainId
-import de.difuture.ekut.pht.lib.train.tag.ITrainTag
+import de.difuture.ekut.pht.lib.trainregistry.api.ITrainArrival
+import de.difuture.ekut.pht.lib.trainregistry.api.ITrainDeparture
+import de.difuture.ekut.pht.lib.trainregistry.id.ITrainId
+import de.difuture.ekut.pht.lib.trainregistry.tag.ITrainTag
 import de.difuture.ekut.pht.lib.runtime.IRuntimeClient
 
 /**
  * Represents the api of a client to the Train Registry.
  *
- * The train registry is directly dependent on a selected runtime client, as
- * the train registry provides a way to interact with [ITrainArrival].
+ * The trainregistry registry is directly dependent on a selected runtime client, as
+ * the trainregistry registry provides a way to interact with [ITrainArrival].
  *
  * @param A The runtime client required to use [ITrainArrival] instances retrieved from
  * the implementer of the Train Registry.
@@ -25,7 +25,7 @@ interface ITrainRegistryClient<A : IRuntimeClient> {
      * Lists all [ITrainArrival] instances of this Train Registry.
      *
      * *Contract:* This method should throw an exception if communication with the remote
-     * train registry fails.
+     * trainregistry registry fails.
      *
      * @return List of all [ITrainArrival] instances that this Train Registry contains.
      *
@@ -36,7 +36,7 @@ interface ITrainRegistryClient<A : IRuntimeClient> {
      * List all [ITrainArrival] instances that have a certain [ITrainTag].
      *
      * *Contract:* This method should throw an exception if communication with the remote
-     * train repository fails.
+     * trainregistry repository fails.
      *
      * @param tag The [ITrainTag] instance that is shared by the returned [ITrainArrival].
      *
@@ -48,7 +48,7 @@ interface ITrainRegistryClient<A : IRuntimeClient> {
      *  List TrainArrivals by giving the [ITrainId]
      *
      * *Contract:* This method should throw an exception if communication with the remote
-     * train repository fails.
+     * trainregistry repository fails.
      *
      * @param id The [ITrainId] that should be queries
      *
@@ -88,7 +88,7 @@ interface ITrainRegistryClient<A : IRuntimeClient> {
      * Pushes the specified [ITrainDeparture] to this Train Registry.
      *
      * *Contract:* The method should throw an exception if the [ITrainDeparture] cannot be pushed to the
-     * train registry successfully. Pushing to a [ITrainDeparture] that already exits and would not
+     * trainregistry registry successfully. Pushing to a [ITrainDeparture] that already exits and would not
      * be updated via this push is never a failure.
      *
      * @param departure The [ITrainDeparture] instance that should be pushed to this Train Registry.

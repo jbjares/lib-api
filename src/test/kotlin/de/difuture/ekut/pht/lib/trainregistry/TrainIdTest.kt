@@ -1,6 +1,6 @@
-package de.difuture.ekut.pht.lib.train
+package de.difuture.ekut.pht.lib.trainregistry
 
-import de.difuture.ekut.pht.lib.train.id.ITrainId
+import de.difuture.ekut.pht.lib.trainregistry.id.ITrainId
 import de.difuture.ekut.pht.test.lib.TRAINS_TEST_ALL
 import org.junit.Assert
 import org.junit.Test

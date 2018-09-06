@@ -1,23 +1,23 @@
-package de.difuture.ekut.pht.lib.train
+package de.difuture.ekut.pht.lib.trainregistry
 
 import de.difuture.ekut.pht.lib.common.HostPortTuple
 import de.difuture.ekut.pht.lib.common.docker.DockerImageId
 import de.difuture.ekut.pht.lib.runtime.docker.DockerContainerOutput
 import de.difuture.ekut.pht.lib.common.docker.DockerRepositoryName
 import de.difuture.ekut.pht.lib.common.docker.DockerTag
-import de.difuture.ekut.pht.lib.train.api.IDockerTrainArrival
-import de.difuture.ekut.pht.lib.train.api.IDockerTrainDeparture
-import de.difuture.ekut.pht.lib.train.api.ITrainArrival
-import de.difuture.ekut.pht.lib.train.api.RunInfo
-import de.difuture.ekut.pht.lib.train.id.ITrainId
-import de.difuture.ekut.pht.lib.train.tag.ITrainTag
+import de.difuture.ekut.pht.lib.trainregistry.api.IDockerTrainArrival
+import de.difuture.ekut.pht.lib.trainregistry.api.IDockerTrainDeparture
+import de.difuture.ekut.pht.lib.trainregistry.api.ITrainArrival
+import de.difuture.ekut.pht.lib.trainregistry.api.RunInfo
+import de.difuture.ekut.pht.lib.trainregistry.id.ITrainId
+import de.difuture.ekut.pht.lib.trainregistry.tag.ITrainTag
 import de.difuture.ekut.pht.lib.runtime.docker.IDockerClient
 import jdregistry.client.DockerRegistryGetClient
 
 /**
  * Canonical implementation of the [ITrainRegistryClient].
  *
- * @param dockerRegistryClient The [IDockerRegistryClient] that should be used for interacting with the train registry
+ * @param dockerRegistryClient The [IDockerRegistryClient] that should be used for interacting with the trainregistry registry
  * @param namespace The namespace of the Docker Registry that is targeted by this client. If the name
  * space is null, then the root namespace of the registry is targeted
  *

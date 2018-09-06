@@ -1,10 +1,10 @@
-package de.difuture.ekut.pht.lib.train.api
+package de.difuture.ekut.pht.lib.trainregistry.api
 
-import de.difuture.ekut.pht.lib.train.tag.ModeTrainTag
+import de.difuture.ekut.pht.lib.trainregistry.tag.ModeTrainTag
 
 /**
  *
- * Represents the set of information that is passed to the train durig runtime.
+ * Represents the set of information that is passed to the trainregistry durig runtime.
  *
  * @author Lukas Zimmermann
  * @since 0.0.1

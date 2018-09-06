@@ -1,7 +1,7 @@
-package de.difuture.ekut.pht.lib.train.api
+package de.difuture.ekut.pht.lib.trainregistry.api
 
-import de.difuture.ekut.pht.lib.train.id.ITrainId
-import de.difuture.ekut.pht.lib.train.tag.ITrainTag
+import de.difuture.ekut.pht.lib.trainregistry.id.ITrainId
+import de.difuture.ekut.pht.lib.trainregistry.tag.ITrainTag
 import de.difuture.ekut.pht.lib.runtime.IRuntimeClient
 
 /**

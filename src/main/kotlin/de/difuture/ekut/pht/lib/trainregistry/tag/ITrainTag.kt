@@ -1,4 +1,4 @@
-package de.difuture.ekut.pht.lib.train.tag
+package de.difuture.ekut.pht.lib.trainregistry.tag
 
 import de.difuture.ekut.pht.lib.common.ICanonicalStringRepresentable
 import de.difuture.ekut.pht.lib.common.containsWhitespace

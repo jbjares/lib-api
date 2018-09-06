@@ -10,8 +10,8 @@ de.difuture.ekut.pht.lib.common.docker
 de.difuture.ekut.pht.lib.http
 de.difuture.ekut.pht.lib.registry.docker
 de.difuture.ekut.pht.lib.registry.docker.data
-de.difuture.ekut.pht.lib.train
-de.difuture.ekut.pht.lib.train.api
-de.difuture.ekut.pht.lib.train.id
-de.difuture.ekut.pht.lib.train.tag
+de.difuture.ekut.pht.lib.trainregistry
+de.difuture.ekut.pht.lib.trainregistry.api
+de.difuture.ekut.pht.lib.trainregistry.id
+de.difuture.ekut.pht.lib.trainregistry.tag
 de.difuture.ekut.pht.lib.runtime
