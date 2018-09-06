@@ -48,7 +48,7 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.61"
 
     // The Docker Registry Client implementation that the PHT library depends on
-    compile group: 'jdregistry', name: 'client', version: '0.0.1'
+    compile group: 'jdregistry', name: 'client', version: '0.0.2'
 
     // Testing
     testCompile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.6'
