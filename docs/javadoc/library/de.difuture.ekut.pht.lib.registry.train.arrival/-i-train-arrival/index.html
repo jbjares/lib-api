@@ -5,27 +5,27 @@
 <link rel="stylesheet" href="../../../style.css">
 </HEAD>
 <BODY>
-<a href="../../index.html">library</a>&nbsp;/&nbsp;<a href="../index.html">de.difuture.ekut.pht.lib.registry.train.arrival</a>&nbsp;/&nbsp;<a href="./index.html">ITrainArrival</a><br/>
+<a href="../../index.html">library</a>&nbsp;/&nbsp;<a href="../index.html">de.difuture.ekut.pht.lib.train.arrival</a>&nbsp;/&nbsp;<a href="./index.html">ITrainArrival</a><br/>
 <br/>
 <h1>ITrainArrival</h1>
-<code><span class="keyword">interface </span><span class="identifier">ITrainArrival</span><span class="symbol">&lt;</span><span class="identifier">A</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../de.difuture.ekut.pht.lib.runtime/-runtime-clientDockerClient.html"><span class="identifier">RuntimeClient</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../de.difuture.ekut.pht.lib.registry.train/-train-interface/index.html"><span class="identifier">TrainInterface</span></a></code>
+<code><span class="keyword">interface </span><span class="identifier">ITrainArrival</span><span class="symbol">&lt;</span><span class="identifier">A</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../de.difuture.ekut.pht.lib.runtime/-runtime-clientDockerClient.html"><span class="identifier">RuntimeClient</span></a><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../de.difuture.ekut.pht.lib.train/-train-interface/index.html"><span class="identifier">TrainInterface</span></a></code>
 <p>Interface for Train Arrivals.</p>
 <h3>Inherited Properties</h3>
 <table>
 <tbody>
 <tr>
 <td>
-<p><a href="../../de.difuture.ekut.pht.lib.registry.train/-train-interface/train-id.html">trainId</a></p>
+<p><a href="../../de.difuture.ekut.pht.lib.train/-train-interface/train-id.html">trainId</a></p>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">trainId</span><span class="symbol">: </span><a href="../../de.difuture.ekut.pht.lib.registry.train/-train-id/index.html"><span class="identifier">TrainId</span></a></code></td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">trainId</span><span class="symbol">: </span><a href="../../de.difuture.ekut.pht.lib.train/-train-id/index.html"><span class="identifier">TrainId</span></a></code></td>
 </tr>
 <tr>
 <td>
-<p><a href="../../de.difuture.ekut.pht.lib.registry.train/-train-interface/train-tagI.html">trainTag</a></p>
+<p><a href="../../de.difuture.ekut.pht.lib.train/-train-interface/train-tagI.html">trainTag</a></p>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">trainTag</span><span class="symbol">: </span><a href="../../de.difuture.ekut.pht.lib.registry.train.tagI/-train-tagI/index.html"><span class="identifier">TrainTag</span></a></code></td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">trainTag</span><span class="symbol">: </span><a href="../../de.difuture.ekut.pht.lib.train.tagI/-train-tagI/index.html"><span class="identifier">TrainTag</span></a></code></td>
 </tr>
 </tbody>
 </table>
@@ -37,14 +37,14 @@
 <p><a href="check-requirements.html">checkRequirements</a></p>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">checkRequirements</span><span class="symbol">(</span><span class="identifier" id="de.difuture.ekut.pht.lib.registry.train.`interface`.ITrainArrival$checkRequirements(de.difuture.ekut.pht.lib.registry.train.`interface`.ITrainArrival.A, kotlin.Int)/clientDockerClient">clientDockerClient</span><span class="symbol">:</span>&nbsp;<a href="index.html#A"><span class="identifier">A</span></a><span class="symbol">, </span><span class="identifier" id="de.difuture.ekut.pht.lib.registry.train.`interface`.ITrainArrival$checkRequirements(de.difuture.ekut.pht.lib.registry.train.`interface`.ITrainArrival.A, kotlin.Int)/timeout">timeout</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">checkRequirements</span><span class="symbol">(</span><span class="identifier" id="de.difuture.ekut.pht.lib.train.`interface`.ITrainArrival$checkRequirements(de.difuture.ekut.pht.lib.train.`interface`.ITrainArrival.A, kotlin.Int)/clientDockerClient">clientDockerClient</span><span class="symbol">:</span>&nbsp;<a href="index.html#A"><span class="identifier">A</span></a><span class="symbol">, </span><span class="identifier" id="de.difuture.ekut.pht.lib.train.`interface`.ITrainArrival$checkRequirements(de.difuture.ekut.pht.lib.train.`interface`.ITrainArrival.A, kotlin.Int)/timeout">timeout</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
 </tr>
 <tr>
 <td>
 <p><a href="print-summary.html">printSummary</a></p>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">printSummary</span><span class="symbol">(</span><span class="identifier" id="de.difuture.ekut.pht.lib.registry.train.`interface`.ITrainArrival$printSummary(de.difuture.ekut.pht.lib.registry.train.`interface`.ITrainArrival.A, kotlin.Int)/clientDockerClient">clientDockerClient</span><span class="symbol">:</span>&nbsp;<a href="index.html#A"><span class="identifier">A</span></a><span class="symbol">, </span><span class="identifier" id="de.difuture.ekut.pht.lib.registry.train.`interface`.ITrainArrival$printSummary(de.difuture.ekut.pht.lib.registry.train.`interface`.ITrainArrival.A, kotlin.Int)/timeout">timeout</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">printSummary</span><span class="symbol">(</span><span class="identifier" id="de.difuture.ekut.pht.lib.train.`interface`.ITrainArrival$printSummary(de.difuture.ekut.pht.lib.train.`interface`.ITrainArrival.A, kotlin.Int)/clientDockerClient">clientDockerClient</span><span class="symbol">:</span>&nbsp;<a href="index.html#A"><span class="identifier">A</span></a><span class="symbol">, </span><span class="identifier" id="de.difuture.ekut.pht.lib.train.`interface`.ITrainArrival$printSummary(de.difuture.ekut.pht.lib.train.`interface`.ITrainArrival.A, kotlin.Int)/timeout">timeout</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
 </tr>
 </tbody>
 </table>

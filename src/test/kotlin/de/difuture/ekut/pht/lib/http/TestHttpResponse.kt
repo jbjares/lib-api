@@ -1,5 +1,6 @@
 package de.difuture.ekut.pht.lib.http
 
+import jdregistry.client.http.IHttpResponse
 import org.apache.http.client.methods.CloseableHttpResponse
 import java.io.ByteArrayOutputStream
 
@@ -14,11 +15,10 @@ import java.io.ByteArrayOutputStream
 class TestHttpResponse(response : CloseableHttpResponse) : IHttpResponse {
 
     override val body: String
-    override val statusCode = HttpStatusCode.of(response.statusLine.statusCode)?.let { it } ?:
-            throw IllegalStateException("Returned Status Code not supported!")
+    override val statusCode = response.statusLine.statusCode
 
     // We do not use the headers for testing explicitly, hence we set the empty map
-    override val headers = emptyMap<String, List<String>>()
+    override val authenticate = emptyList<String>()
 
     init {
         val outstream = ByteArrayOutputStream()

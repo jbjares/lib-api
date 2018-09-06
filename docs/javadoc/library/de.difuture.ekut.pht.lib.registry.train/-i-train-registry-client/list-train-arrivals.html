@@ -5,25 +5,25 @@
 <link rel="stylesheet" href="../../../style.css">
 </HEAD>
 <BODY>
-<a href="../../index.html">library</a>&nbsp;/&nbsp;<a href="../index.html">de.difuture.ekut.pht.lib.registry.train</a>&nbsp;/&nbsp;<a href="index.html">ITrainRegistryClient</a>&nbsp;/&nbsp;<a href="./list-train-arrivals.html">listTrainArrivals</a><br/>
+<a href="../../index.html">library</a>&nbsp;/&nbsp;<a href="../index.html">de.difuture.ekut.pht.lib.train</a>&nbsp;/&nbsp;<a href="index.html">ITrainRegistryClient</a>&nbsp;/&nbsp;<a href="./list-train-arrivals.html">listTrainArrivals</a><br/>
 <br/>
 <h1>listTrainArrivals</h1>
-<a name="de.difuture.ekut.pht.lib.registry.train.ITrainRegistryClient$listTrainArrivals()"></a>
-<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">listTrainArrivals</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../de.difuture.ekut.pht.lib.registry.train.api/-i-train-arrival/index.html"><span class="identifier">ITrainArrival</span></a><span class="symbol">&lt;</span><a href="index.html#A"><span class="identifier">A</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code>
-<p>Lists all <a href="../../de.difuture.ekut.pht.lib.registry.train.api/-i-train-arrival/index.html">ITrainArrival</a> instances of this Train Registry.</p>
+<a name="de.difuture.ekut.pht.lib.train.ITrainRegistryClient$listTrainArrivals()"></a>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">listTrainArrivals</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../de.difuture.ekut.pht.lib.train.api/-i-train-arrival/index.html"><span class="identifier">ITrainArrival</span></a><span class="symbol">&lt;</span><a href="index.html#A"><span class="identifier">A</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code>
+<p>Lists all <a href="../../de.difuture.ekut.pht.lib.train.api/-i-train-arrival/index.html">ITrainArrival</a> instances of this Train Registry.</p>
 <p><em>Contract:</em> This method should throw an exception if communication with the remote
 train registry fails.</p>
 <p><strong>Return</strong><br/>
-List of all <a href="../../de.difuture.ekut.pht.lib.registry.train.api/-i-train-arrival/index.html">ITrainArrival</a> instances that this Train Registry contains.</p>
-<a name="de.difuture.ekut.pht.lib.registry.train.ITrainRegistryClient$listTrainArrivals(de.difuture.ekut.pht.lib.registry.train.tag.ITrainTag)"></a>
-<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">listTrainArrivals</span><span class="symbol">(</span><span class="identifier" id="de.difuture.ekut.pht.lib.registry.train.ITrainRegistryClient$listTrainArrivals(de.difuture.ekut.pht.lib.registry.train.tag.ITrainTag)/tag">tag</span><span class="symbol">:</span>&nbsp;<a href="../../de.difuture.ekut.pht.lib.registry.train.tag/-i-train-tag/index.html"><span class="identifier">ITrainTag</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../de.difuture.ekut.pht.lib.registry.train.api/-i-train-arrival/index.html"><span class="identifier">ITrainArrival</span></a><span class="symbol">&lt;</span><a href="index.html#A"><span class="identifier">A</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code>
-<p>List all <a href="../../de.difuture.ekut.pht.lib.registry.train.api/-i-train-arrival/index.html">ITrainArrival</a> instances that have a certain <a href="../../de.difuture.ekut.pht.lib.registry.train.tag/-i-train-tag/index.html">ITrainTag</a>.</p>
+List of all <a href="../../de.difuture.ekut.pht.lib.train.api/-i-train-arrival/index.html">ITrainArrival</a> instances that this Train Registry contains.</p>
+<a name="de.difuture.ekut.pht.lib.train.ITrainRegistryClient$listTrainArrivals(de.difuture.ekut.pht.lib.train.tag.ITrainTag)"></a>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">listTrainArrivals</span><span class="symbol">(</span><span class="identifier" id="de.difuture.ekut.pht.lib.train.ITrainRegistryClient$listTrainArrivals(de.difuture.ekut.pht.lib.train.tag.ITrainTag)/tag">tag</span><span class="symbol">:</span>&nbsp;<a href="../../de.difuture.ekut.pht.lib.train.tag/-i-train-tag/index.html"><span class="identifier">ITrainTag</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../de.difuture.ekut.pht.lib.train.api/-i-train-arrival/index.html"><span class="identifier">ITrainArrival</span></a><span class="symbol">&lt;</span><a href="index.html#A"><span class="identifier">A</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code>
+<p>List all <a href="../../de.difuture.ekut.pht.lib.train.api/-i-train-arrival/index.html">ITrainArrival</a> instances that have a certain <a href="../../de.difuture.ekut.pht.lib.train.tag/-i-train-tag/index.html">ITrainTag</a>.</p>
 <p><em>Contract:</em> This method should throw an exception if communication with the remote
 train repository fails.</p>
 <h3>Parameters</h3>
 <p><a name="tag"></a>
-<code>tag</code> - The <a href="../../de.difuture.ekut.pht.lib.registry.train.tag/-i-train-tag/index.html">ITrainTag</a> instance that is shared by the returned <a href="../../de.difuture.ekut.pht.lib.registry.train.api/-i-train-arrival/index.html">ITrainArrival</a>.</p>
+<code>tag</code> - The <a href="../../de.difuture.ekut.pht.lib.train.tag/-i-train-tag/index.html">ITrainTag</a> instance that is shared by the returned <a href="../../de.difuture.ekut.pht.lib.train.api/-i-train-arrival/index.html">ITrainArrival</a>.</p>
 <p><strong>Return</strong><br/>
-List of <a href="../../de.difuture.ekut.pht.lib.registry.train.api/-i-train-arrival/index.html">ITrainArrival</a> instances in the Train Registry that share the same <a href="../../de.difuture.ekut.pht.lib.registry.train.tag/-i-train-tag/index.html">ITrainTag</a>.</p>
+List of <a href="../../de.difuture.ekut.pht.lib.train.api/-i-train-arrival/index.html">ITrainArrival</a> instances in the Train Registry that share the same <a href="../../de.difuture.ekut.pht.lib.train.tag/-i-train-tag/index.html">ITrainTag</a>.</p>
 </BODY>
 </HTML>

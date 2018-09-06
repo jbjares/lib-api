@@ -1,22 +1,29 @@
 buildscript {
-    repositories {
-        jcenter()
-    }
-
     dependencies {
         classpath "org.jetbrains.dokka:dokka-gradle-plugin:0.9.17"
     }
 }
 
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.2.60'
+    id 'org.jetbrains.kotlin.jvm' version '1.2.61'
 
+    // Needed so we can resolve the test library from the artifactory
+    id "com.jfrog.artifactory" version "4.7.5"
 }
+
 repositories {
     mavenCentral()
-    mavenLocal()
-}
 
+    // That is where the JDregistry is currently hosted
+    maven {
+        url  "https://dl.bintray.com/lukaszimmermann/jdregistry"
+    }
+
+    // The Artifactory for the PHT project
+    maven {
+        url "https://artifactory.difuture.de/pht"
+    }
+}
 
 compileKotlin {
     kotlinOptions {
@@ -30,34 +37,63 @@ compileTestKotlin {
 }
 
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.60"
-    compile group: 'com.fasterxml.jackson.module', name: 'jackson-module-kotlin', version: '2.9.6'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.61"
+
+    // The Docker Registry Client implementation that the PHT library depends on
+    compile group: 'jdregistry', name: 'client', version: '0.0.1'
+
+    // Testing
     testCompile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.6'
     testCompile group: 'io.github.benas', name: 'random-beans', version: '3.7.0'
-    testCompile group: 'de.difuture.ekut.pht.test', name: 'library', version: '0.0.1-SNAPSHOT'
+    testCompile group: 'de.difuture.ekut.pht.test', name: 'lib', version: '0.0.1'
 }
 
-// Publish locally
 apply plugin: 'maven-publish'
-
-// Enable code coverage
 apply plugin: 'jacoco'
-
-// Kotlin Javadoc generation
 apply plugin: 'org.jetbrains.dokka'
 
-
 group = "de.difuture.ekut.pht"
-version = "0.0.1-SNAPSHOT"
+version = "0.0.1"
+
 
 publishing {
     publications {
-        mavenJava(MavenPublication) {
+        maven(MavenPublication) {
             from components.java
+            version '0.0.1'
+            pom.withXml {
+                asNode().dependencies.'*'.findAll() {
+                    it.scope.text() == 'runtime' && project.configurations.compile.allDependencies.find { dep ->
+                        dep.name == it.artifactId.text()
+                    }
+                }.each() {
+                    it.scope*.value = 'compile'
+                }
+            }
         }
     }
 }
 
+model {
+    tasks.generatePomFileForMavenPublication {
+        destination = file("$buildDir/libs/lib-0.0.1.pom")
+    }
+}
+
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives sourcesJar
+}
+
+/*
+ * Generating the test report
+ *
+ */
 jacocoTestReport {
     reports {
         xml.enabled = true
@@ -66,6 +102,10 @@ jacocoTestReport {
 }
 check.dependsOn jacocoTestReport
 
+/*
+ * Generating the Java Docs
+ *
+ */
 dokka {
     outputFormat = 'html'
     outputDirectory = "docs/javadoc"
