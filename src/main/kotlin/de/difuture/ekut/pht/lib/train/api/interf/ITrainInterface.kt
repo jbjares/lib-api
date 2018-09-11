@@ -1,8 +1,8 @@
-package de.difuture.ekut.pht.lib.trainregistry.api
+package de.difuture.ekut.pht.lib.train.api.interf
 
-import de.difuture.ekut.pht.lib.trainregistry.id.ITrainId
-import de.difuture.ekut.pht.lib.trainregistry.tag.ITrainTag
+import de.difuture.ekut.pht.lib.train.id.ITrainId
 import de.difuture.ekut.pht.lib.runtime.IRuntimeClient
+import de.difuture.ekut.pht.lib.train.tag.ITrainTag
 
 /**
  * Super api for [ITrainArrival] and [ITrainDeparture]
@@ -18,7 +18,7 @@ import de.difuture.ekut.pht.lib.runtime.IRuntimeClient
  * @since 0.0.1
  *
  */
-interface ITrainInterface<A : IRuntimeClient> {
+interface ITrainInterface {
 
     /**
      * The [ITrainId] of the Train to which this object refers.
@@ -26,7 +26,8 @@ interface ITrainInterface<A : IRuntimeClient> {
     val trainId: ITrainId
 
     /**
-     * The [ITrainTag] of the Train to which this object refers.
+     * The [ITrainTag]
+     *
      */
     val trainTag: ITrainTag
 }

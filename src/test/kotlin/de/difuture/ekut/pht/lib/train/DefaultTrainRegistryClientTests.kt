@@ -1,10 +1,11 @@
-package de.difuture.ekut.pht.lib.trainregistry
+package de.difuture.ekut.pht.lib.train
 
 import de.difuture.ekut.pht.lib.http.TestHttpClient
-import de.difuture.ekut.pht.lib.trainregistry.id.ITrainId
-import de.difuture.ekut.pht.lib.trainregistry.tag.SpecialTrainTag
-import de.difuture.ekut.pht.lib.trainregistry.tag.ITrainTag
-import de.difuture.ekut.pht.lib.trainregistry.tag.ModeTrainTag
+import de.difuture.ekut.pht.lib.train.id.ITrainId
+import de.difuture.ekut.pht.lib.train.registry.DefaultTrainRegistryClient
+import de.difuture.ekut.pht.lib.train.tag.SpecialTrainTag
+import de.difuture.ekut.pht.lib.train.tag.ITrainTag
+import de.difuture.ekut.pht.lib.train.tag.ModeTrainTag
 import de.difuture.ekut.pht.test.lib.SingleExposedPortContainer
 import de.difuture.ekut.pht.test.lib.TEST_TRAIN_REGISTRY_REPOSITORY
 import jdregistry.client.DockerRegistryGetClient
@@ -75,13 +76,13 @@ class DefaultTrainRegistryClientTests {
 
         val tag = ITrainTag.of("test")
 
-        // These trainregistry arrivals should exist
+        // These train arrivals should exist
         val arrival1 = this.client.getTrainArrival(
                 ITrainId.of("train_test_print_summary_1"), tag)
         val arrival2 = this.client.getTrainArrival(
                 ITrainId.of("train_test_print_summary_2"), tag)
 
-        // These trainregistry arrivals do not exist
+        // These train arrivals do not exist
         val arrival3 = this.client.getTrainArrival(
                 ITrainId.of("train_foobar"), tag)
         val arrival4 = this.client.getTrainArrival(

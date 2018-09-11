@@ -1,6 +1,5 @@
 package de.difuture.ekut.pht.lib.common
 
-import java.net.URI
 
 /**
  * A series of extension functions.
@@ -47,23 +46,3 @@ fun String.containsWhitespace() = this.any { it.isWhitespace() }
  *
  */
 fun Int.isValidPort() = this > 0
-
-/**
- * Constructs new [URI] by either replacing or appending more query parameters
- *
- */
-fun URI.withQuery(params: Map<String, String>, keepOld: Boolean): URI {
-
-    // Construct  query string from map
-    val queryExtend = params.map { "${it.key}=${it.value}" }.joinToString("&")
-
-    // Platform type: String can be null
-    val oldQuery: String? = this.query
-    val newQuery = if (keepOld && oldQuery != null) {
-        "$oldQuery&$queryExtend"
-    } else {
-        queryExtend
-    }
-
-    return URI(this.scheme, this.authority, this.path, newQuery, this.fragment)
-}

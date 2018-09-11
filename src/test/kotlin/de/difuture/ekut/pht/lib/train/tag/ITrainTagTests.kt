@@ -1,4 +1,4 @@
-package de.difuture.ekut.pht.lib.trainregistry.tag
+package de.difuture.ekut.pht.lib.train.tag
 
 import de.difuture.ekut.pht.lib.common.docker.DockerTag
 import org.junit.Assert
@@ -72,7 +72,7 @@ class ITrainTagTests {
 
     @Test fun special_train_tag_from_dockertag() {
 
-        // The special trainregistry tags
+        // The special train tags
         val tag1 = ITrainTag.of(DockerTag("test"))
         val tag2 = ITrainTag.of(DockerTag("immediate"))
         val tag3 = ITrainTag.of(DockerTag("TEST"))

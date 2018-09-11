@@ -1,23 +1,24 @@
-package de.difuture.ekut.pht.lib.trainregistry
+package de.difuture.ekut.pht.lib.train.registry
 
 import de.difuture.ekut.pht.lib.common.HostPortTuple
 import de.difuture.ekut.pht.lib.common.docker.DockerImageId
 import de.difuture.ekut.pht.lib.runtime.docker.DockerContainerOutput
 import de.difuture.ekut.pht.lib.common.docker.DockerRepositoryName
 import de.difuture.ekut.pht.lib.common.docker.DockerTag
-import de.difuture.ekut.pht.lib.trainregistry.api.IDockerTrainArrival
-import de.difuture.ekut.pht.lib.trainregistry.api.IDockerTrainDeparture
-import de.difuture.ekut.pht.lib.trainregistry.api.ITrainArrival
-import de.difuture.ekut.pht.lib.trainregistry.api.RunInfo
-import de.difuture.ekut.pht.lib.trainregistry.id.ITrainId
-import de.difuture.ekut.pht.lib.trainregistry.tag.ITrainTag
+import de.difuture.ekut.pht.lib.train.api.interf.IDockerTrainArrival
+import de.difuture.ekut.pht.lib.train.api.interf.IDockerTrainDeparture
+import de.difuture.ekut.pht.lib.train.api.interf.ITrainArrival
+import de.difuture.ekut.pht.lib.train.api.StationInfo
+import de.difuture.ekut.pht.lib.train.id.ITrainId
+import de.difuture.ekut.pht.lib.train.tag.ITrainTag
 import de.difuture.ekut.pht.lib.runtime.docker.IDockerClient
+import de.difuture.ekut.pht.lib.train.RunAlgorithmFailed
 import jdregistry.client.DockerRegistryGetClient
 
 /**
  * Canonical implementation of the [ITrainRegistryClient].
  *
- * @param dockerRegistryClient The [IDockerRegistryClient] that should be used for interacting with the trainregistry registry
+ * @param dockerRegistryClient The [IDockerRegistryClient] that should be used for interacting with the train registry
  * @param namespace The namespace of the Docker Registry that is targeted by this client. If the name
  * space is null, then the root namespace of the registry is targeted
  *
@@ -73,11 +74,11 @@ class DefaultTrainRegistryClient(
             return dockerClient.run(imageId, commands, rm)
         }
 
-        override fun printSummary(client: IDockerClient, info: RunInfo) = run(client, true, info.commandLine.plus("print_summary")).stdout
+        override fun printSummary(client: IDockerClient, info: StationInfo) = run(client, true, info.commandLine.plus("print_summary")).stdout
 
-        override fun checkRequirements(client: IDockerClient, info: RunInfo) = run(client, true, info.commandLine.plus("check_requirements")).exitCode == 0
+        override fun checkRequirements(client: IDockerClient, info: StationInfo) = run(client, true, info.commandLine.plus("check_requirements")).exitCode == 0
 
-        override fun runAlgorithm(client: IDockerClient, info: RunInfo): DockerTrainDeparture {
+        override fun runAlgorithm(client: IDockerClient, info: StationInfo): DockerTrainDeparture {
 
             // Run the container by passing the command line and tool name
             val containerOutput = run(client, false, info.commandLine.plus("run_algorithm"))
@@ -130,7 +131,7 @@ class DefaultTrainRegistryClient(
                         ITrainId.isValid(repo) && namespace == this.namespace
                     }.map { (namespace, repo, tag) ->
 
-                        // Create The DockerTrainArrival based on trainId, namespace, tag and original registry.
+                        // Create The DockerRegistryTrainArrival based on trainId, namespace, tag and original registry.
                         DockerTrainArrival(
                                 ITrainId.of(repo),
                                 ITrainTag.of(tag),

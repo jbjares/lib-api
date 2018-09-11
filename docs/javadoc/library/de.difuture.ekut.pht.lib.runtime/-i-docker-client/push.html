@@ -11,11 +11,11 @@
 <a name="de.difuture.ekut.pht.lib.runtime.docker.IDockerClient$push(de.difuture.ekut.pht.lib.common.docker.DockerRepositoryName, de.difuture.ekut.pht.lib.common.docker.DockerTag)"></a>
 <code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">push</span><span class="symbol">(</span><span class="identifier" id="de.difuture.ekut.pht.lib.runtime.docker.IDockerClient$push(de.difuture.ekut.pht.lib.common.docker.DockerRepositoryName, de.difuture.ekut.pht.lib.common.docker.DockerTag)/repo">repo</span><span class="symbol">:</span>&nbsp;<a href="../../de.difuture.ekut.pht.lib.common.docker/-docker-repository-name/index.html"><span class="identifier">DockerRepositoryName</span></a><span class="symbol">, </span><span class="identifier" id="de.difuture.ekut.pht.lib.runtime.docker.IDockerClient$push(de.difuture.ekut.pht.lib.common.docker.DockerRepositoryName, de.difuture.ekut.pht.lib.common.docker.DockerTag)/tag">tag</span><span class="symbol">:</span>&nbsp;<a href="../../de.difuture.ekut.pht.lib.common.docker/-docker-tag/index.html"><span class="identifier">DockerTag</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
 <p>Pushes the specified docker image via the provided <a href="../../de.difuture.ekut.pht.lib.common.docker/-docker-repository-name/index.html">DockerRepositoryName</a> and <a href="../../de.difuture.ekut.pht.lib.common.docker/-docker-tag/index.html">DockerTag</a>.</p>
-<p>Resembles the <code>docker push</code> command. Unlike the Docker CLI, the tag <code>latest</code> is never implied, as it does not
+<p>Resembles the <code>docker push</code> trainCommand. Unlike the Docker CLI, the tag <code>latest</code> is never implied, as it does not
 bear any meaning in the PHT context. Hence, the tag is a required parameter.</p>
 <p><em>Contract:</em> If anything prevents the image to be pushed to the registry (like networking errors), the
 method needs to fail by throwing an exception. Pushing to a repository that already exits and would not
-be updated via push is never a failure. This is compatible with the <code>docker push</code> command.</p>
+be updated via push is never a failure. This is compatible with the <code>docker push</code> trainCommand.</p>
 <h3>Parameters</h3>
 <p><a name="repo"></a>
 <code>repo</code> - The <a href="../../de.difuture.ekut.pht.lib.common.docker/-docker-repository-name/index.html">DockerRepositoryName</a> that should be pushed to.</p>

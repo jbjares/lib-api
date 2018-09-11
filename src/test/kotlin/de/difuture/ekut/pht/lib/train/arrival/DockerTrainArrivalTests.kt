@@ -1,7 +1,7 @@
-package de.difuture.ekut.pht.lib.trainregistry.arrival
+package de.difuture.ekut.pht.lib.train.arrival
 
 import de.difuture.ekut.pht.lib.http.TestHttpClient
-import de.difuture.ekut.pht.lib.trainregistry.DefaultTrainRegistryClient
+import de.difuture.ekut.pht.lib.train.registry.DefaultTrainRegistryClient
 import de.difuture.ekut.pht.test.lib.SingleExposedPortContainer
 import de.difuture.ekut.pht.test.lib.TEST_TRAIN_REGISTRY_REPOSITORY
 import jdregistry.client.DockerRegistryGetClient

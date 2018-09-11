@@ -1,4 +1,4 @@
-package de.difuture.ekut.pht.lib.trainregistry.api
+package de.difuture.ekut.pht.lib.train.api.interf
 
 import de.difuture.ekut.pht.lib.runtime.docker.IDockerClient
 import de.difuture.ekut.pht.lib.runtime.IRuntimeClient
@@ -15,7 +15,7 @@ interface ITrainDeparture<A : IRuntimeClient> : ITrainInterface<A> {
     val client: A
 
     /**
-     * Uses the Train API to print the summary of the trainregistry.
+     * Uses the Train API to print the summary of the train.
      *
      * *Contract:* If the [isValid] method of this [ITrainDeparture] returns false,
      * this method must throw [IllegalStateException].
