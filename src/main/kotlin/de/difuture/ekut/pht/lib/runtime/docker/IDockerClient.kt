@@ -26,7 +26,7 @@ interface IDockerClient : IRuntimeClient {
     /**
      * Runs (create and start) the Docker image with the given commands, waits for the resulting container to exit.
      *
-     * This method reflects a simplified version of the `docker run` command, which only supports specifying
+     * This method reflects a simplified version of the `docker run` trainCommand, which only supports specifying
      * the commands to be passed to the Docker image and optionally whether the exited container should be removed
      * after it has exited (reflecting the `--rm` option of `docker run`).
      *
@@ -47,7 +47,7 @@ interface IDockerClient : IRuntimeClient {
      * @param interruptHandler A [IInterruptHandler] that will be used to interrupt the running
      * container once the timeout has been reached.
      *
-     * @return [DockerContainerOutput] object describing the output of the Docker run command.
+     * @return [DockerContainerOutput] object describing the output of the Docker run trainCommand.
      *
      */
     fun run(
@@ -63,7 +63,7 @@ interface IDockerClient : IRuntimeClient {
     /**
      * Removes container with specified ID.
      *
-     * This command resembles the `docker rm` command.
+     * This trainCommand resembles the `docker rm` trainCommand.
      *
      * *Contract:* If something prevents the container to be removed, the method needs to fail by throwing an exception.
      *  Specifically, if the specified container does not exist,
@@ -77,12 +77,12 @@ interface IDockerClient : IRuntimeClient {
     /**
      * Pulls the repository specified by [DockerRepositoryName] and [DockerTag].
      *
-     * Resembles the `docker pull` command. Unlike the Docker CLI, the tag `latest` is never implied, as
+     * Resembles the `docker pull` trainCommand. Unlike the Docker CLI, the tag `latest` is never implied, as
      * it does not bear any meaning in the PHT context. Hence, the tag is a required parameter.
      *
      * *Contract:* If the targeted image cannot be created locally for some reason, the method needs to fail by throwing
      * and exception. Note that trying to pull an image which already exists locally is never a failure. This is
-     * compatible with the `docker pull` command. Furthermore, if the selected repository and tag do not point to a
+     * compatible with the `docker pull` trainCommand. Furthermore, if the selected repository and tag do not point to a
      * valid Docker image, the method should throw [NoSuchDockerRepositoryException].
      *
      * @param repo The [DockerRepositoryName] of the repository to be pulled.
@@ -96,12 +96,12 @@ interface IDockerClient : IRuntimeClient {
     /**
      * Pushes the specified docker image via the provided [DockerRepositoryName] and [DockerTag].
      *
-     * Resembles the `docker push` command. Unlike the Docker CLI, the tag `latest` is never implied, as it does not
+     * Resembles the `docker push` trainCommand. Unlike the Docker CLI, the tag `latest` is never implied, as it does not
      * bear any meaning in the PHT context. Hence, the tag is a required parameter.
      *
      * *Contract:* If anything prevents the image to be pushed to the registry (like networking errors), the
      * method needs to fail by throwing an exception. Pushing to a repository that already exits and would not
-     * be updated via push is never a failure. This is compatible with the `docker push` command.
+     * be updated via push is never a failure. This is compatible with the `docker push` trainCommand.
      *
      * @param repo The [DockerRepositoryName] that should be pushed to.
      * @param tag The [DockerTag] that should be pushed to.
@@ -112,7 +112,7 @@ interface IDockerClient : IRuntimeClient {
     /**
      * Commits the Docker container and creates new image.
      *
-     * Resembles the `docker commit` command.
+     * Resembles the `docker commit` trainCommand.
      *
      * *Contract:* If the container selected via the [DockerContainerId] parameter does not exit, the method
      * should throw an [NoSuchDockerContainerException]. Otherwise, if anything else the prevents the target repo
@@ -136,7 +136,7 @@ interface IDockerClient : IRuntimeClient {
     /**
      * Lists the [DockerImageId] that this [IDockerClient] has access to.
      *
-     * Resembles the `docker images -q` command.
+     * Resembles the `docker images -q` trainCommand.
      *
      * *Contract:* The method should fail by throwing an exception if something prevents listing the available
      * images.

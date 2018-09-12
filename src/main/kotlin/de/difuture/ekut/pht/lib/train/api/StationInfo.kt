@@ -17,7 +17,7 @@ data class StationInfo(
 ) {
 
     /**
-     * Encodes the content of [StationInfo] as command line parameters, as it would be passed to `docker run`.
+     * Encodes the content of [StationInfo] as trainCommand line parameters, as it would be passed to `docker run`.
      *
      */
     val commandLine = listOf(

@@ -1,4 +1,6 @@
-package de.difuture.ekut.pht.lib.train.api.interf
+package de.difuture.ekut.pht.lib.train.api.interf.arrival
+
+import de.difuture.ekut.pht.lib.train.api.interf.ITrainInterface
 
 
 /**
@@ -10,9 +12,9 @@ package de.difuture.ekut.pht.lib.train.api.interf
  */
 interface ITrainArrival : ITrainInterface {
 
-//    fun <B> execWithClient(client: A, execution: ArrivalExecution<B, A>) =
+//    fun <B> execWithClient(client: A, execution: ArrivalCommandExecution<B, A>) =
 //
-//        execution.execute(this, client)
+//        execution.execArrival(this, client)
 //
 //    /**
 //     *  Runs the algorithm and returns the corresponding [ITrainDeparture]

@@ -7,7 +7,7 @@ import de.difuture.ekut.pht.lib.common.docker.DockerRepositoryName
 import de.difuture.ekut.pht.lib.common.docker.DockerTag
 import de.difuture.ekut.pht.lib.train.api.interf.IDockerTrainArrival
 import de.difuture.ekut.pht.lib.train.api.interf.IDockerTrainDeparture
-import de.difuture.ekut.pht.lib.train.api.interf.ITrainArrival
+import de.difuture.ekut.pht.lib.train.api.interf.arrival.ITrainArrival
 import de.difuture.ekut.pht.lib.train.api.StationInfo
 import de.difuture.ekut.pht.lib.train.id.ITrainId
 import de.difuture.ekut.pht.lib.train.tag.ITrainTag
@@ -80,7 +80,7 @@ class DefaultTrainRegistryClient(
 
         override fun runAlgorithm(client: IDockerClient, info: StationInfo): DockerTrainDeparture {
 
-            // Run the container by passing the command line and tool name
+            // Run the container by passing the trainCommand line and tool name
             val containerOutput = run(client, false, info.commandLine.plus("run_algorithm"))
 
             // If the algorithm terminates with a non-zero exitCode, a proper TrainDeparture
