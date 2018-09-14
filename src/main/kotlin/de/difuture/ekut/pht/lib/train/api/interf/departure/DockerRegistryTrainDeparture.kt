@@ -11,4 +11,7 @@ class DockerRegistryTrainDeparture(
         override val trainId: ITrainId,
         override val trainTag: ITrainTag,
         override val client: IDockerClient
-) : ITrainDeparture<IDockerClient>
+) : ITrainDeparture<IDockerClient> {
+
+    override fun isValid() = imageId in client.images()
+}

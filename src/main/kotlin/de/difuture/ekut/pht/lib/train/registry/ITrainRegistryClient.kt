@@ -30,7 +30,7 @@ interface ITrainRegistryClient<A : IRuntimeClient> {
      * @return List of all [ITrainArrival] instances that this Train Registry contains.
      *
      */
-    fun listTrainArrivals(): List<ITrainArrival<A>>
+    fun listTrainArrivals(): List<ITrainArrival>
 
     /**
      * List all [ITrainArrival] instances that have a certain [ITrainTag].
@@ -42,7 +42,7 @@ interface ITrainRegistryClient<A : IRuntimeClient> {
      *
      * @return List of [ITrainArrival] instances in the Train Registry that share the same [ITrainTag].
      */
-    fun listTrainArrivals(tag: ITrainTag): List<ITrainArrival<A>>
+    fun listTrainArrivals(tag: ITrainTag): List<ITrainArrival>
 
     /**
      *  List TrainArrivals by giving the [ITrainId]
@@ -55,7 +55,7 @@ interface ITrainRegistryClient<A : IRuntimeClient> {
      * @return List of [ITrainArrival] that all share the same [ITrainId]
      *
      */
-    fun listTrainArrivals(id: ITrainId): List<ITrainArrival<A>>
+    fun listTrainArrivals(id: ITrainId): List<ITrainArrival>
 
     /**
      * Get [ITrainArrival] by specifying [ITrainId] and [ITrainTag].
@@ -71,7 +71,7 @@ interface ITrainRegistryClient<A : IRuntimeClient> {
      * [ITrainArrival] exists.
      *
      */
-    fun getTrainArrival(id: ITrainId, tag: ITrainTag): ITrainArrival<A>?
+    fun getTrainArrival(id: ITrainId, tag: ITrainTag): ITrainArrival?
 
     /**
      * Checks whether the [ITrainArrival]] exists in the Train Registry that is targeted by this registry.

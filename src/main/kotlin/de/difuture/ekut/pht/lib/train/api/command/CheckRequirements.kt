@@ -3,7 +3,7 @@ package de.difuture.ekut.pht.lib.train.api.command
 import com.fasterxml.jackson.annotation.JsonProperty
 
 /**
- * The "Check Requirements Summary" command for a Train.
+ * The "Check Requirements" command for a Train.
  *
  * This command can only be applied to Train Arrivals.
  *

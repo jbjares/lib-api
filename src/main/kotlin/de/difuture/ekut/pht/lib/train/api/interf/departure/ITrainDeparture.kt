@@ -7,6 +7,9 @@ import de.difuture.ekut.pht.lib.train.api.interf.ITrainInterface
 /**
  * The [ITrainDeparture] for this Train instance.
  *
+ * @author Lukas Zimmermann
+ * @since 0.0.3
+ *
  */
 interface ITrainDeparture<A : IRuntimeClient> : ITrainInterface {
 
@@ -15,27 +18,11 @@ interface ITrainDeparture<A : IRuntimeClient> : ITrainInterface {
      */
     val client: A
 
-//    /**
-//     * Uses the Train API to print the summary of the train.
-//     *
-//     * *Contract:* If the [isValid] method of this [ITrainDeparture] returns false,
-//     * this method must throw [IllegalStateException].
-//     *
-//     * @return [String] value representing the summary of the Train.
-//     *
-//     */
-//    fun printSummary(): String
-//
-//    /**
-//     * Checks whether this [ITrainDeparture] is valid, i.e. whether the result of running the algorithm can
-//     * be accessed.
-//     *
-//     * If this method returns false, the corresponding [ITrainArrival] must again run the algorithm.
-//     *
-//     * @return Whether this [ITrainDeparture] is still valid.
-//     *
-//     */
-//    fun isValid(): Boolean
+    /**
+     * Checks whether the [ITrainDeparture] is valid in the sense that the [client] can
+     * still access all necessary properties of the [ITrainDeparture]
+     *
+     * @return Whether `this` [ITrainDeparture] is still valid
+     */
+    fun isValid(): Boolean
 }
-
-//typealias IDockerTrainDeparture = ITrainDeparture<IDockerClient>

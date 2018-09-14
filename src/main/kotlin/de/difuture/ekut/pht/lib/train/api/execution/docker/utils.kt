@@ -1,14 +1,47 @@
 package de.difuture.ekut.pht.lib.train.api.execution.docker
 
+import de.difuture.ekut.pht.lib.runtime.docker.DockerContainerOutput
+import de.difuture.ekut.pht.lib.runtime.docker.IDockerClient
 import de.difuture.ekut.pht.lib.train.api.StationInfo
 import de.difuture.ekut.pht.lib.train.api.command.TrainCommand
+import de.difuture.ekut.pht.lib.train.api.interf.arrival.DockerRegistryTrainArrival
+import de.difuture.ekut.pht.lib.train.api.interf.departure.DockerRegistryTrainDeparture
+
 
 /**
- * Joins the specified [StationInfo] with the train command represented as [String] to
- * a command line call
+ * Executes the DockerRegistryTrainArrival by pulling the image first.
  *
- * @param info The [StationInfo] to be used for constructing the command line call
- * @param command The [TrainCommand] to be used to join to a command line.
- * @return The [List] of command line elements.
  */
-internal fun commandLine(info: StationInfo, command: TrainCommand<*>) = info.commandLine.plus(command.name)
+internal fun <T> execute(
+        interf: DockerRegistryTrainArrival,
+        client: IDockerClient,
+        command: TrainCommand<*>,
+        info: StationInfo,
+        f :(DockerContainerOutput) -> T)  =
+
+    DockerOutputSupplier(
+            client.run(
+                    client.pull(interf.name, interf.tag),
+                    info.commandLine.plus(command.name),
+                    rm = true),
+            extractor =  f
+    )
+
+
+/**
+ * Executes the DockerRegistryTrainDeparture
+ *
+ */
+internal fun <T> execute(
+        interf: DockerRegistryTrainDeparture,
+        command: TrainCommand<*>,
+        info: StationInfo,
+        f :(DockerContainerOutput) -> T)  =
+
+        DockerOutputSupplier(
+                interf.client.run(
+                        interf.imageId,
+                        info.commandLine.plus(command.name),
+                        rm = true),
+                extractor =  f
+        )

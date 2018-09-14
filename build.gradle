@@ -5,7 +5,7 @@ buildscript {
 }
 
 plugins {
-    id 'org.jetbrains.kotlin.jvm' version '1.2.61'
+    id 'org.jetbrains.kotlin.jvm' version '1.2.70'
 
     // Needed so we can resolve the test library from the artifactory
     id "com.jfrog.artifactory" version "4.7.5"
@@ -45,10 +45,10 @@ dependencies {
     // The linter
     ktlint "com.github.shyiko:ktlint:0.28.0"
 
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.61"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.70"
 
     // The Docker Registry Client implementation that the PHT library depends on
-    compile group: 'jdregistry', name: 'client', version: '0.0.2'
+    compile group: 'jdregistry', name: 'client', version: '0.0.3'
 
     // Testing
     testCompile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.6'

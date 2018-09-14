@@ -4,8 +4,10 @@ import de.difuture.ekut.pht.lib.runtime.IRuntimeClient
 import de.difuture.ekut.pht.lib.runtime.docker.IDockerClient
 import de.difuture.ekut.pht.lib.train.api.StationInfo
 import de.difuture.ekut.pht.lib.train.api.command.TrainCommand
+import de.difuture.ekut.pht.lib.train.api.execution.docker.DockerOutputSupplier
 import de.difuture.ekut.pht.lib.train.api.interf.ITrainInterface
 import de.difuture.ekut.pht.lib.train.api.interf.departure.ITrainDeparture
+import java.util.function.Supplier
 
 /**
  * The [CommandExecution] for Train Departures.
@@ -15,7 +17,7 @@ import de.difuture.ekut.pht.lib.train.api.interf.departure.ITrainDeparture
  * @param C The [IRuntimeClient] that is required for this execution
  *
  */
-interface DepartureCommandExecution<A, B : ITrainDeparture<C>, C : IRuntimeClient> : CommandExecution<A> {
+interface DepartureCommandExecution<A, B : ITrainDeparture<C>, C : IRuntimeClient, D: Supplier<A>> : CommandExecution<A> {
 
     /**
      * Executes the trainCommand for a given object with the Train Interface using
@@ -25,11 +27,10 @@ interface DepartureCommandExecution<A, B : ITrainDeparture<C>, C : IRuntimeClien
      * @param info Additional Information that the station needs to provide at runtime
      * @return The value that [TrainCommand] is supposed to return.
      */
-    fun execDeparture(interf: B, info: StationInfo): A
-
+    fun execDeparture(interf: B, info: StationInfo): D
 }
 
 /**
  * The specialization of [DepartureCommandExecution] for [IDockerClient]
  */
-typealias DockerDepartureExecution<A, B> = DepartureCommandExecution<A, B, IDockerClient>
+typealias DockerDepartureExecution<A, B> = DepartureCommandExecution<A, B, IDockerClient, DockerOutputSupplier<A>>

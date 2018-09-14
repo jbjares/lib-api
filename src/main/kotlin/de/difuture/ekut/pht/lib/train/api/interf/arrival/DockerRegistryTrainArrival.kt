@@ -21,11 +21,6 @@ data class DockerRegistryTrainArrival(
         val tag: DockerTag
 ) : ITrainArrival {
 
-//
-//    override fun runAlgorithm(client: IDockerClient, info: StationInfo): ITrainDeparture<IDockerClient> {
-//        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-//    }
-
     override val trainTag = ITrainTag.of(tag.repr)
 
     // If the the second component exists, it is the trainID and the first
