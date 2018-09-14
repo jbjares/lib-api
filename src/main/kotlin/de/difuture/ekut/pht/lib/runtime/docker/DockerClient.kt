@@ -1,12 +1,12 @@
 package de.difuture.ekut.pht.lib.runtime.docker
 
-import de.difuture.ekut.pht.lib.common.docker.DockerContainerId
-import de.difuture.ekut.pht.lib.common.docker.DockerImageId
-import de.difuture.ekut.pht.lib.common.docker.DockerNetworkId
-import de.difuture.ekut.pht.lib.common.docker.DockerTag
-import de.difuture.ekut.pht.lib.common.docker.DockerRepositoryName
-import de.difuture.ekut.pht.lib.runtime.IDockerContainerInterruptHandler
-import de.difuture.ekut.pht.lib.runtime.IRuntimeClient
+import de.difuture.ekut.pht.lib.data.DockerContainerId
+import de.difuture.ekut.pht.lib.data.DockerImageId
+import de.difuture.ekut.pht.lib.data.DockerNetworkId
+import de.difuture.ekut.pht.lib.runtime.InterruptHandler
+import de.difuture.ekut.pht.lib.runtime.RuntimeClient
+import jdregistry.client.data.DockerRepositoryName
+import jdregistry.client.data.DockerTag
 
 /**
  * Docker client api that a station needs to implement for using the library components.
@@ -15,20 +15,20 @@ import de.difuture.ekut.pht.lib.runtime.IRuntimeClient
  * was designed with two key considerations in mind:
  * * The api represents the minimal set of operations the implementing Docker client needs to support to be used
  *   in a PHT setting.
- * * Each method reflects an operation and a subset of the corresponding options of the docker CLI.
+ * * Each method reflects an operation and a subset of the corresponding options of the data CLI.
  *
  * @author Lukas Zimmermann
  * @since 0.0.1
  *
  */
-interface IDockerClient : IRuntimeClient {
+interface DockerClient : RuntimeClient {
 
     /**
      * Runs (create and start) the Docker image with the given commands, waits for the resulting container to exit.
      *
-     * This method reflects a simplified version of the `docker run` trainCommand, which only supports specifying
+     * This method reflects a simplified version of the `data run` trainCommand, which only supports specifying
      * the commands to be passed to the Docker image and optionally whether the exited container should be removed
-     * after it has exited (reflecting the `--rm` option of `docker run`).
+     * after it has exited (reflecting the `--rm` option of `data run`).
      *
      * *Contract:* If the container exits, the statusCode code has to be reflected in the returned [DockerContainerOutput]
      * object. If something prevents an exited container to be created, the method needs to fail by throwing an
@@ -57,13 +57,13 @@ interface IDockerClient : IRuntimeClient {
         env: Map<String, String>? = null,
         networkId: DockerNetworkId? = null,
         warnings: MutableList<String>? = null,
-        interruptHandler: IDockerContainerInterruptHandler? = null
+        interruptHandler: InterruptHandler<DockerContainerId>? = null
     ): DockerContainerOutput
 
     /**
      * Removes container with specified ID.
      *
-     * This trainCommand resembles the `docker rm` trainCommand.
+     * This trainCommand resembles the `data rm` trainCommand.
      *
      * *Contract:* If something prevents the container to be removed, the method needs to fail by throwing an exception.
      *  Specifically, if the specified container does not exist,
@@ -77,42 +77,46 @@ interface IDockerClient : IRuntimeClient {
     /**
      * Pulls the repository specified by [DockerRepositoryName] and [DockerTag].
      *
-     * Resembles the `docker pull` trainCommand. Unlike the Docker CLI, the tag `latest` is never implied, as
-     * it does not bear any meaning in the PHT context. Hence, the tag is a required parameter.
+     * Resembles the `data pull` trainCommand. Unlike the Docker CLI, the dockerTag `latest` is never implied, as
+     * it does not bear any meaning in the PHT context. Hence, the dockerTag is a required parameter.
      *
      * *Contract:* If the targeted image cannot be created locally for some reason, the method needs to fail by throwing
      * and exception. Note that trying to pull an image which already exists locally is never a failure. This is
-     * compatible with the `docker pull` trainCommand. Furthermore, if the selected repository and tag do not point to a
+     * compatible with the `data pull` trainCommand. Furthermore, if the selected repository and dockerTag do not point to a
      * valid Docker image, the method should throw [NoSuchDockerRepositoryException].
      *
+     * @param host The remote host, designated as a [String]
+     * @param port The port the pull should target, represented as [Int]
      * @param repo The [DockerRepositoryName] of the repository to be pulled.
      * @param tag The [DockerTag] of the repository to be pulled.
      *
      * @return [DockerImageId] of the image retrieved via pulling.
      *
      */
-    fun pull(repo: DockerRepositoryName, tag: DockerTag): DockerImageId
+    fun pull(host: String, port: Int, repo: DockerRepositoryName, tag: DockerTag): DockerImageId
 
     /**
-     * Pushes the specified docker image via the provided [DockerRepositoryName] and [DockerTag].
+     * Pushes the specified data image via the provided [DockerRepositoryName] and [DockerTag].
      *
-     * Resembles the `docker push` trainCommand. Unlike the Docker CLI, the tag `latest` is never implied, as it does not
-     * bear any meaning in the PHT context. Hence, the tag is a required parameter.
+     * Resembles the `data push` trainCommand. Unlike the Docker CLI, the dockerTag `latest` is never implied, as it does not
+     * bear any meaning in the PHT context. Hence, the dockerTag is a required parameter.
      *
      * *Contract:* If anything prevents the image to be pushed to the registry (like networking errors), the
      * method needs to fail by throwing an exception. Pushing to a repository that already exits and would not
-     * be updated via push is never a failure. This is compatible with the `docker push` trainCommand.
+     * be updated via push is never a failure. This is compatible with the `data push` trainCommand.
      *
+     * @param host The host represented as [String] that the pull should target
+     * @param port The port that the push should target, represented as [Int]
      * @param repo The [DockerRepositoryName] that should be pushed to.
      * @param tag The [DockerTag] that should be pushed to.
      *
      */
-    fun push(repo: DockerRepositoryName, tag: DockerTag)
+    fun push(host: String, port: Int, repo: DockerRepositoryName, tag: DockerTag)
 
     /**
      * Commits the Docker container and creates new image.
      *
-     * Resembles the `docker commit` trainCommand.
+     * Resembles the `data commit` trainCommand.
      *
      * *Contract:* If the container selected via the [DockerContainerId] parameter does not exit, the method
      * should throw an [NoSuchDockerContainerException]. Otherwise, if anything else the prevents the target repo
@@ -134,14 +138,14 @@ interface IDockerClient : IRuntimeClient {
     ): DockerImageId
 
     /**
-     * Lists the [DockerImageId] that this [IDockerClient] has access to.
+     * Lists the [DockerImageId] that this [DockerClient] has access to.
      *
-     * Resembles the `docker images -q` trainCommand.
+     * Resembles the `data images -q` trainCommand.
      *
      * *Contract:* The method should fail by throwing an exception if something prevents listing the available
      * images.
      *
-     * @return The list of [DockerImageId] that this [IDockerClient] has access to.
+     * @return The list of [DockerImageId] that this [DockerClient] has access to.
      *
      */
     fun images(): List<DockerImageId>

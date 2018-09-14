@@ -2,7 +2,6 @@ package de.difuture.ekut.pht.lib.train.api.command
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
-
 /**
  * The "Run Algorithm" command for a Train.
  *

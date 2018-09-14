@@ -1,13 +1,12 @@
 package de.difuture.ekut.pht.lib.train.api.interf.arrival
 
-import de.difuture.ekut.pht.lib.common.docker.DockerRepositoryName
-import de.difuture.ekut.pht.lib.common.docker.DockerTag
-import de.difuture.ekut.pht.lib.train.id.ITrainId
-import de.difuture.ekut.pht.lib.train.tag.ITrainTag
-
+import de.difuture.ekut.pht.lib.train.TrainId
+import de.difuture.ekut.pht.lib.train.TrainTag
+import jdregistry.client.data.DockerRepositoryName
+import jdregistry.client.data.DockerTag
 
 /**
- * A [ITrainArrival] as they are available from Docker Registries.
+ * A [TrainArrival] as they are available from Docker Registries.
  *
  * For a Docker Registry, a Train Arrival is identified by the [DockerRepositoryName]
  * and the associated [DockerTag].
@@ -17,13 +16,17 @@ import de.difuture.ekut.pht.lib.train.tag.ITrainTag
  *
  */
 data class DockerRegistryTrainArrival(
-        val name: DockerRepositoryName,
-        val tag: DockerTag
-) : ITrainArrival {
+    val host: String,
+    val port: Int,
+    val repoName: DockerRepositoryName,
+    val dockerTag: DockerTag
+) : TrainArrival {
 
-    override val trainTag = ITrainTag.of(tag.repr)
+    override val trainTag = TrainTag.of(dockerTag)
 
     // If the the second component exists, it is the trainID and the first
     // is the namespace. Else, the first component is the namespace
-    override val trainId = name.component2?.let { ITrainId.of(it) } ?: ITrainId.of(name.component1)
+    override val trainId = TrainId.of(
+            if (repoName.hasMoreComponents) repoName[1] else repoName[0]
+    )
 }

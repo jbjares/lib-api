@@ -18,6 +18,6 @@ object PrintSummary : ArrivalCommand<String>, DepartureCommand<String> {
     @JsonProperty("returnType")
     override val returnType = String::class.java
 
-    @JsonProperty("name")
+    @JsonProperty("repoName")
     override val name = "print_summary"
 }

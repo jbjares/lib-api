@@ -1,17 +1,17 @@
 package de.difuture.ekut.pht.lib.train.api.execution
 
-import de.difuture.ekut.pht.lib.runtime.IRuntimeClient
+import de.difuture.ekut.pht.lib.runtime.RuntimeClient
 import de.difuture.ekut.pht.lib.train.api.command.TrainCommand
 
 /**
- * This interface chains a [TrainCommand] to a particular [IRuntimeClient] by defining
- * how the [IRuntimeClient] can realize the trainCommand.
+ * This interface chains a [TrainCommand] to a particular [RuntimeClient] by defining
+ * how the [RuntimeClient] can realize the trainCommand.
  *
  * @param A The Return type of the command that is selected by this [CommandExecution]
  *
  * @author Lukas Zimmermann
  * @see [TrainCommand]
- * @see [IRuntimeClient]
+ * @see [RuntimeClient]
  * @since 0.0.3
  *
  */

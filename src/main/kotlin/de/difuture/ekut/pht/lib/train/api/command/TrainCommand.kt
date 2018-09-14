@@ -20,7 +20,7 @@ package de.difuture.ekut.pht.lib.train.api.command
 interface TrainCommand<A> {
 
     /**
-     * The unique name of the Train Command.
+     * The unique repoName of the Train Command.
      */
     val name: String
 

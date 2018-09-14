@@ -1,5 +1,4 @@
-package de.difuture.ekut.pht.lib.common
-
+package de.difuture.ekut.pht.lib.internal
 
 /**
  * A series of extension functions.
@@ -16,16 +15,16 @@ private val dockerHashRegex = Regex("(?:sha256:)?[a-z0-9]+")
 
 private val hostnameRegex = Regex("\\p{Alpha}(?:[\\p{Alnum}-]*\\p{Alnum})?(?:\\.\\p{Alpha}(?:[\\p{Alnum}-]*\\p{Alnum})?)*")
 
-fun String.isValidDockerHash() = this.matches(dockerHashRegex)
+internal fun String.isValidDockerHash() = this.matches(dockerHashRegex)
 
-fun String.isValidHostname() = this.matches(hostnameRegex)
+internal fun String.isValidHostname() = this.matches(hostnameRegex)
 
 /**
  * Tests whether this [String] denotes a valid IP4 address
  *
  * @return Whether this [String] denotes a valid IP4 Address.
  */
-fun String.isValidIP4Address() =
+internal fun String.isValidIP4Address() =
 
         try {
             val spt = this.split('.').map { it.toInt() }
@@ -39,10 +38,10 @@ fun String.isValidIP4Address() =
  * Tests whether this [String] contains any whitespace character.
  *
  */
-fun String.containsWhitespace() = this.any { it.isWhitespace() }
+internal fun String.containsWhitespace() = this.any { it.isWhitespace() }
 
 /**
  * Supposed to test whether this integer denotes a valid port.
  *
  */
-fun Int.isValidPort() = this > 0
+internal fun Int.isValidPort() = this > 0

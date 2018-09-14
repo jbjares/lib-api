@@ -1,4 +1,4 @@
-package de.difuture.ekut.pht.lib.common.docker
+package de.difuture.ekut.pht.lib.data
 
 import org.junit.Assert
 import org.junit.Test

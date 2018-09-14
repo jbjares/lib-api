@@ -1,6 +1,4 @@
-package de.difuture.ekut.pht.lib.train.id
-
-import de.difuture.ekut.pht.lib.common.ICanonicalStringRepresentable
+package de.difuture.ekut.pht.lib.train
 
 /**
  * Represents the ID of a train.
@@ -8,9 +6,11 @@ import de.difuture.ekut.pht.lib.common.ICanonicalStringRepresentable
  * @author Lukas Zimmermann
  * @since 0.0.1
  */
-interface ITrainId : ICanonicalStringRepresentable {
+interface TrainId {
 
-    private data class GenericTrainId(override val repr: String) : ITrainId
+    val repr: String
+
+    private data class GenericTrainId(override val repr: String) : TrainId
 
     companion object {
 
@@ -18,7 +18,7 @@ interface ITrainId : ICanonicalStringRepresentable {
         // A train needs to start with the train_ prefix
         private val regex = Regex("train_[a-zA-Z](?:[a-zA-Z0-9_-]*[a-z0-9])?")
 
-        fun of(value: String): ITrainId {
+        fun of(value: String): TrainId {
 
             require(value.matches(regex))
             return GenericTrainId(value)

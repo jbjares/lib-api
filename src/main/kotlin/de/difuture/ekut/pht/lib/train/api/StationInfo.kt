@@ -1,6 +1,6 @@
 package de.difuture.ekut.pht.lib.train.api
 
-import de.difuture.ekut.pht.lib.train.tag.ModeTrainTag
+import de.difuture.ekut.pht.lib.train.TrainTag
 
 /**
  *
@@ -13,11 +13,11 @@ import de.difuture.ekut.pht.lib.train.tag.ModeTrainTag
 data class StationInfo(
 
     val stationID: Int,
-    val mode: ModeTrainTag
+    val mode: TrainTag.Mode
 ) {
 
     /**
-     * Encodes the content of [StationInfo] as trainCommand line parameters, as it would be passed to `docker run`.
+     * Encodes the content of [StationInfo] as trainCommand line parameters, as it would be passed to `data run`.
      *
      */
     val commandLine = listOf(

@@ -8,8 +8,8 @@
 <a href="../../index.html">library</a>&nbsp;/&nbsp;<a href="../index.html">de.difuture.ekut.pht.lib.runtime</a>&nbsp;/&nbsp;<a href="index.html">IDockerClient</a>&nbsp;/&nbsp;<a href="./rm.html">rm</a><br/>
 <br/>
 <h1>rm</h1>
-<a name="de.difuture.ekut.pht.lib.runtime.docker.IDockerClient$rm(de.difuture.ekut.pht.lib.common.docker.DockerContainerId)"></a>
-<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">rm</span><span class="symbol">(</span><span class="identifier" id="de.difuture.ekut.pht.lib.runtime.docker.IDockerClient$rm(de.difuture.ekut.pht.lib.common.docker.DockerContainerId)/containerId">containerId</span><span class="symbol">:</span>&nbsp;<a href="../../de.difuture.ekut.pht.lib.common.docker/-docker-container-id/index.html"><span class="identifier">DockerContainerId</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<a name="de.difuture.ekut.pht.lib.runtime.docker.DockerClient$rm(de.difuture.ekut.pht.lib.common.docker.DockerContainerId)"></a>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">rm</span><span class="symbol">(</span><span class="identifier" id="de.difuture.ekut.pht.lib.runtime.docker.DockerClient$rm(de.difuture.ekut.pht.lib.common.docker.DockerContainerId)/containerId">containerId</span><span class="symbol">:</span>&nbsp;<a href="../../de.difuture.ekut.pht.lib.common.docker/-docker-container-id/index.html"><span class="identifier">DockerContainerId</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
 <p>Removes container with specified ID.</p>
 <p>This trainCommand resembles the <code>docker rm</code> trainCommand.</p>
 <p><em>Contract:</em> If something prevents the container to be removed, the method needs to fail by throwing an exception.

@@ -1,15 +1,13 @@
 package de.difuture.ekut.pht.lib.train.api.execution.docker
 
 import de.difuture.ekut.pht.lib.runtime.docker.DockerContainerOutput
-import de.difuture.ekut.pht.lib.runtime.docker.IDockerClient
+import de.difuture.ekut.pht.lib.runtime.docker.DockerClient
 import de.difuture.ekut.pht.lib.train.api.StationInfo
-import de.difuture.ekut.pht.lib.train.api.command.ArrivalCommand
 import de.difuture.ekut.pht.lib.train.api.command.PrintSummary
 import de.difuture.ekut.pht.lib.train.api.execution.DockerArrivalExecution
 import de.difuture.ekut.pht.lib.train.api.execution.DockerDepartureExecution
 import de.difuture.ekut.pht.lib.train.api.interf.arrival.DockerRegistryTrainArrival
 import de.difuture.ekut.pht.lib.train.api.interf.departure.DockerRegistryTrainDeparture
-
 
 /**
  * Specifies how the Print Summary trainCommand is to be executed on a particular
@@ -19,21 +17,19 @@ import de.difuture.ekut.pht.lib.train.api.interf.departure.DockerRegistryTrainDe
  * @since 0.0.3
  *
  */
-object PrintSummary
-    : DockerArrivalExecution<String, DockerRegistryTrainArrival>,
-      DockerDepartureExecution<String, DockerRegistryTrainDeparture> {
+object PrintSummary : DockerArrivalExecution<String, DockerRegistryTrainArrival>, DockerDepartureExecution<String, DockerRegistryTrainDeparture> {
 
     override val command = PrintSummary
 
     // The Container will write the Summary output to stdout
-    private val extractor = { x: DockerContainerOutput -> x.stdout}
+    private val extractor = { x: DockerContainerOutput -> x.stdout }
 
     /**
      * Executes the "print_summary" train trainCommand for b
-     * using a specific [IDockerClient]
+     * using a specific [DockerClient]
      *
      */
-    override fun execArrival(interf: DockerRegistryTrainArrival, client: IDockerClient, info: StationInfo) =
+    override fun execArrival(interf: DockerRegistryTrainArrival, client: DockerClient, info: StationInfo) =
             execute(interf, client, CheckRequirements.command, info, this.extractor)
 
     /**

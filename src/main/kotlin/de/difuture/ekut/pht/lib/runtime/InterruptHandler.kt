@@ -1,7 +1,5 @@
 package de.difuture.ekut.pht.lib.runtime
 
-import de.difuture.ekut.pht.lib.common.docker.DockerContainerId
-
 /**
  * Handler that can be passed to runtime commands to determine whether timeout has been reached.
  *
@@ -9,7 +7,7 @@ import de.difuture.ekut.pht.lib.common.docker.DockerContainerId
  * @since 0.0.1
  *
  */
-interface IInterruptHandler<A> {
+interface InterruptHandler<in A> {
 
     /**
      * Signals whether object has been interrupted
@@ -27,5 +25,3 @@ interface IInterruptHandler<A> {
      */
     fun handleInterrupt(obj: A)
 }
-
-typealias IDockerContainerInterruptHandler = IInterruptHandler<DockerContainerId>

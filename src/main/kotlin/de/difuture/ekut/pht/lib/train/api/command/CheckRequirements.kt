@@ -17,6 +17,6 @@ object CheckRequirements : ArrivalCommand<Boolean> {
     @JsonProperty("returnType")
     override val returnType = Boolean::class.java
 
-    @JsonProperty("name")
+    @JsonProperty("repoName")
     override val name = "check_requirements"
 }

@@ -1,4 +1,4 @@
-package de.difuture.ekut.pht.lib.common
+package de.difuture.ekut.pht.lib.internal
 
 import de.difuture.ekut.pht.lib.cross
 import org.junit.Assert
@@ -11,7 +11,7 @@ class HostPortTupleTests {
 
         val hostnames = listOf(
                 "localhost",
-                "docker.io",
+                "data.io",
                 "en.wikipedia.org",
                 "a.b.c.d",
                 "foo-bar",
@@ -40,38 +40,62 @@ class HostPortTupleTests {
     // Invalid HostPortTuple instances
 
     @Test(expected = IllegalArgumentException::class)
-    fun invalid_host_port_1() { HostPortTuple("") }
+    fun invalid_host_port_1() {
+        HostPortTuple("")
+    }
 
     @Test(expected = IllegalArgumentException::class)
-    fun invalid_host_port_2() { HostPortTuple("sfsf", -10) }
+    fun invalid_host_port_2() {
+        HostPortTuple("sfsf", -10)
+    }
 
     @Test(expected = IllegalArgumentException::class)
-    fun invalid_host_port_3() { HostPortTuple("", -10) }
+    fun invalid_host_port_3() {
+        HostPortTuple("", -10)
+    }
 
     @Test(expected = IllegalArgumentException::class)
-    fun invalid_host_port_4() { HostPortTuple("   ") }
+    fun invalid_host_port_4() {
+        HostPortTuple("   ")
+    }
 
     @Test(expected = IllegalArgumentException::class)
-    fun invalid_host_port_5() { HostPortTuple("--") }
+    fun invalid_host_port_5() {
+        HostPortTuple("--")
+    }
 
     @Test(expected = IllegalArgumentException::class)
-    fun invalid_host_port_6() { HostPortTuple("0skfsu") }
+    fun invalid_host_port_6() {
+        HostPortTuple("0skfsu")
+    }
 
     @Test(expected = IllegalArgumentException::class)
-    fun invalid_host_port_7() { HostPortTuple("qruw-") }
+    fun invalid_host_port_7() {
+        HostPortTuple("qruw-")
+    }
 
     @Test(expected = IllegalArgumentException::class)
-    fun invalid_host_port_8() { HostPortTuple("sufh..autfu") }
+    fun invalid_host_port_8() {
+        HostPortTuple("sufh..autfu")
+    }
 
     @Test(expected = IllegalArgumentException::class)
-    fun invalid_host_port_9() { HostPortTuple("192.187.123.213.123") }
+    fun invalid_host_port_9() {
+        HostPortTuple("192.187.123.213.123")
+    }
 
     @Test(expected = IllegalArgumentException::class)
-    fun invalid_host_port_10() { HostPortTuple("192.187.123.500") }
+    fun invalid_host_port_10() {
+        HostPortTuple("192.187.123.500")
+    }
 
     @Test(expected = IllegalArgumentException::class)
-    fun invalid_host_port_11() { HostPortTuple("192.187.ads.500") }
+    fun invalid_host_port_11() {
+        HostPortTuple("192.187.ads.500")
+    }
 
     @Test(expected = IllegalArgumentException::class)
-    fun invalid_host_port_12() { HostPortTuple("192.187..500") }
+    fun invalid_host_port_12() {
+        HostPortTuple("192.187..500")
+    }
 }

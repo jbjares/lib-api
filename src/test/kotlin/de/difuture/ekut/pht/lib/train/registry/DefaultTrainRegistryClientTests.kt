@@ -1,11 +1,8 @@
-package de.difuture.ekut.pht.lib.train
+package de.difuture.ekut.pht.lib.train.registry
 
 import de.difuture.ekut.pht.lib.http.TestHttpClient
-import de.difuture.ekut.pht.lib.train.id.ITrainId
-import de.difuture.ekut.pht.lib.train.registry.DefaultTrainRegistryClient
-import de.difuture.ekut.pht.lib.train.tag.SpecialTrainTag
-import de.difuture.ekut.pht.lib.train.tag.ITrainTag
-import de.difuture.ekut.pht.lib.train.tag.ModeTrainTag
+import de.difuture.ekut.pht.lib.train.TrainId
+import de.difuture.ekut.pht.lib.train.TrainTag
 import de.difuture.ekut.pht.test.lib.SingleExposedPortContainer
 import de.difuture.ekut.pht.test.lib.TEST_TRAIN_REGISTRY_REPOSITORY
 import jdregistry.client.DockerRegistryGetClient
@@ -22,10 +19,7 @@ class DefaultTrainRegistryClientTests {
         // Container that is used for fetching Docker Registry Notifications
         @ClassRule
         @JvmField
-        val REGISTRY: SingleExposedPortContainer =
-                SingleExposedPortContainer(
-                        TEST_TRAIN_REGISTRY_REPOSITORY,
-                        5000)
+        val REGISTRY = SingleExposedPortContainer(TEST_TRAIN_REGISTRY_REPOSITORY, 5000)
     }
 
     // ///////////////////////  The registry client  /////////////////////////////////////////////////////////////
@@ -49,22 +43,22 @@ class DefaultTrainRegistryClientTests {
 
     @Test fun test_list_train_arrivals_tags() {
 
-        val arrivalsImmediate = this.client.listTrainArrivals(ModeTrainTag.IMMEDIATE)
-        val arrivalsTests = this.client.listTrainArrivals(SpecialTrainTag.TEST)
+        val arrivalsImmediate = this.client.listTrainArrivals { it.trainTag == TrainTag.IMMEDIATE }
+        val arrivalsTests = this.client.listTrainArrivals { it.trainTag == TrainTag.TEST }
 
         // Assert.assertTrue(arrivalsImmediate.size > 1)
         Assert.assertTrue(arrivalsTests.size > 1)
-        Assert.assertTrue(arrivalsImmediate.all { it.trainTag == ModeTrainTag.IMMEDIATE })
-        Assert.assertTrue(arrivalsTests.all { it.trainTag == SpecialTrainTag.TEST })
+        Assert.assertTrue(arrivalsImmediate.all { it.trainTag == TrainTag.IMMEDIATE })
+        Assert.assertTrue(arrivalsTests.all { it.trainTag == TrainTag.TEST })
     }
 
     @Test fun test_list_train_arrivals_ids() {
 
-        val id1 = ITrainId.of("train_test_print_summary_1")
-        val id2 = ITrainId.of("train_test_print_summary_2")
+        val id1 = TrainId.of("train_test_print_summary_1")
+        val id2 = TrainId.of("train_test_print_summary_2")
 
-        val arrivalsId1 = this.client.listTrainArrivals(id1)
-        val arrivalsId2 = this.client.listTrainArrivals(id2)
+        val arrivalsId1 = this.client.listTrainArrivals { it.trainId == id1 }
+        val arrivalsId2 = this.client.listTrainArrivals { it.trainId == id2 }
 
         // Assert.assertTrue(arrivalsImmediate.size > 1)
         Assert.assertTrue(arrivalsId1.isNotEmpty())
@@ -74,23 +68,28 @@ class DefaultTrainRegistryClientTests {
     // Select the print_summary trains
     @Test fun select_print_summary_1() {
 
-        val tag = ITrainTag.of("test")
+        val tag = TrainTag.of("test")
 
         // These train arrivals should exist
-        val arrival1 = this.client.getTrainArrival(
-                ITrainId.of("train_test_print_summary_1"), tag)
-        val arrival2 = this.client.getTrainArrival(
-                ITrainId.of("train_test_print_summary_2"), tag)
+        val arrival1 = this.client.listTrainArrivals {
 
-        // These train arrivals do not exist
-        val arrival3 = this.client.getTrainArrival(
-                ITrainId.of("train_foobar"), tag)
-        val arrival4 = this.client.getTrainArrival(
-                ITrainId.of("train_sfsf"), tag)
+            it.trainId == TrainId.of("train_test_print_summary_1") && it.trainTag == tag }
 
-        Assert.assertNotNull(arrival1)
-        Assert.assertNotNull(arrival2)
-        Assert.assertNull(arrival3)
-        Assert.assertNull(arrival4)
+        val arrival2 = this.client.listTrainArrivals {
+
+            it.trainId == TrainId.of("train_test_print_summary_2") && it.trainTag == tag }
+
+        val arrival3 = this.client.listTrainArrivals {
+
+            it.trainId == TrainId.of("train_foobar") && it.trainTag == tag }
+
+        val arrival4 = this.client.listTrainArrivals {
+
+            it.trainId == TrainId.of("train_sfsf") && it.trainTag == tag }
+
+        Assert.assertTrue(arrival1.size == 1)
+        Assert.assertTrue(arrival2.size == 1)
+        Assert.assertTrue(arrival3.isEmpty())
+        Assert.assertTrue(arrival4.isEmpty())
     }
 }

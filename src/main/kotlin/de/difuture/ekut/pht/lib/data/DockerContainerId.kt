@@ -1,7 +1,6 @@
-package de.difuture.ekut.pht.lib.common.docker
+package de.difuture.ekut.pht.lib.data
 
-import de.difuture.ekut.pht.lib.common.ICanonicalStringRepresentable
-import de.difuture.ekut.pht.lib.common.isValidDockerHash
+import de.difuture.ekut.pht.lib.internal.isValidDockerHash
 
 /**
  * Represents the ID of a Docker Container.
@@ -11,9 +10,7 @@ import de.difuture.ekut.pht.lib.common.isValidDockerHash
  * @author Lukas Zimmermann
  * @since 0.0.1
  */
-data class DockerContainerId(
-    override val repr: String
-) : ICanonicalStringRepresentable {
+data class DockerContainerId(val repr: String) {
 
     init {
         // Docker Container ID must be a valid Docker Hash

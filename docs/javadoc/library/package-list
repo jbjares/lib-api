@@ -6,7 +6,7 @@ $dokka.location:de.difuture.ekut.pht.lib.common$isValidHostname(kotlin.String)d
 $dokka.location:de.difuture.ekut.pht.lib.common$isValidIP4Address(kotlin.String)de.difuture.ekut.pht.lib.common/kotlin.-string/is-valid-i-p4-address.html
 $dokka.location:de.difuture.ekut.pht.lib.common$isValidPort(kotlin.Int)de.difuture.ekut.pht.lib.common/kotlin.-int/is-valid-port.html
 de.difuture.ekut.pht.lib.common
-de.difuture.ekut.pht.lib.common.docker
+de.difuture.ekut.pht.lib.common.data
 de.difuture.ekut.pht.lib.http
 de.difuture.ekut.pht.lib.registry.docker
 de.difuture.ekut.pht.lib.registry.docker.data

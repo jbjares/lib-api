@@ -13,4 +13,4 @@ package de.difuture.ekut.pht.lib.runtime
  * @since 0.0.1
  *
  */
-interface IRuntimeClient : AutoCloseable
+interface RuntimeClient : AutoCloseable

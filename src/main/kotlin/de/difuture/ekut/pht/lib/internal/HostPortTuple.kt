@@ -1,4 +1,4 @@
-package de.difuture.ekut.pht.lib.common
+package de.difuture.ekut.pht.lib.internal
 
 import java.net.URI
 
@@ -16,16 +16,16 @@ import java.net.URI
  * @since 0.0.1
  *
  */
-data class HostPortTuple(
+internal data class HostPortTuple(
 
     val host: String,
     val port: Int? = null
-) : ICanonicalStringRepresentable {
+) {
 
     init {
         require(host.isValidHostname() || host.isValidIP4Address())
         require(port?.isValidPort() ?: true)
     }
-    override val repr = host.plus(port?.let { ":$it" } ?: "")
+    val repr = host.plus(port?.let { ":$it" } ?: "")
     constructor(uri: URI) : this(uri.host, uri.port)
 }

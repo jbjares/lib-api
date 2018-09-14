@@ -1,7 +1,6 @@
 package de.difuture.ekut.pht.lib.train.api.interf.arrival
 
-import de.difuture.ekut.pht.lib.train.api.interf.ITrainInterface
-
+import de.difuture.ekut.pht.lib.train.api.interf.TrainInterface
 
 /**
  * Interface for Train Arrivals.
@@ -10,4 +9,4 @@ import de.difuture.ekut.pht.lib.train.api.interf.ITrainInterface
  * @since 0.0.1
  *
  */
-interface ITrainArrival : ITrainInterface
+interface TrainArrival : TrainInterface
