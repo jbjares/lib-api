@@ -93,7 +93,7 @@ interface DockerRuntimeClient : RuntimeClient {
      * @return [DockerImageId] of the image retrieved via pulling.
      *
      */
-    fun pull(host: String, port: Int, repo: DockerRepositoryName, tag: DockerTag): DockerImageId
+    fun pull(host: String, port: Int? = null, repo: DockerRepositoryName, tag: DockerTag): DockerImageId
 
     /**
      * Pushes the specified data image via the provided [DockerRepositoryName] and [DockerTag].
@@ -111,7 +111,7 @@ interface DockerRuntimeClient : RuntimeClient {
      * @param tag The [DockerTag] that should be pushed to.
      *
      */
-    fun push(host: String, port: Int, repo: DockerRepositoryName, tag: DockerTag)
+    fun push(host: String, port: Int? = null, repo: DockerRepositoryName, tag: DockerTag)
 
     /**
      * Commits the Docker container and creates new image.
