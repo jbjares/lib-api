@@ -6,22 +6,22 @@ import de.difuture.ekut.pht.lib.data.DockerNetworkId
 import de.difuture.ekut.pht.lib.runtime.InterruptHandler
 
 /**
- * Implementation of a [DockerClient] that allows to set other default values of the
+ * Implementation of a [DockerRuntimeClient] that allows to set other default values of the
  * run parameters if none a provided when run is executed. This is implemented as
  * a Decorator.
  *
  * @author Lukas Zimmermann
- * @see DockerClient
+ * @see DockerRuntimeClient
  * @since 0.0.1
  *
  */
 class DockerRunClient(
-    private val inner: DockerClient,
+    private val inner: DockerRuntimeClient,
     private val env: Map<String, String>? = null,
     private val networkId: DockerNetworkId? = null,
     private val warnings: MutableList<String>? = null,
     private val interruptHandler: InterruptHandler<DockerContainerId>? = null
-) : DockerClient by inner {
+) : DockerRuntimeClient by inner {
 
     override fun run(
         imageId: DockerImageId,

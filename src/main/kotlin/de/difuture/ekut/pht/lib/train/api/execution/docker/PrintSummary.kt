@@ -1,7 +1,7 @@
 package de.difuture.ekut.pht.lib.train.api.execution.docker
 
 import de.difuture.ekut.pht.lib.runtime.docker.DockerContainerOutput
-import de.difuture.ekut.pht.lib.runtime.docker.DockerClient
+import de.difuture.ekut.pht.lib.runtime.docker.DockerRuntimeClient
 import de.difuture.ekut.pht.lib.train.api.StationInfo
 import de.difuture.ekut.pht.lib.train.api.command.PrintSummary
 import de.difuture.ekut.pht.lib.train.api.execution.DockerArrivalExecution
@@ -26,10 +26,10 @@ object PrintSummary : DockerArrivalExecution<String, DockerRegistryTrainArrival>
 
     /**
      * Executes the "print_summary" train trainCommand for b
-     * using a specific [DockerClient]
+     * using a specific [DockerRuntimeClient]
      *
      */
-    override fun execArrival(interf: DockerRegistryTrainArrival, client: DockerClient, info: StationInfo) =
+    override fun execArrival(interf: DockerRegistryTrainArrival, client: DockerRuntimeClient, info: StationInfo) =
             execute(interf, client, CheckRequirements.command, info, this.extractor)
 
     /**

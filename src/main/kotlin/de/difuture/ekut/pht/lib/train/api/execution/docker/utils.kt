@@ -1,7 +1,7 @@
 package de.difuture.ekut.pht.lib.train.api.execution.docker
 
 import de.difuture.ekut.pht.lib.runtime.docker.DockerContainerOutput
-import de.difuture.ekut.pht.lib.runtime.docker.DockerClient
+import de.difuture.ekut.pht.lib.runtime.docker.DockerRuntimeClient
 import de.difuture.ekut.pht.lib.train.api.StationInfo
 import de.difuture.ekut.pht.lib.train.api.command.TrainCommand
 import de.difuture.ekut.pht.lib.train.api.interf.arrival.DockerRegistryTrainArrival
@@ -13,7 +13,7 @@ import de.difuture.ekut.pht.lib.train.api.interf.departure.DockerRegistryTrainDe
  */
 internal fun <T> execute(
     interf: DockerRegistryTrainArrival,
-    client: DockerClient,
+    client: DockerRuntimeClient,
     command: TrainCommand<*>,
     info: StationInfo,
     f: (DockerContainerOutput) -> T

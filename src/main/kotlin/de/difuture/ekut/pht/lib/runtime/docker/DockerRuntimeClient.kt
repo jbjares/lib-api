@@ -21,7 +21,7 @@ import jdregistry.client.data.DockerTag
  * @since 0.0.1
  *
  */
-interface DockerClient : RuntimeClient {
+interface DockerRuntimeClient : RuntimeClient {
 
     /**
      * Runs (create and start) the Docker image with the given commands, waits for the resulting container to exit.
@@ -138,14 +138,14 @@ interface DockerClient : RuntimeClient {
     ): DockerImageId
 
     /**
-     * Lists the [DockerImageId] that this [DockerClient] has access to.
+     * Lists the [DockerImageId] that this [DockerRuntimeClient] has access to.
      *
      * Resembles the `data images -q` trainCommand.
      *
      * *Contract:* The method should fail by throwing an exception if something prevents listing the available
      * images.
      *
-     * @return The list of [DockerImageId] that this [DockerClient] has access to.
+     * @return The list of [DockerImageId] that this [DockerRuntimeClient] has access to.
      *
      */
     fun images(): List<DockerImageId>

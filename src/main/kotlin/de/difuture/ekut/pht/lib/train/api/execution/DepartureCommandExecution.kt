@@ -1,7 +1,7 @@
 package de.difuture.ekut.pht.lib.train.api.execution
 
 import de.difuture.ekut.pht.lib.runtime.RuntimeClient
-import de.difuture.ekut.pht.lib.runtime.docker.DockerClient
+import de.difuture.ekut.pht.lib.runtime.docker.DockerRuntimeClient
 import de.difuture.ekut.pht.lib.train.api.StationInfo
 import de.difuture.ekut.pht.lib.train.api.command.TrainCommand
 import de.difuture.ekut.pht.lib.train.api.execution.docker.DockerOutputSupplier
@@ -31,6 +31,6 @@ interface DepartureCommandExecution<A, B : TrainDeparture<C>, C : RuntimeClient,
 }
 
 /**
- * The specialization of [DepartureCommandExecution] for [DockerClient]
+ * The specialization of [DepartureCommandExecution] for [DockerRuntimeClient]
  */
-typealias DockerDepartureExecution<A, B> = DepartureCommandExecution<A, B, DockerClient, DockerOutputSupplier<A>>
+typealias DockerDepartureExecution<A, B> = DepartureCommandExecution<A, B, DockerRuntimeClient, DockerOutputSupplier<A>>
