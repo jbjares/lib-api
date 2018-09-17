@@ -21,7 +21,7 @@ internal fun <T> execute(
 
     DockerOutputSupplier(
             client.run(
-                    client.pull(interf.host, interf.port, interf.repoName, interf.dockerTag),
+                    client.pull("${interf.host}:${interf.port}", interf.repoName, interf.dockerTag),
                     info.commandLine.plus(command.name),
                     rm = true),
             extractor = f
