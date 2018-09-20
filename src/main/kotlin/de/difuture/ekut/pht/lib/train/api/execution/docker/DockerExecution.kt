@@ -10,4 +10,4 @@ private val commands = mapOf(
         "print_summary" to PrintSummary
 )
 
-fun get(execution: String) = commands[execution]
+fun getDockerExecution(execution: String) = commands[execution]
