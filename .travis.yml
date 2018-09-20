@@ -6,7 +6,7 @@ services:
   - docker
 
 before_install:
-  - gradle clean
+  - ./gradlew clean
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
