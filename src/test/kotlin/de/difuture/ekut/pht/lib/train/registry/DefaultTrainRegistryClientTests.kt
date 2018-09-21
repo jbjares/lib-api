@@ -1,11 +1,11 @@
 package de.difuture.ekut.pht.lib.train.registry
 
-import de.difuture.ekut.pht.lib.http.TestHttpClient
 import de.difuture.ekut.pht.lib.train.TrainId
 import de.difuture.ekut.pht.lib.train.TrainTag
 import de.difuture.ekut.pht.test.lib.SingleExposedPortContainer
 import de.difuture.ekut.pht.test.lib.TEST_TRAIN_REGISTRY_REPOSITORY
-import jdregistry.client.DockerRegistryGetClient
+import jdregistry.client.api.DockerRegistryGetClient
+import jdregistry.client.impl.http.apache.ApacheHttpClient
 import org.junit.Assert
 import org.junit.Before
 import org.junit.ClassRule
@@ -28,7 +28,7 @@ class DefaultTrainRegistryClientTests {
     @Before
     fun before() {
 
-        val drclient = DockerRegistryGetClient.of(REGISTRY.containerIpAddress, REGISTRY.mappedPort, TestHttpClient())
+        val drclient = DockerRegistryGetClient.of(REGISTRY.containerIpAddress, REGISTRY.mappedPort, ApacheHttpClient())
         this.client = DefaultTrainRegistryClient(drclient)
     }
 

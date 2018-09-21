@@ -3,7 +3,7 @@ package de.difuture.ekut.pht.lib.train.registry
 import de.difuture.ekut.pht.lib.train.TrainId
 import de.difuture.ekut.pht.lib.train.api.interf.arrival.DockerRegistryTrainArrival
 import de.difuture.ekut.pht.lib.train.api.interf.arrival.TrainArrival
-import jdregistry.client.DockerRegistryGetClient
+import jdregistry.client.api.DockerRegistryGetClient
 
 /**
  * Canonical implementation of the [ITrainRegistryClient].
