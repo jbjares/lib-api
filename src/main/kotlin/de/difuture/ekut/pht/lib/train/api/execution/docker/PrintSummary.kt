@@ -1,6 +1,6 @@
 package de.difuture.ekut.pht.lib.train.api.execution.docker
 
-import de.difuture.ekut.pht.lib.runtime.docker.DockerContainerOutput
+import de.difuture.ekut.pht.lib.data.DockerContainerOutput
 import de.difuture.ekut.pht.lib.runtime.docker.DockerRuntimeClient
 import de.difuture.ekut.pht.lib.train.api.StationInfo
 import de.difuture.ekut.pht.lib.train.api.command.PrintSummary
