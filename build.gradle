@@ -62,14 +62,13 @@ apply plugin: 'jacoco'
 apply plugin: 'org.jetbrains.dokka'
 
 group = "de.difuture.ekut.pht"
-version = "0.0.4"
+version = "0.0.6"
 
 
 publishing {
     publications {
         maven(MavenPublication) {
             from components.java
-            version '0.0.4'
             pom.withXml {
                 asNode().dependencies.'*'.findAll() {
                     it.scope.text() == 'runtime' && project.configurations.compile.allDependencies.find { dep ->
@@ -85,7 +84,7 @@ publishing {
 
 model {
     tasks.generatePomFileForMavenPublication {
-        destination = file("$buildDir/libs/api-0.0.4.pom")
+        destination = file("$buildDir/libs/api-0.0.6.pom")
     }
 }
 
