@@ -2,12 +2,10 @@
 
 package de.difuture.ekut.pht.lib.train.api.execution.docker
 
-import de.difuture.ekut.pht.lib.train.api.command.PrintSummary
-
 private val commands = mapOf(
-        "check_requirements" to CheckRequirements,
-        "run_algorithm" to RunAlgorithm,
-        "print_summary" to PrintSummary
+        de.difuture.ekut.pht.lib.train.api.command.CheckRequirements.name to CheckRequirements,
+        de.difuture.ekut.pht.lib.train.api.command.RunAlgorithm.name to RunAlgorithm,
+        de.difuture.ekut.pht.lib.train.api.command.PrintSummary.name to PrintSummary,
+        de.difuture.ekut.pht.lib.train.api.command.ListRequirements.name to ListRequirements
 )
-
 fun getDockerExecution(execution: String) = commands[execution]

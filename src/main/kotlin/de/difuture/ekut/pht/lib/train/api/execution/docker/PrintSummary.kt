@@ -21,7 +21,7 @@ object PrintSummary : DockerArrivalExecution<String, DockerRegistryTrainArrival>
 
     override val command = PrintSummary
 
-    // The Container will write the Summary output to stdout
+    // Print summary just inspects stdout of the Docker Container output
     private val extractor = { x: DockerContainerOutput -> x.stdout }
 
     /**
@@ -30,12 +30,12 @@ object PrintSummary : DockerArrivalExecution<String, DockerRegistryTrainArrival>
      *
      */
     override fun execArrival(interf: DockerRegistryTrainArrival, client: DockerRuntimeClient, info: StationInfo) =
-            execute(interf, client, CheckRequirements.command, info, this.extractor)
+            execute(interf, this.command, client, info, this.extractor)
 
     /**
      * Executes the "print_summary" trainCommand on the [DockerRegistryTrainDeparture].
      *
      */
     override fun execDeparture(interf: DockerRegistryTrainDeparture, info: StationInfo) =
-            execute(interf, this.command, info, extractor)
+            execute(interf, this.command, info, this.extractor)
 }
