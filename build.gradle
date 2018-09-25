@@ -62,7 +62,7 @@ apply plugin: 'jacoco'
 apply plugin: 'org.jetbrains.dokka'
 
 group = "de.difuture.ekut.pht"
-version = "0.0.6"
+version = "0.0.7"
 
 
 publishing {
@@ -84,7 +84,7 @@ publishing {
 
 model {
     tasks.generatePomFileForMavenPublication {
-        destination = file("$buildDir/libs/api-0.0.6.pom")
+        destination = file("$buildDir/libs/api-0.0.7.pom")
     }
 }
 
