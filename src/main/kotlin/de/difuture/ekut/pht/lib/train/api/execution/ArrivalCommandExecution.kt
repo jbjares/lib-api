@@ -3,6 +3,7 @@ package de.difuture.ekut.pht.lib.train.api.execution
 import de.difuture.ekut.pht.lib.runtime.RuntimeClient
 import de.difuture.ekut.pht.lib.runtime.docker.DockerRuntimeClient
 import de.difuture.ekut.pht.lib.train.api.StationInfo
+import de.difuture.ekut.pht.lib.train.api.command.ArrivalCommand
 import de.difuture.ekut.pht.lib.train.api.command.TrainCommand
 import de.difuture.ekut.pht.lib.train.api.execution.docker.DockerOutputSupplier
 import de.difuture.ekut.pht.lib.train.api.interf.TrainInterface
@@ -18,6 +19,11 @@ import java.util.function.Supplier
  *
  */
 interface ArrivalCommandExecution<A, B : TrainArrival, C : RuntimeClient, D : Supplier<A>> : CommandExecution<A> {
+
+    /**
+     * The [ArrivalCommand] that this exection refers to
+     */
+    override val command: ArrivalCommand<A>
 
     /**
      * Executes the trainCommand for a given object with the Train Interface using

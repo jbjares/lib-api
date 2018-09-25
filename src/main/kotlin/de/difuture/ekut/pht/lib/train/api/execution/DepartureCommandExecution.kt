@@ -3,6 +3,7 @@ package de.difuture.ekut.pht.lib.train.api.execution
 import de.difuture.ekut.pht.lib.runtime.RuntimeClient
 import de.difuture.ekut.pht.lib.runtime.docker.DockerRuntimeClient
 import de.difuture.ekut.pht.lib.train.api.StationInfo
+import de.difuture.ekut.pht.lib.train.api.command.DepartureCommand
 import de.difuture.ekut.pht.lib.train.api.command.TrainCommand
 import de.difuture.ekut.pht.lib.train.api.execution.docker.DockerOutputSupplier
 import de.difuture.ekut.pht.lib.train.api.interf.TrainInterface
@@ -20,6 +21,11 @@ import java.util.function.Supplier
 interface DepartureCommandExecution<A, B : TrainDeparture<C>, C : RuntimeClient, D : Supplier<A>> : CommandExecution<A> {
 
     /**
+     * The [DepartureCommand] that this execution refers to
+     */
+    override val command: DepartureCommand<A>
+
+    /**
      * Executes the trainCommand for a given object with the Train Interface using
      * a particular Runtime client.
      *
@@ -29,7 +35,6 @@ interface DepartureCommandExecution<A, B : TrainDeparture<C>, C : RuntimeClient,
      */
     fun execDeparture(interf: B, info: StationInfo): D
 }
-
 /**
  * The specialization of [DepartureCommandExecution] for [DockerRuntimeClient]
  */
