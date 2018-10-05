@@ -44,7 +44,7 @@ class DefaultTrainRegistryClient(
 
                     (listTags(repo).tags ?: emptyList()).map { tag ->
 
-                        DockerRegistryTrainArrival(hostname, port, repo, tag)
+                        DockerRegistryTrainArrival(uri.host, uri.port, repo, tag)
                     }
                 }
                 // At last, apply the filter from the predicate

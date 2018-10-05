@@ -9,6 +9,7 @@ import org.junit.Assert
 import org.junit.Before
 import org.junit.ClassRule
 import org.junit.Test
+import java.net.URI
 
 class DockerTrainArrivalTests {
 
@@ -30,8 +31,7 @@ class DockerTrainArrivalTests {
     fun before() {
 
         val drclient = DockerRegistryGetClient.of(
-                REGISTRY.containerIpAddress,
-                REGISTRY.mappedPort,
+                URI.create("http://${REGISTRY.containerIpAddress}:${REGISTRY.mappedPort}"),
                 ApacheHttpClient())
         this.client = DefaultTrainRegistryClient(drclient)
     }
