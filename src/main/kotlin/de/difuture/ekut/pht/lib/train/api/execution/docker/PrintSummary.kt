@@ -1,6 +1,5 @@
 package de.difuture.ekut.pht.lib.train.api.execution.docker
 
-import de.difuture.ekut.pht.lib.data.DockerContainerOutput
 import de.difuture.ekut.pht.lib.runtime.docker.DockerRuntimeClient
 import de.difuture.ekut.pht.lib.train.api.StationInfo
 import de.difuture.ekut.pht.lib.train.api.command.PrintSummary
@@ -21,21 +20,18 @@ object PrintSummary : DockerArrivalExecution<String, DockerRegistryTrainArrival>
 
     override val command = PrintSummary
 
-    // Print summary just inspects stdout of the Docker Container output
-    private val extractor = { x: DockerContainerOutput -> x.stdout }
-
     /**
      * Executes the "print_summary" train trainCommand for b
      * using a specific [DockerRuntimeClient]
      *
      */
     override fun execArrival(interf: DockerRegistryTrainArrival, client: DockerRuntimeClient, info: StationInfo) =
-            execute(interf, this.command, client, info, this.extractor)
+            execute<String>(interf, this.command, client, info)
 
     /**
      * Executes the "print_summary" trainCommand on the [DockerRegistryTrainDeparture].
      *
      */
     override fun execDeparture(interf: DockerRegistryTrainDeparture, info: StationInfo) =
-            execute(interf, this.command, info, this.extractor)
+            execute<String>(interf, this.command, info)
 }
