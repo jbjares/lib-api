@@ -7,7 +7,7 @@ import de.difuture.ekut.pht.lib.runtime.docker.DockerRuntimeClient
 import de.difuture.ekut.pht.lib.train.api.StationInfo
 import de.difuture.ekut.pht.lib.train.api.command.ArrivalCommand
 import de.difuture.ekut.pht.lib.train.api.command.DepartureCommand
-import de.difuture.ekut.pht.lib.train.api.data.TrainReponse
+import de.difuture.ekut.pht.lib.train.api.data.TrainResponse
 import de.difuture.ekut.pht.lib.train.api.interf.arrival.DockerRegistryTrainArrival
 import de.difuture.ekut.pht.lib.train.api.interf.departure.DockerRegistryTrainDeparture
 import java.lang.Exception
@@ -20,7 +20,7 @@ import java.lang.Exception
  * @param default The default extractor to apply if reading stdout of container fails
  * @return The read object [T]
  */
-private inline fun <reified T : Any> defaultExtractor(output: DockerContainerOutput): TrainReponse<T> {
+private inline fun <reified T : Any> defaultExtractor(output: DockerContainerOutput): TrainResponse<T> {
 
     val (response: T?, error: String) = try {
 
@@ -29,7 +29,7 @@ private inline fun <reified T : Any> defaultExtractor(output: DockerContainerOut
 
         Pair(null, e.message.orEmpty())
     }
-    return TrainReponse(response, output.stdout, output.stderr, error, null)
+    return TrainResponse(response, output.stdout, output.stderr, error, null)
 }
 
 /**
@@ -46,7 +46,7 @@ internal inline fun <reified T : Any> execute(
     command: ArrivalCommand<*>,
     client: DockerRuntimeClient,
     info: StationInfo,
-    noinline f: (DockerContainerOutput) -> TrainReponse<T> = ::defaultExtractor
+    noinline f: (DockerContainerOutput) -> TrainResponse<T> = ::defaultExtractor
 ) =
     DockerOutputSupplier(
             client.run(
@@ -63,7 +63,7 @@ internal inline fun <reified T : Any> execute(
     interf: DockerRegistryTrainDeparture,
     command: DepartureCommand<*>,
     info: StationInfo,
-    noinline f: (DockerContainerOutput) -> TrainReponse<T> = ::defaultExtractor
+    noinline f: (DockerContainerOutput) -> TrainResponse<T> = ::defaultExtractor
 ) =
         DockerOutputSupplier(
                 interf.client.run(

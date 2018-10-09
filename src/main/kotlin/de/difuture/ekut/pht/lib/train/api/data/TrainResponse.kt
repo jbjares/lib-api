@@ -2,7 +2,7 @@ package de.difuture.ekut.pht.lib.train.api.data
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
-data class TrainReponse<T>(
+data class TrainResponse<T>(
 
     @JsonProperty("response")
     val response: T?,

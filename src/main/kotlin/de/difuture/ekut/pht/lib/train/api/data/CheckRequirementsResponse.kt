@@ -13,7 +13,7 @@ data class CheckRequirementsResponse(
 
     /**
      * List of unmet dependencies. An unmet dependency is an environment variable
-     * that the train could not find in the environment that is was provided by the station.
+     * that the train could not find in the environment that is was provided by the payload.
      */
     @JsonProperty("unmet")
     val unmet: List<String>

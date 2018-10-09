@@ -8,7 +8,7 @@ import de.difuture.ekut.pht.lib.train.api.data.CheckRequirementsResponse
  *
  * This command can only be applied to Train Arrivals.
  *
- * This command checks whether the station has met all requirements when
+ * This command checks whether the payload has met all requirements when
  * submitting the train.
  *
  * @author Lukas Zimmermann

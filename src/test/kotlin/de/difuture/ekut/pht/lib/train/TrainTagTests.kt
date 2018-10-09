@@ -1,5 +1,7 @@
 package de.difuture.ekut.pht.lib.train
 
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import com.fasterxml.jackson.module.kotlin.readValue
 import jdregistry.client.data.DockerTag
 import org.junit.Assert
 import org.junit.Test
@@ -15,7 +17,18 @@ import org.junit.Test
  */
 class TrainTagTests {
 
-    @Test fun special_train_tag_from_string() {
+    private fun serialize_deserialize_tag(repr: String) {
+
+        val id = TrainTag.of(repr)
+        val idAsString = jacksonObjectMapper().writeValueAsString(id)
+
+        Assert.assertEquals("\"$repr\"", idAsString)
+        val id1 = jacksonObjectMapper().readValue<TrainTag>(idAsString)
+        Assert.assertEquals(id1, id)
+    }
+
+    @Test
+    fun special_train_tag_from_string() {
 
         mapOf(
                 "test" to TrainTag.TEST
@@ -33,7 +46,8 @@ class TrainTagTests {
         }
     }
 
-    @Test fun mode_train_tag_from_string() {
+    @Test
+    fun mode_train_tag_from_string() {
 
         mapOf(
                 "immediate" to TrainTag.IMMEDIATE
@@ -66,7 +80,8 @@ class TrainTagTests {
         Assert.assertNotEquals(TrainTag.IMMEDIATE, tag3)
     }
 
-    @Test fun special_train_tag_from_dockertag() {
+    @Test
+    fun special_train_tag_from_dockertag() {
 
         // The special train tags
         val tag1 = TrainTag.of(DockerTag.of("test"))
@@ -84,7 +99,8 @@ class TrainTagTests {
         Assert.assertNotEquals(TrainTag.IMMEDIATE, tag6)
     }
 
-    @Test fun generic_train_tag_from_dockertag() {
+    @Test
+    fun generic_train_tag_from_dockertag() {
 
         val tag1 = TrainTag.of(DockerTag.of("foo"))
         val tag2 = TrainTag.of(DockerTag.of("bar"))
@@ -96,5 +112,12 @@ class TrainTagTests {
         Assert.assertNotEquals(TrainTag.IMMEDIATE, tag2)
         Assert.assertNotEquals(TrainTag.TEST, tag3)
         Assert.assertNotEquals(TrainTag.IMMEDIATE, tag3)
+    }
+
+    @Test
+    fun serialize_deserialize_train_tag() {
+
+        serialize_deserialize_tag("foo")
+        serialize_deserialize_tag("bar")
     }
 }

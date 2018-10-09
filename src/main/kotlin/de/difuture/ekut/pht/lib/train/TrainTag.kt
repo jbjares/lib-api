@@ -1,5 +1,10 @@
 package de.difuture.ekut.pht.lib.train
 
+import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize
+import com.fasterxml.jackson.databind.annotation.JsonSerialize
+import de.difuture.ekut.pht.lib.train.serializer.TrainTagDeserializer
+import de.difuture.ekut.pht.lib.train.serializer.TrainTagSerializer
 import jdregistry.client.data.DockerTag
 
 /**
@@ -10,6 +15,8 @@ import jdregistry.client.data.DockerTag
  * @since 0.0.1
  *
  */
+@JsonSerialize(using = TrainTagSerializer::class)
+@JsonDeserialize(using = TrainTagDeserializer::class)
 interface TrainTag {
 
     val repr: String
@@ -38,6 +45,7 @@ interface TrainTag {
          * @param value The value that should be converted to an [TrainTag] instance
          * @return The [TrainTag] from this [String]
          */
+        @JsonCreator
         fun of(value: String) = when (value) {
 
             IMMEDIATE.repr -> IMMEDIATE

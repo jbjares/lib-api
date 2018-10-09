@@ -1,11 +1,18 @@
 package de.difuture.ekut.pht.lib.train
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize
+import com.fasterxml.jackson.databind.annotation.JsonSerialize
+import de.difuture.ekut.pht.lib.train.serializer.TrainIdDeserializer
+import de.difuture.ekut.pht.lib.train.serializer.TrainIdSerializer
+
 /**
  * Represents the ID of a train.
  *
  * @author Lukas Zimmermann
  * @since 0.0.1
  */
+@JsonSerialize(using = TrainIdSerializer::class)
+@JsonDeserialize(using = TrainIdDeserializer::class)
 interface TrainId {
 
     val repr: String

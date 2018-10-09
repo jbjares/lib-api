@@ -1,4 +1,4 @@
-package de.difuture.ekut.pht.lib.train.arrival
+package de.difuture.ekut.pht.lib.train.api.arrival
 
 import de.difuture.ekut.pht.lib.train.registry.DefaultTrainRegistryClient
 import de.difuture.ekut.pht.test.lib.SingleExposedPortContainer
