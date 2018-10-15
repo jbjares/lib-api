@@ -12,17 +12,17 @@ import de.difuture.ekut.pht.lib.train.TrainTag
  */
 data class StationInfo(
 
-    val stationID: Int,
-    val mode: TrainTag.Mode
+        val stationId: Int,
+        val mode: TrainTag.Mode
 ) {
 
     /**
      * Encodes the content of [StationInfo] as trainCommand line parameters, as it would be passed to `data run`.
      *
      */
-    val commandLine = listOf(
+    private val commandLine = listOf(
 
-        "--stationid", stationID.toString(),
+        "--stationid", stationId.toString(),
         "--mode", mode.repr
     )
 }

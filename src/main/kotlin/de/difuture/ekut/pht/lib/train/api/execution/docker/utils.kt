@@ -5,11 +5,10 @@ import com.fasterxml.jackson.module.kotlin.readValue
 import de.difuture.ekut.pht.lib.data.DockerContainerOutput
 import de.difuture.ekut.pht.lib.runtime.docker.DockerRuntimeClient
 import de.difuture.ekut.pht.lib.train.api.StationInfo
-import de.difuture.ekut.pht.lib.train.api.command.ArrivalCommand
-import de.difuture.ekut.pht.lib.train.api.command.DepartureCommand
-import de.difuture.ekut.pht.lib.train.api.data.TrainResponse
+import de.difuture.ekut.pht.lib.train.api.output.TrainResponse
 import de.difuture.ekut.pht.lib.train.api.interf.arrival.DockerRegistryTrainArrival
 import de.difuture.ekut.pht.lib.train.api.interf.departure.DockerRegistryTrainDeparture
+import de.difuture.ekut.pht.lib.train.api.output.TrainOutput
 import java.lang.Exception
 
 /**
@@ -20,7 +19,7 @@ import java.lang.Exception
  * @param default The default extractor to apply if reading stdout of container fails
  * @return The read object [T]
  */
-private inline fun <reified T : Any> defaultExtractor(output: DockerContainerOutput): TrainResponse<T> {
+private inline fun <reified T : TrainResponse> toTrainOutput(output: DockerContainerOutput): TrainOutput.DockerTrainOutput {
 
     val (response: T?, error: String) = try {
 
@@ -29,7 +28,7 @@ private inline fun <reified T : Any> defaultExtractor(output: DockerContainerOut
 
         Pair(null, e.message.orEmpty())
     }
-    return TrainResponse(response, output.stdout, output.stderr, error, null)
+    return TrainOutput.DockerTrainOutput(response, error, output)
 }
 
 /**
@@ -41,19 +40,20 @@ private inline fun <reified T : Any> defaultExtractor(output: DockerContainerOut
  * @param info The Station context of the command to be executed
  * @param f The extractor to be used
  */
-internal inline fun <reified T : Any> execute(
-    interf: DockerRegistryTrainArrival,
-    command: ArrivalCommand<*>,
-    client: DockerRuntimeClient,
-    info: StationInfo,
-    noinline f: (DockerContainerOutput) -> TrainResponse<T> = ::defaultExtractor
-) =
-    DockerOutputSupplier(
-            client.run(
-                    client.pull(interf.repoName, interf.dockerTag, "${interf.host}:${interf.port}"),
-                    info.commandLine.plus(command.name),
-                    rm = true),
-            extractor = f)
+internal inline fun <reified T : TrainResponse> execute(
+        interf: DockerRegistryTrainArrival,
+        client: DockerRuntimeClient,
+        info: StationInfo,
+        commandName: String) : TrainOutput.DockerTrainOutput {
+
+    // First, use the Docker Client to pull the Docker image from the Docker Registry
+    val imageId = client.pull(interf.repoName, interf.dockerTag, "${interf.host}:${interf.port}")
+
+    // First, use the client to execute generate the dockercontainer Output
+    val containerOutput = client.run(imageId, info.commandLine.plus(commandName), rm = true)
+
+    return toTrainOutput<T>(containerOutput)
+}
 
 /**
  * Executes the DockerRegistryTrainDeparture
@@ -61,10 +61,14 @@ internal inline fun <reified T : Any> execute(
  */
 internal inline fun <reified T : Any> execute(
     interf: DockerRegistryTrainDeparture,
-    command: DepartureCommand<*>,
     info: StationInfo,
-    noinline f: (DockerContainerOutput) -> TrainResponse<T> = ::defaultExtractor
-) =
+    commandName: String
+) : TrainOutput.DockerTrainOutput  {
+
+    // Generate the DockerContainerOutput by using the client on the departure interface
+    val containerOutput = interf.client.run(interf.imageId, info.commandLine.plus(command.name) )
+
+}
         DockerOutputSupplier(
                 interf.client.run(
                         interf.imageId,
