@@ -26,8 +26,12 @@ sealed class TrainResponse {
         @JsonProperty("success")
         val success: Boolean,
 
+        @JsonProperty("message")
+        val message: String,
+
         @JsonProperty("nextTrainTag")
         val nextTrainTag: TrainTag
+
     ) : TrainResponse()
 
     data class PrintSummaryResponse(
