@@ -1,10 +1,14 @@
 package de.difuture.ekut.pht.lib.train.registry
 
+import de.difuture.ekut.pht.lib.runtime.docker.DockerRuntimeClient
 import de.difuture.ekut.pht.lib.train.TrainId
 import de.difuture.ekut.pht.lib.train.TrainTag
 import de.difuture.ekut.pht.lib.train.api.interf.arrival.DockerRegistryTrainArrival
 import de.difuture.ekut.pht.lib.train.api.interf.arrival.TrainArrival
+import de.difuture.ekut.pht.lib.train.api.interf.departure.DockerRegistryTrainDeparture
 import jdregistry.client.api.DockerRegistryGetClient
+import jdregistry.client.data.DockerRepositoryName
+import jdregistry.client.data.DockerTag
 
 /**
  * Canonical implementation of the [ITrainRegistryClient].
@@ -24,7 +28,7 @@ import jdregistry.client.api.DockerRegistryGetClient
 class DefaultTrainRegistryClient(
     private val dockerRegistryClient: DockerRegistryGetClient,
     private val namespace: String? = null
-) : ITrainRegistryClient<DockerRegistryTrainArrival> {
+) : ITrainRegistryClient<DockerRegistryTrainArrival, DockerRegistryTrainDeparture, DockerRuntimeClient> {
 
     override fun listTrainArrivals(predicate: (TrainArrival) -> Boolean) = with(dockerRegistryClient) {
 
@@ -55,4 +59,22 @@ class DefaultTrainRegistryClient(
     override fun getTrainArrival(trainId: TrainId, trainTag: TrainTag) =
 
             this.listTrainArrivals { it.trainId == trainId && it.trainTag == trainTag }.singleOrNull()
+
+    override fun submitTrainDeparture(departure: DockerRegistryTrainDeparture): Boolean {
+
+        // The DockerRepositoryName is derived from the trainId of the Train Departure and the namespace
+        // of this DockerClient
+        val repoName = departure.trainId.repr
+        val repo = namespace?.let { DockerRepositoryName(it, listOf(repoName)) }
+                ?: DockerRepositoryName(repoName)
+
+        // The DockerTag will be identical to the trainTag
+        val dockerTag = DockerTag.of(departure.trainTag.repr)
+
+        // The host is simply derived from the uri of this registry
+        val host = dockerRegistryClient.uri.toASCIIString()
+
+        departure.client.push(repo, dockerTag, host)
+        return true
+    }
 }

@@ -1,8 +1,10 @@
 package de.difuture.ekut.pht.lib.train.registry
 
+import de.difuture.ekut.pht.lib.runtime.RuntimeClient
 import de.difuture.ekut.pht.lib.train.TrainId
 import de.difuture.ekut.pht.lib.train.TrainTag
 import de.difuture.ekut.pht.lib.train.api.interf.arrival.TrainArrival
+import de.difuture.ekut.pht.lib.train.api.interf.departure.TrainDeparture
 
 /**
  * Represents the api of a client to the Train Registry.
@@ -17,7 +19,7 @@ import de.difuture.ekut.pht.lib.train.api.interf.arrival.TrainArrival
  * @since 0.0.1
  *
  */
-interface ITrainRegistryClient<out A : TrainArrival> {
+interface ITrainRegistryClient<out A : TrainArrival, in B : TrainDeparture<C>, C : RuntimeClient> {
 
     /**
      * Lists all the train arrivals that fulfill a certain criterion.
@@ -37,4 +39,13 @@ interface ITrainRegistryClient<out A : TrainArrival> {
      * @return The selected [TrainArrival] or null if this particular TrainArrival does not exist.
      */
     fun getTrainArrival(trainId: TrainId, trainTag: TrainTag): A?
+
+    /**
+     * Submits the provided [TrainDeparture] to the Train Registry. The [Boolean] indicates
+     * whether the submission was successful.
+     *
+     * @param departure The [TrainDeparture] to be submitted
+     * @return Whether the Submission has been successful
+     */
+    fun submitTrainDeparture(departure: B): Boolean
 }
