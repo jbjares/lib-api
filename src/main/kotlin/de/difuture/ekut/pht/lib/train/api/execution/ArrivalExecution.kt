@@ -10,12 +10,12 @@ import de.difuture.ekut.pht.lib.train.api.output.TrainOutput
 /**
  * The [CommandExecution] for Train Arrivals.
  *
- * @param A The return type of the Arrival Command that is chained by this [ArrivalExecution]
+ * @param A The return type of the Arrival TrainCommand that is chained by this [ArrivalExecution]
  * @param B The [TrainInterface] for which this command execution is defined
  * @param C The [RuntimeClient] that is required for this execution
  *
  */
-interface ArrivalExecution<A : TrainArrival, B : RuntimeClient, C : TrainOutput> {
+interface ArrivalExecution<A : TrainArrival, B : RuntimeClient, C : TrainOutput> : TrainExecution {
 
     /**
      * Executes the trainCommand for a given object with the Train Interface using
@@ -32,5 +32,5 @@ interface ArrivalExecution<A : TrainArrival, B : RuntimeClient, C : TrainOutput>
 /**
  * Specialization of the [ArrivalExecution] for [DockerRuntimeClient].
  */
-typealias DockerArrivalExecution<A>
-        = ArrivalExecution<A, DockerRuntimeClient, TrainOutput.DockerTrainOutput>
+typealias DockerArrivalExecution<A> =
+        ArrivalExecution<A, DockerRuntimeClient, TrainOutput.DockerTrainOutput>

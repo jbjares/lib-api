@@ -1,6 +1,7 @@
 package de.difuture.ekut.pht.lib.train.registry
 
 import de.difuture.ekut.pht.lib.train.TrainId
+import de.difuture.ekut.pht.lib.train.TrainTag
 import de.difuture.ekut.pht.lib.train.api.interf.arrival.DockerRegistryTrainArrival
 import de.difuture.ekut.pht.lib.train.api.interf.arrival.TrainArrival
 import jdregistry.client.api.DockerRegistryGetClient
@@ -50,4 +51,8 @@ class DefaultTrainRegistryClient(
                 // At last, apply the filter from the predicate
                 .filter(predicate)
     }
+
+    override fun getTrainArrival(trainId: TrainId, trainTag: TrainTag) =
+
+            this.listTrainArrivals { it.trainId == trainId && it.trainTag == trainTag }.singleOrNull()
 }

@@ -1,5 +1,7 @@
 package de.difuture.ekut.pht.lib.train.registry
 
+import de.difuture.ekut.pht.lib.train.TrainId
+import de.difuture.ekut.pht.lib.train.TrainTag
 import de.difuture.ekut.pht.lib.train.api.interf.arrival.TrainArrival
 
 /**
@@ -17,5 +19,22 @@ import de.difuture.ekut.pht.lib.train.api.interf.arrival.TrainArrival
  */
 interface ITrainRegistryClient<out A : TrainArrival> {
 
+    /**
+     * Lists all the train arrivals that fulfill a certain criterion.
+     *
+     * @param predicate The predicate to be used for filtering the returned [TrainArrival] instances
+     *
+     * @return List of [TrainArrival] instances that satisfy the provided predicate
+     */
     fun listTrainArrivals(predicate: (TrainArrival) -> Boolean = { true }): List<A>
+
+    /**
+     * Selects a particular [TrainArrival] given the [TrainId] and [TrainTag].
+     *
+     * @param trainId The [TrainId] to select
+     * @param trainTag The [trainTag] to select.
+     *
+     * @return The selected [TrainArrival] or null if this particular TrainArrival does not exist.
+     */
+    fun getTrainArrival(trainId: TrainId, trainTag: TrainTag): A?
 }

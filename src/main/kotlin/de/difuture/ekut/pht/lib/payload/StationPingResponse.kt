@@ -4,6 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty
 
 data class StationPingResponse(
 
-    @JsonProperty("message")
+    @JsonProperty("status")
     val status: String
 )

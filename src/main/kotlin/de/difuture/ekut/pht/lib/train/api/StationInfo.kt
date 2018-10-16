@@ -4,7 +4,7 @@ import de.difuture.ekut.pht.lib.train.TrainTag
 
 /**
  *
- * Represents the set of information that is passed to the train durig runtime.
+ * Represents the set of information that is passed to the train during runtime.
  *
  * @author Lukas Zimmermann
  * @since 0.0.1
@@ -12,17 +12,13 @@ import de.difuture.ekut.pht.lib.train.TrainTag
  */
 data class StationInfo(
 
-        val stationId: Int,
-        val mode: TrainTag.Mode
-) {
+    /**
+     * The numeric station id
+     */
+    val stationId: Int,
 
     /**
-     * Encodes the content of [StationInfo] as trainCommand line parameters, as it would be passed to `data run`.
-     *
+     * The mode in which the train was executed
      */
-    private val commandLine = listOf(
-
-        "--stationid", stationId.toString(),
-        "--mode", mode.repr
-    )
-}
+    val mode: TrainTag.Mode
+)

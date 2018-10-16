@@ -11,19 +11,19 @@ import de.difuture.ekut.pht.lib.data.DockerContainerOutput
  *
  */
 sealed class TrainOutput(
-        open val response: TrainResponse?,
-        open val error: String?
+    open val response: TrainResponse?,
+    open val error: String?
 ) {
 
     data class DockerTrainOutput(
-            @JsonProperty("response")
-            override val response: TrainResponse?,
+        @JsonProperty("response")
+        override val response: TrainResponse?,
 
-            @JsonProperty("error")
-            override val error: String,
+        @JsonProperty("error")
+        override val error: String,
 
-            @JsonProperty("containerOutput")
-            val containerOutput: DockerContainerOutput
+        @JsonProperty("containerOutput")
+        val containerOutput: DockerContainerOutput
 
     ) : TrainOutput(response, error)
 }

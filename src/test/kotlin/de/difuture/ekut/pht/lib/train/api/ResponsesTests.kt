@@ -1,8 +1,8 @@
 package de.difuture.ekut.pht.lib.train.api
 
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import de.difuture.ekut.pht.lib.equalAfterSerialization
+import de.difuture.ekut.pht.lib.allEqualAfterSerialization
 import de.difuture.ekut.pht.lib.train.TrainTag
+import de.difuture.ekut.pht.lib.train.api.output.TrainResponse
 import org.junit.Test
 
 class ResponsesTests {
@@ -10,29 +10,30 @@ class ResponsesTests {
     @Test
     fun equal_after_serialization_run_algorithm() {
 
-        val response1 = RunAlgorithmResponseContent("test", success = true, nextTrainTag = TrainTag.of("foo"))
-        val response2 = RunAlgorithmResponseContent("test", success = false, nextTrainTag = TrainTag.of("bar"))
-        equalAfterSerialization(response1, jacksonObjectMapper(), RunAlgorithmResponseContent::class.java)
-        equalAfterSerialization(response2, jacksonObjectMapper(), RunAlgorithmResponseContent::class.java)
+        val responses = listOf(
+                TrainResponse.RunAlgorithmResponse(success = true, nextTrainTag = TrainTag.of("foo")),
+                TrainResponse.RunAlgorithmResponse(success = false, nextTrainTag = TrainTag.of("bar"))
+        )
+        allEqualAfterSerialization(responses, TrainResponse.RunAlgorithmResponse::class.java)
     }
 
     @Test
     fun equal_after_serialization_list_requirements() {
 
-        val response1 = ListRequirementsResponseContent(emptyList())
-        val response2 = ListRequirementsResponseContent(listOf("PHT_TEST_REQUIREMENTS"))
-
-        equalAfterSerialization(response1, jacksonObjectMapper(), ListRequirementsResponseContent::class.java)
-        equalAfterSerialization(response2, jacksonObjectMapper(), ListRequirementsResponseContent::class.java)
+        val responses = listOf(
+                TrainResponse.ListRequirementsResponse(emptyList()),
+                TrainResponse.ListRequirementsResponse(listOf("PHT_TEST_REQUIREMENTS"))
+        )
+        allEqualAfterSerialization(responses, TrainResponse.ListRequirementsResponse::class.java)
     }
 
     @Test
     fun equal_after_serialization_check_requirements() {
 
-        val response1 = CheckRequirementsResponseContent("foo", emptyList())
-        val response2 = CheckRequirementsResponseContent("bar", listOf("baz"))
-
-        equalAfterSerialization(response1, jacksonObjectMapper(), CheckRequirementsResponseContent::class.java)
-        equalAfterSerialization(response2, jacksonObjectMapper(), CheckRequirementsResponseContent::class.java)
+        val responses = listOf(
+                TrainResponse.CheckRequirementsResponse(emptyList()),
+                TrainResponse.CheckRequirementsResponse(listOf("baz"))
+        )
+        allEqualAfterSerialization(responses, TrainResponse.CheckRequirementsResponse::class.java)
     }
 }
