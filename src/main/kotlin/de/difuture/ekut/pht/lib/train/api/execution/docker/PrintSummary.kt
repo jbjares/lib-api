@@ -3,8 +3,6 @@ package de.difuture.ekut.pht.lib.train.api.execution.docker
 import de.difuture.ekut.pht.lib.runtime.docker.DockerRuntimeClient
 import de.difuture.ekut.pht.lib.train.api.StationInfo
 import de.difuture.ekut.pht.lib.train.api.TrainCommand
-import de.difuture.ekut.pht.lib.train.api.execution.DockerArrivalExecution
-import de.difuture.ekut.pht.lib.train.api.execution.DockerDepartureExecution
 import de.difuture.ekut.pht.lib.train.api.interf.arrival.DockerRegistryTrainArrival
 import de.difuture.ekut.pht.lib.train.api.interf.departure.DockerRegistryTrainDeparture
 import de.difuture.ekut.pht.lib.train.api.output.TrainResponse
@@ -17,7 +15,7 @@ import de.difuture.ekut.pht.lib.train.api.output.TrainResponse
  * @since 0.0.3
  *
  */
-object PrintSummary : DockerArrivalExecution<DockerRegistryTrainArrival>, DockerDepartureExecution<DockerRegistryTrainDeparture> {
+object PrintSummary : DockerArrivalExecution<TrainResponse.PrintSummaryResponse>, DockerDepartureExecution<TrainResponse.PrintSummaryResponse> {
 
     override val command = TrainCommand.PRINT_SUMMARY
 

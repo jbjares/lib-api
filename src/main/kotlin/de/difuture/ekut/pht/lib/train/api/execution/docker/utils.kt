@@ -21,7 +21,7 @@ import java.lang.Exception
  */
 private inline fun <reified T : TrainResponse> toTrainOutput(
     output: DockerContainerOutput
-): TrainOutput.DockerTrainOutput {
+): TrainOutput.DockerTrainOutput<T> {
 
     // Tries to read the TrainResponse from the Container Output. Any Exception will result
     // in a null response. The error String will be the message of the thrown exception
@@ -47,7 +47,7 @@ internal inline fun <reified T : TrainResponse> execute(
     interf: DockerRegistryTrainArrival,
     client: DockerRuntimeClient,
     info: StationInfo
-): TrainOutput.DockerTrainOutput {
+): TrainOutput.DockerTrainOutput<T> {
 
     // First, use the Docker Client to pull the Docker image from the Docker Registry
     val imageId = client.pull(interf.repoName, interf.dockerTag, "${interf.host}:${interf.port}")
@@ -56,7 +56,7 @@ internal inline fun <reified T : TrainResponse> execute(
     val containerOutput = client.run(imageId, command.resolveWith(info), rm = true)
 
     // Extend the DockerContainer Output to a Train Output (by reading the stdout of the container)
-    return toTrainOutput<T>(containerOutput)
+    return toTrainOutput(containerOutput)
 }
 
 /**
@@ -67,10 +67,10 @@ internal inline fun <reified T : TrainResponse> execute(
     command: TrainCommand,
     interf: DockerRegistryTrainDeparture,
     info: StationInfo
-): TrainOutput.DockerTrainOutput {
+): TrainOutput.DockerTrainOutput<T> {
 
     // Generate the DockerContainerOutput by using the client on the departure interface
     val containerOutput = interf.client.run(interf.imageId, command.resolveWith(info), rm = true)
 
-    return toTrainOutput<T>(containerOutput)
+    return toTrainOutput(containerOutput)
 }

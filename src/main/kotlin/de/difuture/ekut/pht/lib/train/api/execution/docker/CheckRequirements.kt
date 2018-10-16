@@ -4,11 +4,10 @@ import de.difuture.ekut.pht.lib.runtime.docker.DockerRuntimeClient
 import de.difuture.ekut.pht.lib.train.api.StationInfo
 import de.difuture.ekut.pht.lib.train.api.TrainCommand
 import de.difuture.ekut.pht.lib.train.api.output.TrainResponse
-import de.difuture.ekut.pht.lib.train.api.execution.DockerArrivalExecution
 import de.difuture.ekut.pht.lib.train.api.interf.arrival.DockerRegistryTrainArrival
 
 object CheckRequirements
-    : DockerArrivalExecution<DockerRegistryTrainArrival> {
+    : DockerArrivalExecution<TrainResponse.CheckRequirementsResponse> {
 
     override val command = TrainCommand.CHECK_REQUIREMENTS
 
