@@ -74,6 +74,9 @@ class DefaultTrainRegistryClient(
         // The host is simply derived from the uri of this registry
         val host = dockerRegistryClient.uri.toASCIIString()
 
+        // The image needs to be tagged with the new image Name
+        departure.client.tag(departure.imageId, repo, dockerTag)
+
         departure.client.push(repo, dockerTag, host)
         return true
     }
