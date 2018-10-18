@@ -25,12 +25,12 @@ private inline fun <reified T : TrainResponse> toTrainOutput(
 
     // Tries to read the TrainResponse from the Container Output. Any Exception will result
     // in a null response. The error String will be the message of the thrown exception
-    val (response: T?, error: String) = try {
+    val (response, error) = try {
 
-        Pair<T, String>(jacksonObjectMapper().readValue(output.stdout), "")
+        Pair<T, String?>(jacksonObjectMapper().readValue(output.stdout), null)
     } catch (e: Exception) {
 
-        Pair(null, e.message.orEmpty())
+        Pair<T?, String>(null, e.message.orEmpty())
     }
     return TrainOutput.DockerTrainOutput(response, error, output)
 }
