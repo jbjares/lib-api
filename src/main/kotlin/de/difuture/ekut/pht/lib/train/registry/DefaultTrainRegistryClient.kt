@@ -75,10 +75,11 @@ class DefaultTrainRegistryClient(
         val host = dockerRegistryClient.uri.host
         val port = dockerRegistryClient.uri.port
         val portString = if (port == -1) "" else ":$port"
+        val hostString = "$host$portString"
 
         // The image needs to be tagged with the new image Name
-        departure.client.tag(departure.imageId, repo, dockerTag)
-        departure.client.push(repo, dockerTag, "$host$portString")
+        departure.client.tag(departure.imageId, repo, dockerTag, hostString)
+        departure.client.push(repo, dockerTag, hostString)
         return true
     }
 }

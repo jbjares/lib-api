@@ -49,7 +49,7 @@ dependencies {
     compile group: 'com.fasterxml.jackson.module', name: 'jackson-module-kotlin', version: '2.9.6'
 
     compile group: 'jdregistry.client', name: 'api', version: '0.0.7'
-    compile group: 'de.difuture.ekut.pht.lib', name: 'runtime', version: '0.1.0'
+    compile group: 'de.difuture.ekut.pht.lib', name: 'runtime', version: '0.1.1'
 
     // Testing
     testCompile group: 'io.github.benas', name: 'random-beans', version: '3.7.0'
@@ -62,7 +62,7 @@ apply plugin: 'jacoco'
 apply plugin: 'org.jetbrains.dokka'
 
 group = "de.difuture.ekut.pht.lib"
-version = "0.2.0"
+version = "0.2.1"
 
 
 publishing {
@@ -84,7 +84,7 @@ publishing {
 
 model {
     tasks.generatePomFileForMavenPublication {
-        destination = file("$buildDir/libs/api-0.2.0.pom")
+        destination = file("$buildDir/libs/api-0.2.1.pom")
     }
 }
 
