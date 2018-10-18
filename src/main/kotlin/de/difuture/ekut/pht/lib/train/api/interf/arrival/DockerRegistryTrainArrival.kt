@@ -1,7 +1,7 @@
 package de.difuture.ekut.pht.lib.train.api.interf.arrival
 
-import de.difuture.ekut.pht.lib.train.TrainId
-import de.difuture.ekut.pht.lib.train.TrainTag
+import de.difuture.ekut.pht.lib.train.api.data.TrainId
+import de.difuture.ekut.pht.lib.train.api.data.TrainTag
 import jdregistry.client.data.DockerRepositoryName
 import jdregistry.client.data.DockerTag
 

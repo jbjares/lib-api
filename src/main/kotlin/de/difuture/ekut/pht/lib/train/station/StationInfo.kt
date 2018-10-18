@@ -1,6 +1,6 @@
-package de.difuture.ekut.pht.lib.train.api
+package de.difuture.ekut.pht.lib.train.station
 
-import de.difuture.ekut.pht.lib.train.TrainTag
+import de.difuture.ekut.pht.lib.train.api.data.TrainTag
 
 /**
  *

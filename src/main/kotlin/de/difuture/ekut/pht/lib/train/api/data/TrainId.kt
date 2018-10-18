@@ -1,9 +1,9 @@
-package de.difuture.ekut.pht.lib.train
+package de.difuture.ekut.pht.lib.train.api.data
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.databind.annotation.JsonSerialize
-import de.difuture.ekut.pht.lib.train.serializer.TrainIdDeserializer
-import de.difuture.ekut.pht.lib.train.serializer.TrainIdSerializer
+import de.difuture.ekut.pht.lib.train.api.data.serializer.TrainIdDeserializer
+import de.difuture.ekut.pht.lib.train.api.data.serializer.TrainIdSerializer
 
 /**
  * Represents the ID of a train.

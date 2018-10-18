@@ -1,10 +1,10 @@
-package de.difuture.ekut.pht.lib.train
+package de.difuture.ekut.pht.lib.train.api.data
 
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.databind.annotation.JsonSerialize
-import de.difuture.ekut.pht.lib.train.serializer.TrainTagDeserializer
-import de.difuture.ekut.pht.lib.train.serializer.TrainTagSerializer
+import de.difuture.ekut.pht.lib.train.api.data.serializer.TrainTagDeserializer
+import de.difuture.ekut.pht.lib.train.api.data.serializer.TrainTagSerializer
 import jdregistry.client.data.DockerTag
 
 /**

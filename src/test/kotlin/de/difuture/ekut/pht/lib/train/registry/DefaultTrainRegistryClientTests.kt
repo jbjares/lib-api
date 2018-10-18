@@ -1,7 +1,7 @@
 package de.difuture.ekut.pht.lib.train.registry
 
-import de.difuture.ekut.pht.lib.train.TrainId
-import de.difuture.ekut.pht.lib.train.TrainTag
+import de.difuture.ekut.pht.lib.train.api.data.TrainId
+import de.difuture.ekut.pht.lib.train.api.data.TrainTag
 import de.difuture.ekut.pht.test.lib.SingleExposedPortContainer
 import de.difuture.ekut.pht.test.lib.TEST_TRAIN_REGISTRY_REPOSITORY
 import jdregistry.client.api.DockerRegistryGetClient

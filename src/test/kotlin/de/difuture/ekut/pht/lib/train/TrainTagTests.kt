@@ -2,6 +2,7 @@ package de.difuture.ekut.pht.lib.train
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
+import de.difuture.ekut.pht.lib.train.api.data.TrainTag
 import jdregistry.client.data.DockerTag
 import org.junit.Assert
 import org.junit.Test

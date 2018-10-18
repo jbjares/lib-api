@@ -1,7 +1,7 @@
 package de.difuture.ekut.pht.lib.train.api.output
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import de.difuture.ekut.pht.lib.train.TrainTag
+import de.difuture.ekut.pht.lib.train.api.data.TrainTag
 
 /**
  * Container class for responses that are produced by a train.

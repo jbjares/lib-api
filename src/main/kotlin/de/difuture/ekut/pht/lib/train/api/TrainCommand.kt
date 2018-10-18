@@ -1,5 +1,7 @@
 package de.difuture.ekut.pht.lib.train.api
 
+import de.difuture.ekut.pht.lib.train.station.StationInfo
+
 /**
  * Enum of all the known Train Commands. Also specified how the are translated to a command line
  * call given the required [StationInfo].

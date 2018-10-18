@@ -1,7 +1,7 @@
 package de.difuture.ekut.pht.lib.train.api.execution
 
 import de.difuture.ekut.pht.lib.runtime.RuntimeClient
-import de.difuture.ekut.pht.lib.train.api.StationInfo
+import de.difuture.ekut.pht.lib.train.station.StationInfo
 import de.difuture.ekut.pht.lib.train.api.interf.TrainInterface
 import de.difuture.ekut.pht.lib.train.api.interf.departure.TrainDeparture
 import de.difuture.ekut.pht.lib.train.api.output.TrainOutput

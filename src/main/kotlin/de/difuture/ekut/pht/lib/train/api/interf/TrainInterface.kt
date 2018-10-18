@@ -1,7 +1,7 @@
 package de.difuture.ekut.pht.lib.train.api.interf
 
-import de.difuture.ekut.pht.lib.train.TrainId
-import de.difuture.ekut.pht.lib.train.TrainTag
+import de.difuture.ekut.pht.lib.train.api.data.TrainId
+import de.difuture.ekut.pht.lib.train.api.data.TrainTag
 
 /**
  * Super api for [TrainArrival] and [TrainDeparture]

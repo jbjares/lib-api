@@ -1,7 +1,7 @@
 package de.difuture.ekut.pht.lib.train.api
 
 import de.difuture.ekut.pht.lib.allEqualAfterSerialization
-import de.difuture.ekut.pht.lib.train.TrainTag
+import de.difuture.ekut.pht.lib.train.api.data.TrainTag
 import de.difuture.ekut.pht.lib.train.api.output.TrainResponse
 import org.junit.Test
 
