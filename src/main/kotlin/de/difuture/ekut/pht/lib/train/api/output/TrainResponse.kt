@@ -21,6 +21,12 @@ sealed class TrainResponse {
         val requirements: List<String>
     ) : TrainResponse()
 
+    data class PrintSummaryResponse(
+
+        @JsonProperty("content")
+        val content: String
+    ) : TrainResponse()
+
     data class RunAlgorithmResponse(
 
         @JsonProperty("success")
@@ -30,13 +36,13 @@ sealed class TrainResponse {
         val message: String,
 
         @JsonProperty("nextTrainTag")
-        val nextTrainTag: TrainTag
+        val nextTrainTag: TrainTag,
 
-    ) : TrainResponse()
+        @JsonProperty("dockerBaseImage")
+        val dockerBaseImage: String,
 
-    data class PrintSummaryResponse(
+        @JsonProperty("exportFiles")
+        val exportFiles: List<String>
 
-        @JsonProperty("content")
-        val content: String
     ) : TrainResponse()
 }

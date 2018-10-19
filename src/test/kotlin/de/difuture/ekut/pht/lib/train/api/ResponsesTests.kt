@@ -11,8 +11,18 @@ class ResponsesTests {
     fun equal_after_serialization_run_algorithm() {
 
         val responses = listOf(
-                TrainResponse.RunAlgorithmResponse(success = true, message = "foo", nextTrainTag = TrainTag.of("foo")),
-                TrainResponse.RunAlgorithmResponse(success = false, message = "", nextTrainTag = TrainTag.of("bar"))
+                TrainResponse.RunAlgorithmResponse(
+                        success = true,
+                        message = "foo",
+                        nextTrainTag = TrainTag.of("foo"),
+                        dockerBaseImage = "alpine",
+                        exportFiles = listOf("/tmp/foo")),
+                TrainResponse.RunAlgorithmResponse(
+                        success = false,
+                        message = "",
+                        nextTrainTag = TrainTag.of("bar"),
+                        dockerBaseImage = "",
+                        exportFiles = emptyList())
         )
         allEqualAfterSerialization(responses, TrainResponse.RunAlgorithmResponse::class.java)
     }
