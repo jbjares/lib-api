@@ -1,8 +1,11 @@
 package de.difuture.ekut.pht.lib.train.api
 
 import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize
+import com.fasterxml.jackson.databind.annotation.JsonSerialize
+import de.difuture.ekut.pht.lib.train.api.data.serializer.TrainCommandDeserializer
+import de.difuture.ekut.pht.lib.train.api.data.serializer.TrainCommandSerializer
 import de.difuture.ekut.pht.lib.train.station.StationInfo
-import java.lang.IllegalArgumentException
 
 /**
  * Enum of all the known Train Commands. Also specified how the are translated to a command line
@@ -12,7 +15,9 @@ import java.lang.IllegalArgumentException
  * @since 0.1.3
  *
  */
-enum class TrainCommand(private val repr: String) {
+@JsonSerialize(using = TrainCommandSerializer::class)
+@JsonDeserialize(using = TrainCommandDeserializer::class)
+enum class TrainCommand(val repr: String) {
 
     CHECK_REQUIREMENTS("check_requirements"),
     LIST_REQUIREMENTS("list_requirements"),
@@ -36,12 +41,19 @@ enum class TrainCommand(private val repr: String) {
     companion object {
 
         @JsonCreator
-        fun of(repr: String) = when(repr) {
+        fun of(repr: String): TrainCommand = when (repr) {
 
             CHECK_REQUIREMENTS.repr -> CHECK_REQUIREMENTS
+            CHECK_REQUIREMENTS.toString() -> CHECK_REQUIREMENTS
+
             LIST_REQUIREMENTS.repr -> LIST_REQUIREMENTS
+            LIST_REQUIREMENTS.toString() -> LIST_REQUIREMENTS
+
             PRINT_SUMMARY.repr -> PRINT_SUMMARY
+            PRINT_SUMMARY.toString() -> PRINT_SUMMARY
+
             RUN_ALGORITHM.repr -> RUN_ALGORITHM
+            RUN_ALGORITHM.toString() -> RUN_ALGORITHM
             else -> throw IllegalArgumentException("Not a Train Command: $repr")
         }
     }

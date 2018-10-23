@@ -1,7 +1,6 @@
 package de.difuture.ekut.pht.lib.train.registry
 
 import de.difuture.ekut.pht.lib.runtime.docker.DockerRuntimeClient
-import de.difuture.ekut.pht.lib.train.api.TrainCommand
 import de.difuture.ekut.pht.lib.train.api.data.TrainId
 import de.difuture.ekut.pht.lib.train.api.data.TrainTag
 import de.difuture.ekut.pht.lib.train.api.interf.arrival.DockerRegistryTrainArrival
