@@ -33,7 +33,7 @@ class DefaultTrainRegistryClient(
     override fun listTrainArrivals(predicate: (TrainArrival) -> Boolean) = with(dockerRegistryClient) {
 
         // We have to inspect all repositories in the remote registry
-        listRepositories()
+        listRepositories().repositories.orEmpty()
 
                 // First, filter down to all repos that have the correct namespace and designate valid Train IDs
                 .filter { repo ->
@@ -47,7 +47,7 @@ class DefaultTrainRegistryClient(
                 // Map all hits to the Train Arrivals
                 .flatMap { repo ->
 
-                    (listTags(repo).tags ?: emptyList()).map { tag ->
+                    listTags(repo).tags.orEmpty().map { tag ->
 
                         DockerRegistryTrainArrival(uri.host, uri.port, repo, tag)
                     }
