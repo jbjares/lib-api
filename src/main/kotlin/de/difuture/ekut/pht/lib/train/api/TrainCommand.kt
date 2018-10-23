@@ -1,6 +1,8 @@
 package de.difuture.ekut.pht.lib.train.api
 
+import com.fasterxml.jackson.annotation.JsonCreator
 import de.difuture.ekut.pht.lib.train.station.StationInfo
+import java.lang.IllegalArgumentException
 
 /**
  * Enum of all the known Train Commands. Also specified how the are translated to a command line
@@ -30,4 +32,17 @@ enum class TrainCommand(private val repr: String) {
             "--mode", info.mode.repr,
             this.repr
         )
+
+    companion object {
+
+        @JsonCreator
+        fun of(repr: String) = when(repr) {
+
+            CHECK_REQUIREMENTS.repr -> CHECK_REQUIREMENTS
+            LIST_REQUIREMENTS.repr -> LIST_REQUIREMENTS
+            PRINT_SUMMARY.repr -> PRINT_SUMMARY
+            RUN_ALGORITHM.repr -> RUN_ALGORITHM
+            else -> throw IllegalArgumentException("Not a Train Command: $repr")
+        }
+    }
 }
