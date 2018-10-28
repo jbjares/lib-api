@@ -3,7 +3,7 @@ package de.difuture.ekut.pht.lib.train
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import de.difuture.ekut.pht.lib.train.api.data.TrainTag
-import jdregistry.client.data.DockerTag
+import jdregistry.client.data.Tag as DockerTag
 import org.junit.Assert
 import org.junit.Test
 
@@ -85,12 +85,12 @@ class TrainTagTests {
     fun special_train_tag_from_dockertag() {
 
         // The special train tags
-        val tag1 = TrainTag.of(DockerTag.of("test"))
-        val tag2 = TrainTag.of(DockerTag.of("immediate"))
-        val tag3 = TrainTag.of(DockerTag.of("TEST"))
-        val tag4 = TrainTag.of(DockerTag.of("IMMEDIATE"))
-        val tag5 = TrainTag.of(DockerTag.of("TesT"))
-        val tag6 = TrainTag.of(DockerTag.of("ImmEDIATE"))
+        val tag1 = TrainTag.of(DockerTag.from("test"))
+        val tag2 = TrainTag.of(DockerTag.from("immediate"))
+        val tag3 = TrainTag.of(DockerTag.from("TEST"))
+        val tag4 = TrainTag.of(DockerTag.from("IMMEDIATE"))
+        val tag5 = TrainTag.of(DockerTag.from("TesT"))
+        val tag6 = TrainTag.of(DockerTag.from("ImmEDIATE"))
 
         Assert.assertEquals(TrainTag.TEST, tag1)
         Assert.assertEquals(TrainTag.IMMEDIATE, tag2)
@@ -103,9 +103,9 @@ class TrainTagTests {
     @Test
     fun generic_train_tag_from_dockertag() {
 
-        val tag1 = TrainTag.of(DockerTag.of("foo"))
-        val tag2 = TrainTag.of(DockerTag.of("bar"))
-        val tag3 = TrainTag.of(DockerTag.of("baz"))
+        val tag1 = TrainTag.of(DockerTag.from("foo"))
+        val tag2 = TrainTag.of(DockerTag.from("bar"))
+        val tag3 = TrainTag.of(DockerTag.from("baz"))
 
         Assert.assertNotEquals(TrainTag.TEST, tag1)
         Assert.assertNotEquals(TrainTag.IMMEDIATE, tag1)

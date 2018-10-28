@@ -4,7 +4,7 @@ import de.difuture.ekut.pht.lib.runtime.docker.DockerRuntimeClient
 import de.difuture.ekut.pht.lib.train.api.execution.docker.RunAlgorithm
 import de.difuture.ekut.pht.lib.train.api.interf.arrival.DockerRegistryTrainArrival
 import de.difuture.ekut.pht.lib.train.api.interf.departure.DockerRegistryTrainDeparture
-import jdregistry.client.data.DockerTag
+import jdregistry.client.data.Tag as DockerTag
 import java.nio.file.Paths
 
 class DockerTrainStation(
@@ -36,7 +36,7 @@ class DockerTrainStation(
                 response.exportFiles.map { Paths.get(it) },
                 response.dockerBaseImage,
                 arrival.repoName,
-                DockerTag.of(nextTrainTag.repr)
+                DockerTag.from(nextTrainTag.repr)
         )
         // Return the train departure. The trainId is not going to change, the new TrainTag
         // is communicated via the nextTrainTag

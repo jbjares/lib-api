@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.databind.annotation.JsonSerialize
 import de.difuture.ekut.pht.lib.train.api.data.serializer.TrainTagDeserializer
 import de.difuture.ekut.pht.lib.train.api.data.serializer.TrainTagSerializer
-import jdregistry.client.data.DockerTag
+import jdregistry.client.data.Tag as DockerTag
 
 /**
  * Represents the Tag of a Train.

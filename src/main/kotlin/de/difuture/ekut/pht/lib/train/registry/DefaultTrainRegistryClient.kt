@@ -7,8 +7,8 @@ import de.difuture.ekut.pht.lib.train.api.interf.arrival.DockerRegistryTrainArri
 import de.difuture.ekut.pht.lib.train.api.interf.arrival.TrainArrival
 import de.difuture.ekut.pht.lib.train.api.interf.departure.DockerRegistryTrainDeparture
 import jdregistry.client.api.DockerRegistryGetClient
-import jdregistry.client.data.DockerRepositoryName
-import jdregistry.client.data.DockerTag
+import jdregistry.client.data.RepositoryName as DockerRepositoryName
+import jdregistry.client.data.Tag as DockerTag
 
 /**
  * Canonical implementation of the [ITrainRegistryClient].
@@ -37,10 +37,10 @@ class DefaultTrainRegistryClient(
 
                 // First, filter down to all repos that have the correct namespace and designate valid Train IDs
                 .filter { repo ->
-                    when (repo.numberOfComponents) {
+                    when (repo.list.size) {
 
-                        1 -> namespace == null && TrainId.isValid(repo[0])
-                        2 -> repo[0] == namespace && TrainId.isValid(repo[1])
+                        1 -> namespace == null && TrainId.isValid(repo.list[0].repr)
+                        2 -> repo.list[0].repr == namespace && TrainId.isValid(repo.list[1].repr)
                         else -> false
                     }
                 }
@@ -65,11 +65,11 @@ class DefaultTrainRegistryClient(
         // The DockerRepositoryName is derived from the trainId of the Train Departure and the namespace
         // of this DockerClient
         val repoName = departure.trainId.repr
-        val repo = namespace?.let { DockerRepositoryName(it, listOf(repoName)) }
-                ?: DockerRepositoryName(repoName)
+        val repo = namespace?.let { DockerRepositoryName.from("$it/$repoName") }
+                ?: DockerRepositoryName.from(repoName)
 
         // The DockerTag will be identical to the trainTag
-        val dockerTag = DockerTag.of(departure.trainTag.repr)
+        val dockerTag = DockerTag.from(departure.trainTag.repr)
 
         // The host is simply derived from the uri of this registry
         val host = dockerRegistryClient.uri.host
